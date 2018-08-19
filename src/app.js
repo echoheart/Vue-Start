@@ -3,7 +3,4 @@ import Button from './button';
 Vue.component('g-button', Button);
 new Vue({
     el: '#app',
-    data: {
-        message: 'hello world'
-    }
 });

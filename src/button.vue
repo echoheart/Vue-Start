@@ -1,13 +1,8 @@
 <template>
-    <g-button></g-button>
-    {{message}}
+    <button class="g-button">按钮</button>
 </template>
 <script>
     export default {
-        name: '',
-        template: `
-        <button class="g-button">hi</buttonclass>
-        `
     }
 </script>
 <style lang="scss">

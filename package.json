@@ -1,0 +1,25 @@
+{
+  "name": "vue-start",
+  "version": "0.0.1",
+  "description": "vue 起步",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/echoheart/Vue-Start.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "limantang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/echoheart/Vue-Start/issues"
+  },
+  "homepage": "https://github.com/echoheart/Vue-Start#readme",
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
+}

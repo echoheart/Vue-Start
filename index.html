@@ -12,7 +12,9 @@
             margin: 0;
             box-sizing: border-box;
         }
-        :root {
+        body {
+            margin: 20px;
+        }:root {
             --button-height: 32px;
             --font-size: 14px;
             --button-bg: #fff;
@@ -24,41 +26,11 @@
         }
     </style>
     <style>
-        .g-button {
-            height: var(--button-height);
-            font-size: var(--font-size);
-            padding: 0 1em;
-            border-radius: var(--button-radius);
-            background: var(--button-bg);
-        }
-        .g-button:hover {
-            border-color: var(--button-color-hover);
-        }
-        .g-button:active {
-            background-color: var(--button-active-bg);
-        }
-        .g-button:focus {
-            outline: none;
-        }
-        body {
-            mar gin: 20px;
-        }
+
     </style>
 </head>
 <body>
-    <div id="app">
-        <g-button></g-button>
-        {{message}}
-    </div>
-    <script src="./node_modules/vue/dist/vue.min.js"></script>
-    <script src="./button.js"></script>
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                message: 'hello world'
-            }
-        })
-    </script>
+    <div id="app"></div>
+    <script src="./src/app.js"></script>
 </body>
 </html>

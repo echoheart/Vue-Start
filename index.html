@@ -12,9 +12,11 @@
             margin: 0;
             box-sizing: border-box;
         }
+
         body {
             margin: 20px;
         }
+
         :root {
             --button-height: 32px;
             --font-size: 14px;
@@ -31,9 +33,22 @@
     </style>
 </head>
 <body>
-    <div id="app">
-        <g-button></g-button>
-    </div>
-    <script src="./src/app.js"></script>
+<div id="app">
+    <g-button icon="shezhi" icon-position="up">
+        按钮
+    </g-button>
+    <g-button icon="shezhi" icon-position="right">
+        按钮
+    </g-button>
+    <g-button icon="shezhi" icon-position="left">
+        按钮
+    </g-button>
+    <traning-wrapper v-bind:message="titleText">
+        悬浮查看信息
+    </traning-wrapper>
+</div>
+<script src="./src/app.js"></script>
+<script src="//at.alicdn.com/t/font_777686_9z5v924apf6.js"></script>
+
 </body>
 </html>

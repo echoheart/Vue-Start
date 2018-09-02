@@ -10334,11 +10334,16 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     // props: ['icon', 'iconPosition']
     props: {
         icon: {},
+        loading: {
+            type: Boolean,
+            default: false
+        },
         iconPosition: {
             type: String,
             default: 'left',
@@ -10372,10 +10377,21 @@ exports.default = {
     "button",
     {
       staticClass: "g-button",
-      class: ((_obj = {}), (_obj["icon-" + _vm.iconPosition] = true), _obj)
+      class: ((_obj = {}), (_obj["icon-" + _vm.iconPosition] = true), _obj),
+      on: {
+        click: function($event) {
+          _vm.$emit("click")
+        }
+      }
     },
     [
-      _vm.icon ? _c("g-icon", { attrs: { name: _vm.icon } }) : _vm._e(),
+      _vm.icon && !_vm.loading
+        ? _c("g-icon", { attrs: { name: _vm.icon } })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.loading
+        ? _c("g-icon", { staticClass: "loading", attrs: { name: "loading" } })
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [_vm._t("default")], 2)
     ],
@@ -10573,7 +10589,10 @@ _vue2.default.component('g-icon', _icon2.default);
 new _vue2.default({
     el: '#app',
     data: {
-        titleText: '页面加载于' + new Date().toLocaleString()
+        titleText: '页面加载于' + new Date().toLocaleString(),
+        loadingOne: false,
+        loadingTwo: false,
+        loadingThree: true
     }
 });
 },{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./studyVue":"src/studyVue.vue","./icon":"src/icon.vue"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -10605,7 +10624,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50598' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54735' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

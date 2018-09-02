@@ -13,11 +13,12 @@
     <!--</button>-->
 
     <!--使用css控制icon位置-->
-    <button class="g-button" v-bind:class="{[`icon-${iconPosition}`]: true}" >
+    <button class="g-button" v-bind:class="{[`icon-${iconPosition}`]: true}" v-on:click="$emit('click')">
         <!--<svg v-if="icon" class="icon">-->
             <!--<use v-bind:xlink:href="`#icon-${icon}`"></use>-->
         <!--</svg>-->
-        <g-icon v-if="icon" v-bind:name="icon"></g-icon>
+        <g-icon v-if="icon && !loading" v-bind:name="icon"></g-icon>
+        <g-icon v-if="loading" class="loading" name="loading"></g-icon>
         <div class="content">
             <slot></slot>
         </div>
@@ -28,6 +29,10 @@
         // props: ['icon', 'iconPosition']
         props: {
             icon: {},
+            loading: {
+                type: Boolean,
+                default: false
+            },
             iconPosition: {
                 type: String,
                 default: 'left',
@@ -48,7 +53,14 @@
     }
 </script>
 <style lang="scss">
-
+    @keyframes spin {
+        0% {
+            transfrom: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
     .g-button {
         height: var(--button-height);
         font-size: var(--font-size);
@@ -85,6 +97,9 @@
             > .content {
                 order: 1;
             }
+        }
+        .loading {
+            animation: spin 1s infinite linear;
         }
     }
 </style>

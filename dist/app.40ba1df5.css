@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@keyframes spin {
+  0% {
+    transfrom: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
 .g-button {
   height: var(--button-height);
   font-size: var(--font-size);
@@ -27,6 +33,8 @@
     margin-right: 0; }
   .g-button.icon-right > .content {
     order: 1; }
+  .g-button .loading {
+    animation: spin 1s infinite linear; }
 .g-icon {
   height: 1em;
   width: 1em; }

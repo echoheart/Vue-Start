@@ -10,5 +10,8 @@ new Vue({
     el: '#app',
     data: {
         titleText: '页面加载于' + new Date().toLocaleString(),
+        loadingOne: false,
+        loadingTwo: false,
+        loadingThree: true
     }
 });

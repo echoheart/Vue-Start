@@ -34,13 +34,13 @@
 </head>
 <body>
 <div id="app">
-    <g-button icon="shezhi" icon-position="up">
+    <g-button icon="setting" icon-position="up" v-bind:loading="loadingOne" v-on:click="loadingOne = !loadingOne">
         按钮
     </g-button>
-    <g-button icon="shezhi" icon-position="right">
+    <g-button icon="setting" icon-position="right" v-bind:loading="loadingTwo" v-on:click="loadingTwo = !loadingTwo">
         按钮
     </g-button>
-    <g-button icon="shezhi" icon-position="left">
+    <g-button icon="setting" icon-position="left" v-bind:loading="loadingThree" v-on:click="loadingThree = !loadingThree">
         按钮
     </g-button>
     <traning-wrapper v-bind:message="titleText">
@@ -48,7 +48,7 @@
     </traning-wrapper>
 </div>
 <script src="./src/app.js"></script>
-<script src="//at.alicdn.com/t/font_777686_9z5v924apf6.js"></script>
+<script src="//at.alicdn.com/t/font_777686_cbz3idmd3mq.js"></script>
 
 </body>
 </html>

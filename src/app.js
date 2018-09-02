@@ -23,7 +23,9 @@ new Vue({
 //  引入chai.js
 
 import chai from 'chai';
+import spies from 'chai-spies';
 const expect = chai.expect;
+chai.use(spies);
 //  单元测试
 {
     // console.log(Button);
@@ -83,4 +85,22 @@ const expect = chai.expect;
     expect(order).to.eq('1');   // '2'
     vm.$el.remove();
     vm.$destroy();
+}
+
+//  添加点击事件测试
+{
+    const Constructor = Vue.extend(Button);
+    const vm = new Constructor({
+        propsData: {
+            icon: 'setting',
+        }
+    });
+    vm.$mount();
+    const spy = chai.spy(function () {
+        //  nothing
+    });
+    vm.$on('click', spy);
+    const button = vm.$el;
+    button.click();
+    expect(spy).to.have.been.called();
 }

@@ -5,8 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.40ba1df5.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.40ba1df5.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.40ba1df5.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.40ba1df5.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -55,7 +55,7 @@
         <counts>
           <entry key="gitignore" value="20" />
           <entry key="html" value="1756" />
-          <entry key="js" value="1628" />
+          <entry key="js" value="1887" />
           <entry key="json" value="32" />
           <entry key="txt" value="15" />
           <entry key="vue" value="2547" />
@@ -65,7 +65,7 @@
         <counts>
           <entry key="HTML" value="1760" />
           <entry key="JSON" value="32" />
-          <entry key="JavaScript" value="1627" />
+          <entry key="JavaScript" value="1886" />
           <entry key="PLAIN_TEXT" value="35" />
           <entry key="Vue.js" value="2544" />
         </counts>
@@ -86,10 +86,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="84" column="18" lean-forward="true" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
+            <state relative-caret-position="455">
+              <caret line="97" column="16" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="16" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#520#544#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -231,12 +232,12 @@
       <workItem from="1534673568243" duration="3774000" />
       <workItem from="1534684211005" duration="559000" />
       <workItem from="1534690876130" duration="407000" />
-      <workItem from="1535552570404" duration="15061000" />
+      <workItem from="1535552570404" duration="15670000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28188000" />
+    <option name="totallyTimeSpent" value="28797000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -365,10 +366,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="84" column="18" lean-forward="true" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
+        <state relative-caret-position="455">
+          <caret line="97" column="16" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="16" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#520#544#0" expanded="true" />
           </folding>
         </state>
       </provider>

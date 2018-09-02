@@ -23,7 +23,10 @@ export default {
         vertical-align: middle;
         > .g-button {
             border-radius: 0;
-            margin-left: -1px;
+            &:not(:first-child) {
+                margin-left: -1px;
+            }
+            /*<!--margin-left: -1px;-->*/
             &:first-child {
                 border-top-left-radius: var(--button-radius);
                 border-bottom-left-radius: var(--button-radius);

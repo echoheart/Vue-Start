@@ -10561,6 +10561,59 @@ render._withStripped = true
       
       }
     })();
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/button-group.vue":[function(require,module,exports) {
+//
+//
+//
+//
+//
+        var $0dfe9c = exports.default || module.exports;
+      
+      if (typeof $0dfe9c === 'function') {
+        $0dfe9c = $0dfe9c.options;
+      }
+    
+        /* template */
+        Object.assign($0dfe9c, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "g-button-group" }, [_vm._t("default")], 2)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$0dfe9c', $0dfe9c);
+          } else {
+            api.reload('$0dfe9c', $0dfe9c);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
 },{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/app.js":[function(require,module,exports) {
 'use strict';
 
@@ -10580,11 +10633,16 @@ var _icon = require('./icon');
 
 var _icon2 = _interopRequireDefault(_icon);
 
+var _buttonGroup = require('./button-group');
+
+var _buttonGroup2 = _interopRequireDefault(_buttonGroup);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component('g-button', _button2.default);
 _vue2.default.component('traning-wrapper', _studyVue2.default);
 _vue2.default.component('g-icon', _icon2.default);
+_vue2.default.component('g-button-group', _buttonGroup2.default);
 
 new _vue2.default({
     el: '#app',
@@ -10595,7 +10653,7 @@ new _vue2.default({
         loadingThree: true
     }
 });
-},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./studyVue":"src/studyVue.vue","./icon":"src/icon.vue"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./studyVue":"src/studyVue.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 

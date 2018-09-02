@@ -81,7 +81,7 @@
         &:focus {
             outline: none;
         }
-        > .icon {
+        > .g-icon {
             order: 1;
             margin-right: .3em;
         }
@@ -89,7 +89,7 @@
             order: 2;
         }
         &.icon-right {
-            > .icon {
+            > .g-icon {
                 order: 2;
                 margin-left: .3em;
                 margin-right: 0;

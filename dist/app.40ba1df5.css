@@ -22,12 +22,12 @@
     background-color: var(--button-active-bg); }
   .g-button:focus {
     outline: none; }
-  .g-button > .icon {
+  .g-button > .g-icon {
     order: 1;
     margin-right: .3em; }
   .g-button > .content {
     order: 2; }
-  .g-button.icon-right > .icon {
+  .g-button.icon-right > .g-icon {
     order: 2;
     margin-left: .3em;
     margin-right: 0; }
@@ -38,3 +38,17 @@
 .g-icon {
   height: 1em;
   width: 1em; }
+.g-button-group {
+  display: inline-flex;
+  vertical-align: middle; }
+  .g-button-group > .g-button {
+    border-radius: 0;
+    margin-left: -1px; }
+    .g-button-group > .g-button:first-child {
+      border-top-left-radius: var(--button-radius);
+      border-bottom-left-radius: var(--button-radius); }
+    .g-button-group > .g-button:last-child {
+      border-top-right-radius: var(--button-radius);
+      border-bottom-right-radius: var(--button-radius); }
+    .g-button-group > .g-button:hover {
+      z-index: 1; }

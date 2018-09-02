@@ -4,7 +4,17 @@
     </div>
 </template>
 <script>
-
+export default {
+    mounted () {
+        // console.log(this.$el.children);
+        for (let node of this.$el.children) {
+            let nodeName = node.nodeName.toLowerCase();
+            if (nodeName !== 'button') {
+                console.warn(`在g-button-group中请使用g-button,但是你使用的是${nodeName} 这可能会引起一些问题`)
+            }
+        }
+    }
+}
 </script>
 
 <style lang="scss">

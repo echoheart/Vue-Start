@@ -10562,11 +10562,49 @@ render._withStripped = true
       }
     })();
 },{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/button-group.vue":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 //
 //
 //
 //
 //
+
+exports.default = {
+    mounted: function mounted() {
+        // console.log(this.$el.children);
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = this.$el.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var node = _step.value;
+
+                var nodeName = node.nodeName.toLowerCase();
+                if (nodeName !== 'button') {
+                    console.warn('\u5728g-button-group\u4E2D\u8BF7\u4F7F\u7528g-button,\u4F46\u662F\u4F60\u4F7F\u7528\u7684\u662F' + nodeName + ' \u8FD9\u53EF\u80FD\u4F1A\u5F15\u8D77\u4E00\u4E9B\u95EE\u9898');
+                }
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+    }
+};
         var $0dfe9c = exports.default || module.exports;
       
       if (typeof $0dfe9c === 'function') {

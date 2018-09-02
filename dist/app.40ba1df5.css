@@ -1,3 +1,6 @@
+.g-icon {
+  height: 1em;
+  width: 1em; }
 @charset "UTF-8";
 @keyframes spin {
   0% {
@@ -35,9 +38,6 @@
     order: 1; }
   .g-button .loading {
     animation: spin 1s infinite linear; }
-.g-icon {
-  height: 1em;
-  width: 1em; }
 .g-button-group {
   display: inline-flex;
   vertical-align: middle; }

@@ -53,7 +53,7 @@
           <entry key="gitignore" value="20" />
           <entry key="html" value="1756" />
           <entry key="js" value="2144" />
-          <entry key="json" value="122" />
+          <entry key="json" value="131" />
           <entry key="txt" value="15" />
           <entry key="vue" value="2614" />
           <entry key="yml" value="160" />
@@ -62,7 +62,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="1760" />
-          <entry key="JSON" value="122" />
+          <entry key="JSON" value="131" />
           <entry key="JavaScript" value="2143" />
           <entry key="PLAIN_TEXT" value="35" />
           <entry key="Vue.js" value="2611" />
@@ -111,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="23">
-              <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+              <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -282,12 +282,12 @@
       <workItem from="1534684211005" duration="559000" />
       <workItem from="1534690876130" duration="407000" />
       <workItem from="1535552570404" duration="21257000" />
-      <workItem from="1535983413326" duration="493000" />
+      <workItem from="1535983413326" duration="555000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34877000" />
+    <option name="totallyTimeSpent" value="34939000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="807" extended-state="0" />
@@ -455,7 +455,7 @@
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
-          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
         </state>
       </provider>
     </entry>

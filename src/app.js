@@ -4,8 +4,11 @@ import studyVue from './studyVue';
 import Icon from './icon';
 import buttonGroup from './button-group';
 import Input from './input';
+import Col from './col';
+import Row from './row';
 
-
+Vue.component('g-col', Col);
+Vue.component('g-row', Row);
 Vue.component('g-button', Button);
 Vue.component('traning-wrapper', studyVue);
 Vue.component('g-icon', Icon);
@@ -19,6 +22,11 @@ new Vue({
         loadingOne: false,
         loadingTwo: false,
         loadingThree: true
+    },
+    methods: {
+        inputChange: function (event) {
+            console.log(event);
+        }
     }
 });
 

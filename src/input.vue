@@ -8,6 +8,7 @@
                 v-bind:disabled="disabled"
                 v-bind:readonly="readonly"
                 type="text"
+                v-on:change="$emit('change', $event)"
         >
         <template v-if="error">
             <Icon name="error"></Icon>

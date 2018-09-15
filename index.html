@@ -33,9 +33,51 @@
             margin: 20px;
         }
     </style>
+    <style>
+        /*.row {*/
+            /*display: flex;*/
+        /*}*/
+        /*.col {*/
+            /*background: grey;*/
+            /*height: 100px;*/
+            /*width: 50%;*/
+            /*border: 1px solid red;*/
+        /*}*/
+        /*.col[data-span="1"] {*/
+            /*width: 4%;*/
+        /*}*/
+        /*.col[data-span="23"] {*/
+            /*width: 96%;*/
+        /*}*/
+
+    </style>
 </head>
 <body>
 <div id="app">
+
+    <div class="box">
+        <!--<div class="row">-->
+            <!--<div class="col"></div>-->
+            <!--<div class="col"></div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="col" data-span="1"></div>-->
+            <!--<div class="col" data-span="23"></div>-->
+        <!--</div>-->
+        <g-row>
+            <g-col>1</g-col>
+            <g-col>2</g-col>
+        </g-row>
+
+        <g-row>
+            <g-col span="2">1</g-col>
+            <g-col span="22">2</g-col>
+        </g-row>
+    </div>
+
+
+
+
     <div class="box">
         <g-button icon="setting" icon-position="left" v-bind:loading="loadingOne" v-on:click="loadingOne = !loadingOne">
             按钮
@@ -71,6 +113,7 @@
     </div>
     <div class="box">
         <g-input value="姓" error="姓名不能少于两个字"></g-input>
+        <g-input value="change" v-on:change="inputChange"></g-input>
     </div>
 
 

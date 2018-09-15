@@ -34,21 +34,6 @@
         }
     </style>
     <style>
-        /*.row {*/
-            /*display: flex;*/
-        /*}*/
-        /*.col {*/
-            /*background: grey;*/
-            /*height: 100px;*/
-            /*width: 50%;*/
-            /*border: 1px solid red;*/
-        /*}*/
-        /*.col[data-span="1"] {*/
-            /*width: 4%;*/
-        /*}*/
-        /*.col[data-span="23"] {*/
-            /*width: 96%;*/
-        /*}*/
 
     </style>
 </head>
@@ -72,6 +57,25 @@
         <g-row>
             <g-col span="2">1</g-col>
             <g-col span="22">2</g-col>
+        </g-row>
+
+        <g-row>
+            <g-col span="2">1</g-col>
+            <g-col span="11" offset="11">2</g-col>
+        </g-row>
+
+        <g-row>
+            <g-col span="2">1</g-col>
+            <g-col span="20" offset="2">2</g-col>
+        </g-row>
+
+        <g-row gutter="20">
+            <g-col span="6">1</g-col>
+            <g-col span="18">2</g-col>
+        </g-row>
+        <g-row gutter="50">
+            <g-col span="6">1</g-col>
+            <g-col span="18">2</g-col>
         </g-row>
     </div>
 

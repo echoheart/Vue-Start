@@ -10795,10 +10795,26 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     props: {
-        span: [Number, String]
+        span: [Number, String],
+        offset: [Number, String]
+        // gutter: {
+        //     type: [Number, String],
+        // }
+    },
+    data: function data() {
+        return {
+            gutter: {
+                type: [Number, String]
+            }
+        };
     }
 };
         var $d6c98b = exports.default || module.exports;
@@ -10815,9 +10831,29 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col", class: ["col-" + _vm.span] },
-    [_vm._t("default")],
-    2
+    {
+      staticClass: "col",
+      class: ["col-" + _vm.span, _vm.offset && "offset-" + _vm.offset],
+      style: {
+        paddingLeft: _vm.gutter / 2 + "px",
+        paddingRight: _vm.gutter / 2 + "px"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "inner",
+          staticStyle: {
+            background: "grey",
+            height: "100px",
+            border: "1px solid red"
+          }
+        },
+        [_vm._t("default")],
+        2
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -10854,12 +10890,36 @@ render._withStripped = true
       }
     })();
 },{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/row.vue":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 //
 //
 //
 //
 //
 //
+
+exports.default = {
+    props: {
+        gutter: {
+            type: [Number, String]
+        }
+    },
+    created: function created() {
+        console.log('created');
+    },
+    mounted: function mounted() {
+        console.log('mounted');
+        console.log(this.$children);
+        this.$children.map(function (vm) {
+            vm.gutter = this.gutter;
+        }.bind(this));
+        console.log(this.$children.gutter);
+    }
+};
         var $9bb200 = exports.default || module.exports;
       
       if (typeof $9bb200 === 'function') {
@@ -10872,7 +10932,18 @@ render._withStripped = true
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [_vm._t("default")], 2)
+  return _c(
+    "div",
+    {
+      staticClass: "row",
+      style: {
+        marginLeft: -_vm.gutter / 2 + "px",
+        marginRight: -_vm.gutter / 2 + "px"
+      }
+    },
+    [_vm._t("default")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

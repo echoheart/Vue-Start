@@ -6,6 +6,9 @@ import buttonGroup from './button-group';
 import Input from './input';
 import Col from './col';
 import Row from './row';
+import Toast from './toast';
+import plugin from './plugin';
+
 
 Vue.component('g-col', Col);
 Vue.component('g-row', Row);
@@ -14,6 +17,8 @@ Vue.component('traning-wrapper', studyVue);
 Vue.component('g-icon', Icon);
 Vue.component('g-button-group', buttonGroup);
 Vue.component('g-input', Input);
+Vue.component('g-toast', Toast);
+Vue.use(plugin);
 
 new Vue({
     el: '#app',
@@ -23,9 +28,15 @@ new Vue({
         loadingTwo: false,
         loadingThree: true
     },
+    created() {
+        // this.$toast();
+    },
     methods: {
         inputChange: function (event) {
             console.log(event);
+        },
+        showToast() {
+            this.$toast('我是toast');
         }
     }
 });

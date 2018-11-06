@@ -1,13 +1,15 @@
 <template>
-    <div class="toast" v-bind:class="toastClasses">
-        <slot></slot>
-        <div class="line"></div>
-        <span class="close"
-              v-if="closeButton"
-              v-on:click="onClickClose"
-        >
-            {{ closeButton.text }}
-        </span>
+    <div class="wrapper-animation"  v-bind:class="toastClasses">
+        <div class="toast">
+            <slot></slot>
+            <div class="line"></div>
+            <span class="close"
+                  v-if="closeButton"
+                  v-on:click="onClickClose"
+            >
+                {{ closeButton.text }}
+            </span>
+        </div>
     </div>
 </template>
 <script>
@@ -81,44 +83,68 @@
             opacity: 1;
         }
     }
-    .toast {
-        /*border: 1px solid red;*/
-        animation: fade-in 0.5s;
+    @keyframes bottom {
+        0% {
+            transform: translateY(100%);
+        }
+        100% {
+            transform: translateY(0%);
+        }
+    }
+    @keyframes top {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(0%);
+        }
+    }
+    .wrapper-animation {
         position: fixed;
-
-        font-size: 14px;
-        line-height: 1.8;
-        min-height: 40px;
-        display: flex;
-        align-items: center;
-        background-color: rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
-        color: #FFF;
-        padding: 0 14px;
-        border-radius: 4px;
-
+        animation: fade-in 0.5s;
         left: 50%;
 
-        .close {
-            padding-left: 16px;
-            flex-shrink: 0;
-        }
-        .line {
-            height: 100%;
-            border: 1px solid #666;
-            margin-left: 16px;
-        }
         &.position-top {
             top: 0;
             transform: translateX(-50%);
+            .toast {
+                animation: top 0.5s;
+            }
         }
         &.position-bottom {
             bottom: 0;
             transform: translateX(-50%);
+            .toast {
+                animation: bottom 0.5s;
+            }
         }
         &.position-middle {
             top: 50%;
             transform: translate(-50%, -50%);
+        }
+        .toast {
+
+            font-size: 14px;
+            line-height: 1.8;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            background-color: rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+            color: #FFF;
+            padding: 0 14px;
+            border-radius: 4px;
+
+            .close {
+                padding-left: 16px;
+                flex-shrink: 0;
+            }
+            .line {
+                height: 100%;
+                border: 1px solid #666;
+                margin-left: 16px;
+            }
+
         }
     }
 

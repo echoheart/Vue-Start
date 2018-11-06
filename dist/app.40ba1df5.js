@@ -10999,6 +10999,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 // import Vue from 'vue';
 // Vue.prototype.$toast = function () {
@@ -11077,21 +11079,33 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "toast", class: _vm.toastClasses },
+    { staticClass: "wrapper-animation", class: _vm.toastClasses },
     [
-      _vm._t("default"),
-      _vm._v(" "),
-      _c("div", { staticClass: "line" }),
-      _vm._v(" "),
-      _vm.closeButton
-        ? _c(
-            "span",
-            { staticClass: "close", on: { click: _vm.onClickClose } },
-            [_vm._v("\n        " + _vm._s(_vm.closeButton.text) + "\n    ")]
-          )
-        : _vm._e()
-    ],
-    2
+      _c(
+        "div",
+        { staticClass: "toast" },
+        [
+          _vm._t("default"),
+          _vm._v(" "),
+          _c("div", { staticClass: "line" }),
+          _vm._v(" "),
+          _vm.closeButton
+            ? _c(
+                "span",
+                { staticClass: "close", on: { click: _vm.onClickClose } },
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.closeButton.text) +
+                      "\n        "
+                  )
+                ]
+              )
+            : _vm._e()
+        ],
+        2
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -11159,7 +11173,7 @@ function createToast(_ref) {
     });
     toast.$slots.default = [message];
     toast.$mount();
-    toast.on('close', onClose);
+    toast.$on('close', onClose);
     document.body.appendChild(toast.$el);
     return toast;
 }
@@ -11254,7 +11268,7 @@ new _vue2.default({
         },
         showToast: function showToast() {
             this.$toast('我是toast', {
-                position: 'middle',
+                position: 'top',
                 closeButton: {
                     text: '知道了',
                     callback: function callback() {

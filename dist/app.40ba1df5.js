@@ -11139,19 +11139,35 @@ var _toast2 = _interopRequireDefault(_toast);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*
+* helper 函数
+*
+* */
+function createToast(_ref) {
+    var Vue = _ref.Vue,
+        message = _ref.message,
+        propsData = _ref.propsData;
+
+    // console.log('I am toast');
+    var constructor = Vue.extend(_toast2.default);
+    // console.log("######");
+    // console.log(props);
+    var toast = new constructor({
+        propsData: propsData
+    });
+    toast.$slots.default = [message];
+    toast.$mount();
+    document.body.appendChild(toast.$el);
+    return toast;
+}
+var currentToast = null;
 exports.default = {
     install: function install(Vue, options) {
-        Vue.prototype.$toast = function (message, props) {
-            console.log('I am toast');
-            var constructor = Vue.extend(_toast2.default);
-            // console.log("######");
-            // console.log(props);
-            var toast = new constructor({
-                propsData: props
-            });
-            toast.$slots.default = [message];
-            toast.$mount();
-            document.body.appendChild(toast.$el);
+        Vue.prototype.$toast = function (message, toastOptions) {
+            if (currentToast) {
+                currentToast.close();
+            }
+            currentToast = createToast({ Vue: Vue, message: message, propsData: toastOptions });
         };
     }
 };
@@ -11354,7 +11370,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56289' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '52615' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

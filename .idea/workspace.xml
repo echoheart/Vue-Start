@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6728bf23-bf2c-4394-8522-5310825d1fd9" name="Default Changelist" comment="npm install">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.40ba1df5.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.40ba1df5.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.40ba1df5.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.40ba1df5.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.40ba1df5.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.40ba1df5.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/toast.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/toast.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -63,7 +59,7 @@
         <counts>
           <entry key="gitignore" value="20" />
           <entry key="html" value="2507" />
-          <entry key="js" value="3637" />
+          <entry key="js" value="3849" />
           <entry key="json" value="131" />
           <entry key="txt" value="15" />
           <entry key="vue" value="7211" />
@@ -74,7 +70,7 @@
         <counts>
           <entry key="HTML" value="2511" />
           <entry key="JSON" value="131" />
-          <entry key="JavaScript" value="3636" />
+          <entry key="JavaScript" value="3848" />
           <entry key="PLAIN_TEXT" value="35" />
           <entry key="Vue.js" value="7208" />
           <entry key="YAML" value="160" />
@@ -141,8 +137,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/plugin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+            <state relative-caret-position="500">
+              <caret line="25" column="79" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -306,12 +302,12 @@
       <workItem from="1540996853517" duration="3299000" />
       <workItem from="1541039740205" duration="18000" />
       <workItem from="1541072641437" duration="826000" />
-      <workItem from="1541433749994" duration="7578000" />
+      <workItem from="1541433749994" duration="8099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61840000" />
+    <option name="totallyTimeSpent" value="62361000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -545,8 +541,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/plugin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        <state relative-caret-position="500">
+          <caret line="25" column="79" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
         </state>
       </provider>
     </entry>

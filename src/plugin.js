@@ -1,18 +1,13 @@
 import Toast from './toast';
 export default {
     install (Vue, options) {
-        Vue.prototype.$toast = function (message) {
+        Vue.prototype.$toast = function (message, props) {
             console.log('I am toast');
             let constructor = Vue.extend(Toast);
+            // console.log("######");
+            // console.log(props);
             let toast = new constructor({
-                propsData: {
-                    closeButton: {
-                        text: '知道了',
-                        callback: () => {
-                            console.log('知道了');
-                        }
-                    }
-                }
+                propsData: props
             });
             toast.$slots.default = [message];
             toast.$mount();

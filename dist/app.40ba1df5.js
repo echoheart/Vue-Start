@@ -10984,6 +10984,9 @@ render._withStripped = true
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -11010,17 +11013,22 @@ exports.default = {
         },
         autoCloseDelay: {
             type: Number,
-            default: 2
+            default: 100
         },
         closeButton: {
             type: Object,
             default: function _default() {
                 return {
                     text: '关闭',
-                    callback: function callback(toast) {
-                        toast.close();
-                    }
+                    callback: undefined
                 };
+            }
+        },
+        position: {
+            type: String,
+            default: 'top',
+            validator: function validator(value) {
+                return ['top', 'bottom', 'middle'].indexOf(value) >= 0;
             }
         }
     },
@@ -11034,6 +11042,11 @@ exports.default = {
         }
     },
 
+    computed: {
+        toastClasses: function toastClasses() {
+            return _defineProperty({}, 'position-' + this.position, true);
+        }
+    },
     methods: {
         close: function close() {
             this.$el.remove();
@@ -11041,7 +11054,11 @@ exports.default = {
         },
         onClickClose: function onClickClose() {
             this.close();
-            this.closeButton.callback();
+            this.closeButton && typeof this.closeButton.callback === 'function' && this.closeButton.callback();
+
+            // if (this.closeButton && typeof(this.closeButton.callback) === 'function') {
+            //     this.closeButton.callback();
+            // }
         }
     }
 };
@@ -11059,7 +11076,7 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "toast" },
+    { staticClass: "toast", class: _vm.toastClasses },
     [
       _vm._t("default"),
       _vm._v(" "),
@@ -11124,18 +11141,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
     install: function install(Vue, options) {
-        Vue.prototype.$toast = function (message) {
+        Vue.prototype.$toast = function (message, props) {
             console.log('I am toast');
             var constructor = Vue.extend(_toast2.default);
+            // console.log("######");
+            // console.log(props);
             var toast = new constructor({
-                propsData: {
-                    closeButton: {
-                        text: '知道了',
-                        callback: function callback() {
-                            console.log('知道了');
-                        }
-                    }
-                }
+                propsData: props
             });
             toast.$slots.default = [message];
             toast.$mount();
@@ -11215,7 +11227,16 @@ new _vue2.default({
             console.log(event);
         },
         showToast: function showToast() {
-            this.$toast('我是toast');
+            this.$toast('我是toast', {
+                position: 'middle',
+                closeButton: {
+                    text: '知道了',
+                    callback: function callback() {
+                        console.log('知道了');
+                    }
+                }
+            });
+            // this.$toast('我是toast');
         }
     }
 });
@@ -11333,7 +11354,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59338' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56289' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

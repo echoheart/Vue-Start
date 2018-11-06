@@ -36,7 +36,16 @@ new Vue({
             console.log(event);
         },
         showToast() {
-            this.$toast('我是toast');
+            this.$toast('我是toast', {
+                position: 'middle',
+                closeButton: {
+                    text: '知道了',
+                    callback: () => {
+                        console.log('知道了');
+                    }
+                }
+            });
+            // this.$toast('我是toast');
         }
     }
 });

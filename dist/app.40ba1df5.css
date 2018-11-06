@@ -251,27 +251,32 @@
   display: flex;
 }
 .toast {
-    /*border: 1px solid red;*/
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    line-height: 1.8;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    background-color: rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
-    color: #FFF;
-    padding: 0 14px;
-    border-radius: 4px;
-}
-.close {
+  /*border: 1px solid red;*/
+  position: fixed;
+  font-size: 14px;
+  line-height: 1.8;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+  color: #FFF;
+  padding: 0 14px;
+  border-radius: 4px;
+  left: 50%; }
+  .toast .close {
     padding-left: 16px;
-}
-.line {
+    flex-shrink: 0; }
+  .toast .line {
     height: 100%;
     border: 1px solid #666;
-    margin-left: 16px;
-}
+    margin-left: 16px; }
+  .toast.position-top {
+    top: 0;
+    transform: translateX(-50%); }
+  .toast.position-bottom {
+    bottom: 0;
+    transform: translateX(-50%); }
+  .toast.position-middle {
+    top: 50%;
+    transform: translate(-50%, -50%); }

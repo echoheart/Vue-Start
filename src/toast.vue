@@ -58,6 +58,7 @@
         methods: {
             close() {
                 this.$el.remove();
+                this.$emit('close');
                 this.$destroy();
             },
             onClickClose() {
@@ -72,8 +73,17 @@
     }
 </script>
 <style lang="scss">
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
     .toast {
         /*border: 1px solid red;*/
+        animation: fade-in 0.5s;
         position: fixed;
 
         font-size: 14px;

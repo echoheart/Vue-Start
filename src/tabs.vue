@@ -7,6 +7,7 @@
 </template>
 
 <script>
+    import Vue from 'vue';
     export default {
         name: 'g-tabs',
         props: {
@@ -22,9 +23,24 @@
                 }
             }
         },
-       created() {
+        data() {
+            return {
+                eventBus: new Vue()
+            }
+        },
+        created() {
+            // console.log(this);
+            console.log(this.eventBus);
             // this.$emit('update:selected', 'handle')
-       }
+        },
+        mounted() {
+            this.eventBus.$emit('update:selected', this.selected)
+        },
+        provide() {
+            return {
+                eventBus: this.eventBus
+            }
+        }
     }
 </script>
 

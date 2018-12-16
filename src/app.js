@@ -37,7 +37,8 @@ new Vue({
         titleText: '页面加载于' + new Date().toLocaleString(),
         loadingOne: false,
         loadingTwo: false,
-        loadingThree: true
+        loadingThree: true,
+        selectedTab: 'sports'
     },
     created() {
         // this.$toast();

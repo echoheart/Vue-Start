@@ -11201,14 +11201,12 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
     name: 'g-tabs',
@@ -11225,10 +11223,32 @@ exports.default = {
             }
         }
     },
+    data: function data() {
+        return {
+            eventBus: new _vue2.default()
+        };
+    },
     created: function created() {
+        // console.log(this);
+        console.log(this.eventBus);
         // this.$emit('update:selected', 'handle')
+    },
+    mounted: function mounted() {
+        this.eventBus.$emit('update:selected', this.selected);
+    },
+    provide: function provide() {
+        return {
+            eventBus: this.eventBus
+        };
     }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
         var $8401dd = exports.default || module.exports;
       
       if (typeof $8401dd === 'function') {
@@ -11276,7 +11296,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/tabs-header.vue":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js"}],"src/tabs-header.vue":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11291,9 +11311,12 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
     name: 'g-tabs-header'
+
 };
         var $cdfc98 = exports.default || module.exports;
       
@@ -11310,7 +11333,11 @@ exports.default = {
   return _c(
     "div",
     { staticClass: "tabs-header" },
-    [_vm._t("default"), _vm._v(" "), _vm._t("actions")],
+    [
+      _vm._t("default"),
+      _vm._v(" "),
+      _c("div", { staticClass: "actions-wrapper" }, [_vm._t("actions")], 2)
+    ],
     2
   )
 }
@@ -11321,7 +11348,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-cdfc98",
             functional: undefined
           };
         })());
@@ -11364,10 +11391,42 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
     name: 'g-tabs-item',
+    inject: ['eventBus'],
+    data: function data() {
+        return {
+            active: false
+        };
+    },
+
     props: {
         disabled: {
-            type: String,
+            type: Boolean,
             default: false
+        },
+        name: {
+            type: String | Number,
+            required: true
+        }
+    },
+    computed: {
+        classes: function classes() {
+            return {
+                active: this.active
+            };
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        console.log(this.eventBus, 'tabs-item注入的eventBus');
+        this.eventBus.$on('update:selected', function (name) {
+            _this.active = name === _this.name;
+        });
+    },
+
+    methods: {
+        xxx: function xxx() {
+            this.eventBus.$emit('update:selected', this.name);
         }
     }
 };
@@ -11383,7 +11442,12 @@ exports.default = {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tabs-item" }, [_vm._t("default")], 2)
+  return _c(
+    "div",
+    { staticClass: "tabs-item", class: _vm.classes, on: { click: _vm.xxx } },
+    [_vm._t("default")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11392,7 +11456,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-b5b2b0",
             functional: undefined
           };
         })());
@@ -11499,7 +11563,35 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    name: 'g-tabs-pane'
+    name: 'g-tabs-pane',
+    inject: ['eventBus'],
+    data: function data() {
+        return {
+            active: false
+        };
+    },
+
+    props: {
+        name: {
+            type: String,
+            required: true
+        }
+    },
+    computed: {
+        classes: function classes() {
+            return {
+                active: this.active
+            };
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        console.log(this.eventBus, 'tabs-item注入的eventBus');
+        this.eventBus.$on('update:selected', function (name) {
+            _this.active = name === _this.name;
+        });
+    }
 };
         var $460efd = exports.default || module.exports;
       
@@ -11513,7 +11605,14 @@ exports.default = {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tabs-pane" }, [_vm._t("default")], 2)
+  return _vm.active
+    ? _c(
+        "div",
+        { staticClass: "tabs-pane", class: _vm.classes },
+        [_vm._t("default")],
+        2
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11522,7 +11621,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-460efd",
             functional: undefined
           };
         })());
@@ -11635,7 +11734,8 @@ new _vue2.default({
         titleText: '页面加载于' + new Date().toLocaleString(),
         loadingOne: false,
         loadingTwo: false,
-        loadingThree: true
+        loadingThree: true,
+        selectedTab: 'sports'
     },
     created: function created() {
         // this.$toast();

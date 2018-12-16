@@ -38,31 +38,31 @@
 <link rel="stylesheet" href="/app.40ba1df5.css"></head>
 <body>
 <div id="app">
-    <g-tabs v-bind:selected.sync="selectedTab" direction="">
+    <g-tabs :selected.sync="selectedTab">
 
         <g-tabs-header>
             <template slot="actions">
                 <button>设置</button>
             </template>
-            <g-tabs-item disabled="false">
+            <g-tabs-item name="woman">
                 美女
             </g-tabs-item>
-            <g-tabs-item>
+            <g-tabs-item name="sports">
                 体育
             </g-tabs-item>
-            <g-tabs-item>
+            <g-tabs-item name="fiance">
                 财经
             </g-tabs-item>
         </g-tabs-header>
 
         <g-tabs-body>
-            <g-tabs-pane>
+            <g-tabs-pane name="woman">
                 美女频道内容
             </g-tabs-pane>
-            <g-tabs-pane>
+            <g-tabs-pane name="sports">
                 体育频道内容
             </g-tabs-pane>
-            <g-tabs-pane>
+            <g-tabs-pane name="fiance">
                 财经频道内容
             </g-tabs-pane>
         </g-tabs-body>

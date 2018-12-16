@@ -310,6 +310,13 @@
   justify-content: flex-start;
   align-items: center;
   border: 1px solid red;
+  position: relative;
+}
+.tabs-header .line[data-v-cdfc98] {
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    border-bottom: 1px solid blue;
 }
 .tabs-header > .actions-wrapper[data-v-cdfc98] {
     margin-left: auto;
@@ -325,6 +332,8 @@
 }
 .tabs-item.active[data-v-b5b2b0] {
     background-color: red;
+    color: blue;
+    font-weight: bold;
 }
 .tabs-body {
 

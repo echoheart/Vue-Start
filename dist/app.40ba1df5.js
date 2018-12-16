@@ -11313,10 +11313,16 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
-    name: 'g-tabs-header'
-
+    name: 'g-tabs-header',
+    inject: ['eventBus'],
+    created: function created() {
+        this.eventBus.$on('update:selected', function (item) {
+            console.log(item);
+        });
+    }
 };
         var $cdfc98 = exports.default || module.exports;
       
@@ -11335,6 +11341,8 @@ exports.default = {
     { staticClass: "tabs-header" },
     [
       _vm._t("default"),
+      _vm._v(" "),
+      _c("div", { ref: "line", staticClass: "line" }),
       _vm._v(" "),
       _c("div", { staticClass: "actions-wrapper" }, [_vm._t("actions")], 2)
     ],

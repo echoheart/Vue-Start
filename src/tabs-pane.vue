@@ -43,8 +43,5 @@
             background-color: red;
         }
     }
-    /*.tabs-pane.active {*/
-        /*background-color: red;*/
-    /*}*/
 
 </style>

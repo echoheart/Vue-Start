@@ -8,6 +8,11 @@ import Col from './col';
 import Row from './row';
 import Toast from './toast';
 import plugin from './plugin';
+import Tabs from './tabs';
+import TabsHeader from './tabs-header';
+import TabsItem from './tabs-item';
+import TabsBody from './tabs-body';
+import TabsPane from './tabs-pane';
 
 
 Vue.component('g-col', Col);
@@ -18,6 +23,12 @@ Vue.component('g-icon', Icon);
 Vue.component('g-button-group', buttonGroup);
 Vue.component('g-input', Input);
 Vue.component('g-toast', Toast);
+Vue.component('g-tabs', Tabs);
+Vue.component('g-tabs-header', TabsHeader);
+Vue.component('g-tabs-item', TabsItem);
+Vue.component('g-tabs-body', TabsBody);
+Vue.component('g-tabs-pane', TabsPane);
+
 Vue.use(plugin);
 
 new Vue({

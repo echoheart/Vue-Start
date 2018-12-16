@@ -4,7 +4,7 @@
 @charset "UTF-8";
 @keyframes spin {
   0% {
-    transfrom: rotate(0deg); }
+    transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
 
@@ -303,3 +303,12 @@
       height: 100%;
       border: 1px solid #666;
       margin-left: 16px; }
+.tabs {}.tab-herader {
+
+}.tabs-item {
+
+}.tabs-body {
+
+}.tabs-pane {
+
+}

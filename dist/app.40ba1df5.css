@@ -312,11 +312,12 @@
   border: 1px solid red;
   position: relative;
 }
-.tabs-header .line[data-v-cdfc98] {
+.tabs-header > .line[data-v-cdfc98] {
     position: absolute;
     bottom: 0;
-    width: 100px;
+    /*width: 100px;*/
     border-bottom: 1px solid blue;
+    transition: all 350ms;
 }
 .tabs-header > .actions-wrapper[data-v-cdfc98] {
     margin-left: auto;

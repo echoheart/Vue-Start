@@ -11329,10 +11329,22 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     name: 'g-tabs-header',
     inject: ['eventBus'],
-    created: function created() {
+    mounted: function mounted() {
+        var _this = this;
+
         this.eventBus.$on('update:selected', function (item, vm) {
-            console.log(item);
-            console.log(vm.$el);
+            // console.log(item);
+            // console.log(vm.$el);
+            var _vm$$el$getBoundingCl = vm.$el.getBoundingClientRect(),
+                width = _vm$$el$getBoundingCl.width,
+                height = _vm$$el$getBoundingCl.height,
+                top = _vm$$el$getBoundingCl.top,
+                left = _vm$$el$getBoundingCl.left;
+
+            left = vm.$el.offsetLeft;
+            console.log(width, height, top, left);
+            _this.$refs.line.style.width = width + 'px';
+            _this.$refs.line.style.left = left + 'px';
         });
     }
 };

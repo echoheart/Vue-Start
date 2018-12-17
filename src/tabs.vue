@@ -29,12 +29,22 @@
             }
         },
         created() {
-            // console.log(this);
             console.log(this.eventBus);
-            // this.$emit('update:selected', 'handle')
         },
         mounted() {
-            this.eventBus.$emit('update:selected', this.selected)
+            console.log(this.$children);
+            this.$children.forEach((vm) => {
+                console.log(vm.$options.name);
+                if (vm.$options.name === 'g-tabs-header') {
+                    vm.$children.forEach((item) => {
+                        if (item.$options.name === 'g-tabs-item' && item.name === this.selected) {
+                            this.eventBus.$emit('update:selected', this.selected, item)
+                        }
+                        console.log(item.$options.name);
+                    })
+                }
+            });
+
         },
         provide() {
             return {

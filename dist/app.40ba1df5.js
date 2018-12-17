@@ -11229,12 +11229,23 @@ exports.default = {
         };
     },
     created: function created() {
-        // console.log(this);
         console.log(this.eventBus);
-        // this.$emit('update:selected', 'handle')
     },
     mounted: function mounted() {
-        this.eventBus.$emit('update:selected', this.selected);
+        var _this = this;
+
+        console.log(this.$children);
+        this.$children.forEach(function (vm) {
+            console.log(vm.$options.name);
+            if (vm.$options.name === 'g-tabs-header') {
+                vm.$children.forEach(function (item) {
+                    if (item.$options.name === 'g-tabs-item' && item.name === _this.selected) {
+                        _this.eventBus.$emit('update:selected', _this.selected, item);
+                    }
+                    console.log(item.$options.name);
+                });
+            }
+        });
     },
     provide: function provide() {
         return {
@@ -11319,8 +11330,9 @@ exports.default = {
     name: 'g-tabs-header',
     inject: ['eventBus'],
     created: function created() {
-        this.eventBus.$on('update:selected', function (item) {
+        this.eventBus.$on('update:selected', function (item, vm) {
             console.log(item);
+            console.log(vm.$el);
         });
     }
 };
@@ -11426,7 +11438,7 @@ exports.default = {
     created: function created() {
         var _this = this;
 
-        console.log(this.eventBus, 'tabs-item注入的eventBus');
+        // console.log(this.eventBus, 'tabs-item注入的eventBus');
         this.eventBus.$on('update:selected', function (name) {
             _this.active = name === _this.name;
         });
@@ -11434,7 +11446,7 @@ exports.default = {
 
     methods: {
         xxx: function xxx() {
-            this.eventBus.$emit('update:selected', this.name);
+            this.eventBus.$emit('update:selected', this.name, this);
         }
     }
 };
@@ -11595,7 +11607,7 @@ exports.default = {
     created: function created() {
         var _this = this;
 
-        console.log(this.eventBus, 'tabs-item注入的eventBus');
+        // console.log(this.eventBus, 'tabs-item注入的eventBus');
         this.eventBus.$on('update:selected', function (name) {
             _this.active = name === _this.name;
         });
@@ -11881,7 +11893,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61357' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57987' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

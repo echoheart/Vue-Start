@@ -15,8 +15,9 @@
         name: 'g-tabs-header',
         inject: ['eventBus'],
         created() {
-            this.eventBus.$on('update:selected', (item) => {
-                    console.log(item)
+            this.eventBus.$on('update:selected', (item, vm) => {
+                console.log(item);
+                console.log(vm.$el);
             })
         }
     }

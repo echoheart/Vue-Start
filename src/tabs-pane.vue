@@ -29,7 +29,7 @@
             }
         },
         created() {
-            console.log(this.eventBus, 'tabs-item注入的eventBus');
+            // console.log(this.eventBus, 'tabs-item注入的eventBus');
             this.eventBus.$on('update:selected', (name) => {
                 this.active = name === this.name;
             })

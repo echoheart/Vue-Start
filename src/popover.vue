@@ -1,6 +1,6 @@
 <template>
-    <div class="popover" v-on:click="xxx">
-        <div class="content-wrapper" v-if="visible">
+    <div class="popover" v-on:click.stop="xxx">
+        <div class="content-wrapper" v-if="visible" v-on:click.stop>
             <slot name="content"></slot>
         </div>
 
@@ -19,6 +19,30 @@
         methods: {
             xxx() {
                 this.visible = !this.visible;
+                console.log('切换popover状态');
+
+                if (this.visible === true) {
+                    this.$nextTick(() => {
+                        let X = () => {
+                            this.visible = false;
+                            console.log(this, '------时间监听的回调函数');
+                            console.log('点击body关闭popover');
+                            // this.$nextTick(() => {
+                            document.removeEventListener('click', X);
+                            // });
+                            console.log('删除监听器');
+                        };
+                        console.log('新增document-click监听器');
+                        document.addEventListener('click', X)
+                    })
+                }
+
+                // if (this.visible === true) {
+                //     document.body.addEventListener('click', () => {
+                //         this.visible = false;
+                //         console.log('点击body关闭popover');
+                //     })
+                // }
             }
         }
     }

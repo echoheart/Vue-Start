@@ -11706,7 +11706,33 @@ exports.default = {
 
     methods: {
         xxx: function xxx() {
+            var _this = this;
+
             this.visible = !this.visible;
+            console.log('切换popover状态');
+
+            if (this.visible === true) {
+                this.$nextTick(function () {
+                    var X = function X() {
+                        _this.visible = false;
+                        console.log(_this, '------时间监听的回调函数');
+                        console.log('点击body关闭popover');
+                        // this.$nextTick(() => {
+                        document.removeEventListener('click', X);
+                        // });
+                        console.log('删除监听器');
+                    };
+                    console.log('新增document-click监听器');
+                    document.addEventListener('click', X);
+                });
+            }
+
+            // if (this.visible === true) {
+            //     document.body.addEventListener('click', () => {
+            //         this.visible = false;
+            //         console.log('点击body关闭popover');
+            //     })
+            // }
         }
     }
 };
@@ -11724,10 +11750,30 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popover", on: { click: _vm.xxx } },
+    {
+      staticClass: "popover",
+      on: {
+        click: function($event) {
+          $event.stopPropagation()
+          return _vm.xxx($event)
+        }
+      }
+    },
     [
       _vm.visible
-        ? _c("div", { staticClass: "content-wrapper" }, [_vm._t("content")], 2)
+        ? _c(
+            "div",
+            {
+              staticClass: "content-wrapper",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                }
+              }
+            },
+            [_vm._t("content")],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm._t("default")

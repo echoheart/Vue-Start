@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6728bf23-bf2c-4394-8522-5310825d1fd9" name="Default Changelist" comment="npm install">
-      <change afterPath="$PROJECT_DIR$/src/popover.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.40ba1df5.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.40ba1df5.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.40ba1df5.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.40ba1df5.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.40ba1df5.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.40ba1df5.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tabs-header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/tabs-header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tabs-item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/tabs-item.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tabs-pane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/tabs-pane.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/popover.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/popover.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -71,7 +64,7 @@
           <entry key="js" value="4437" />
           <entry key="json" value="131" />
           <entry key="txt" value="15" />
-          <entry key="vue" value="10846" />
+          <entry key="vue" value="11311" />
           <entry key="yml" value="160" />
         </counts>
       </usages-collector>
@@ -81,7 +74,7 @@
           <entry key="JSON" value="131" />
           <entry key="JavaScript" value="4436" />
           <entry key="PLAIN_TEXT" value="35" />
-          <entry key="Vue.js" value="10843" />
+          <entry key="Vue.js" value="11308" />
           <entry key="YAML" value="160" />
         </counts>
       </usages-collector>
@@ -164,8 +157,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/popover.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="701">
-              <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+            <state relative-caret-position="48">
+              <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -339,12 +332,12 @@
       <workItem from="1542893227690" duration="380000" />
       <workItem from="1542967337696" duration="6587000" />
       <workItem from="1544538660610" duration="12947000" />
-      <workItem from="1545054733237" duration="6744000" />
+      <workItem from="1545054733237" duration="9251000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95469000" />
+    <option name="totallyTimeSpent" value="97976000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -619,8 +612,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/popover.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="701">
-          <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+        <state relative-caret-position="48">
+          <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
         </state>
       </provider>
     </entry>

@@ -36,8 +36,9 @@
         height: $tab-height;
         justify-content: flex-start;
         align-items: center;
-        border: 1px solid red;
+        /*border: 1px solid red;*/
         position: relative;
+        border-bottom: 1px solid #ddd;
         > .line {
             position: absolute;
             bottom: 0;

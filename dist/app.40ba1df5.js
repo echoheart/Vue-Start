@@ -11679,6 +11679,95 @@ render._withStripped = true
       
       }
     })();
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/popover.vue":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    name: 'g-popover',
+    data: function data() {
+        return {
+            visible: false
+        };
+    },
+
+    methods: {
+        xxx: function xxx() {
+            this.visible = !this.visible;
+        }
+    }
+};
+        var $51c7ef = exports.default || module.exports;
+      
+      if (typeof $51c7ef === 'function') {
+        $51c7ef = $51c7ef.options;
+      }
+    
+        /* template */
+        Object.assign($51c7ef, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "popover", on: { click: _vm.xxx } },
+    [
+      _vm.visible
+        ? _c("div", { staticClass: "content-wrapper" }, [_vm._t("content")], 2)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-51c7ef",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$51c7ef', $51c7ef);
+          } else {
+            api.reload('$51c7ef', $51c7ef);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
 },{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/app.js":[function(require,module,exports) {
 'use strict';
 
@@ -11742,6 +11831,10 @@ var _tabsPane = require('./tabs-pane');
 
 var _tabsPane2 = _interopRequireDefault(_tabsPane);
 
+var _popover = require('./popover');
+
+var _popover2 = _interopRequireDefault(_popover);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component('g-col', _col2.default);
@@ -11757,6 +11850,7 @@ _vue2.default.component('g-tabs-header', _tabsHeader2.default);
 _vue2.default.component('g-tabs-item', _tabsItem2.default);
 _vue2.default.component('g-tabs-body', _tabsBody2.default);
 _vue2.default.component('g-tabs-pane', _tabsPane2.default);
+_vue2.default.component('g-popover', _popover2.default);
 
 _vue2.default.use(_plugin2.default);
 
@@ -11876,7 +11970,7 @@ new _vue2.default({
 //     button.click();
 //     expect(spy).to.have.been.called();
 // }
-},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./studyVue":"src/studyVue.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./col":"src/col.vue","./row":"src/row.vue","./toast":"src/toast.vue","./plugin":"src/plugin.js","./tabs":"src/tabs.vue","./tabs-header":"src/tabs-header.vue","./tabs-item":"src/tabs-item.vue","./tabs-body":"src/tabs-body.vue","./tabs-pane":"src/tabs-pane.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./studyVue":"src/studyVue.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./col":"src/col.vue","./row":"src/row.vue","./toast":"src/toast.vue","./plugin":"src/plugin.js","./tabs":"src/tabs.vue","./tabs-header":"src/tabs-header.vue","./tabs-item":"src/tabs-item.vue","./tabs-body":"src/tabs-body.vue","./tabs-pane":"src/tabs-pane.vue","./popover":"src/popover.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -11905,7 +11999,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57987' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59875' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

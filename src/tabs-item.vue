@@ -56,7 +56,7 @@
         display: flex;
         align-items: center;
         &.active {
-            background-color: red;
+            /*background-color: red;*/
             color: $blue;
             font-weight: bold;
         }

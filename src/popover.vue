@@ -1,10 +1,11 @@
 <template>
     <div class="popover" v-on:click.stop="xxx">
-        <div class="content-wrapper" v-if="visible" v-on:click.stop>
+        <div ref="contentWrapper" class="content-wrapper" v-if="visible" v-on:click.stop>
             <slot name="content"></slot>
         </div>
-
-        <slot></slot>
+        <span ref="trigger">
+            <slot></slot>
+        </span>
     </div>
 </template>
 
@@ -23,6 +24,13 @@
 
                 if (this.visible === true) {
                     this.$nextTick(() => {
+                        document.body.appendChild(this.$refs.contentWrapper);
+                        const { width, height, left, top } = this.$refs.trigger.getBoundingClientRect();
+                        console.log(width, height, left, top);
+                        //  为了解决css的位置问题,需要考虑出现滚动条的情况 scrollY scrollX 是指浏览器滚动了的高度和宽度
+                        this.$refs.contentWrapper.style.top = top + scrollX + 'px';
+                        this.$refs.contentWrapper.style.left = left + scrollY + 'px';
+                        console.log(this.$refs.contentWrapper, '-----ref');
                         let X = () => {
                             this.visible = false;
                             console.log(this, '------时间监听的回调函数');
@@ -44,6 +52,9 @@
                 //     })
                 // }
             }
+        },
+        mounted() {
+
         }
     }
 </script>
@@ -53,12 +64,12 @@
         display: inline-block;
         vertical-align: top;
         position: relative;
-        .content-wrapper {
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            border: 1px solid green;
-            box-shadow: 0 0 3px rgba(0,0,0,0.5);
-        }
+
+    }
+    .content-wrapper {
+        position: absolute;
+        border: 1px solid green;
+        box-shadow: 0 0 3px rgba(0,0,0,0.5);
+        transform: translateY(-100%);
     }
 </style>

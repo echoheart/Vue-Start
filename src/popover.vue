@@ -1,6 +1,6 @@
 <template>
     <div class="popover" v-on:click="onClick" ref="popover">
-        <div ref="contentWrapper" class="content-wrapper" v-if="visible" v-on:click.stop>
+        <div ref="contentWrapper" class="content-wrapper" v-if="visible">
             <slot name="content"></slot>
         </div>
         <span ref="trigger">
@@ -27,10 +27,13 @@
                 this.$refs.contentWrapper.style.left = left + scrollY + 'px';
             },
             onClickDocuemnt (e) {
-                if (this.$refs.popover.contains(e.target)) {
-                    return;
+                // debugger;
+                if (this.$refs.contentWrapper && (this.$refs.contentWrapper === e.target
+                    || this.$refs.contentWrapper.contains(e.target))) {
+                    return
                 }
                 this.close();
+
             },
             listenToDocument() {
                 console.log('新增document-click监听器');
@@ -42,13 +45,14 @@
                     this.positionContent();
                     this.listenToDocument();
                 })
-                document.removeEventListener('click', this.onClickDocuemnt);
-                console.log('删除监听器');
             },
             close() {
                 this.visible = false;
+                document.removeEventListener('click', this.onClickDocuemnt);
+                console.log('删除监听器');
             },
             onClick(e) {
+                // debugger;
                 if (this.$refs.trigger.contains(e.target)) {
                     console.log('点击下面按钮');
                     if (this.visible === true) {

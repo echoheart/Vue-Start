@@ -2,47 +2,28 @@
   "name": "vue-start-1",
   "version": "0.0.1",
   "description": "vue 起步 组件",
-  "main": "index.js",
   "scripts": {
-    "dev-test": "parcel watch test/* --no-cache & karma start",
-    "test": "parcel build test/* --no-cache --no-minify && karma start --single-run",
-    "start": "parcel ./index.html --no-cache"
+    "server": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/echoheart/Vue-Start.git"
-  },
-  "keywords": [
-    "vue"
-  ],
-  "author": "limantang",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/echoheart/Vue-Start/issues"
-  },
-  "homepage": "https://github.com/echoheart/Vue-Start#readme",
   "dependencies": {
-    "vue": "^2.5.17",
-    "vue-hot-reload-api": "^2.3.0"
+    "vue": "^2.5.21"
   },
   "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-plugin-unit-mocha": "^3.2.0",
+    "@vue/cli-service": "^3.2.0",
     "@vue/component-compiler-utils": "^2.2.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
     "chai": "^4.1.2",
-    "chai-spies": "^1.0.0",
-    "karma": "^3.0.0",
-    "karma-chai": "^0.1.0",
-    "karma-chai-spies": "^0.1.4",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-mocha": "^1.3.0",
-    "karma-sinon-chai": "^2.0.2",
-    "mocha": "^5.2.0",
-    "node-sass": "^4.11.0",
-    "parcel-bundler": "^1.9.7",
-    "sinon": "^6.1.5",
-    "sinon-chai": "^3.2.0",
-    "vue-template-compiler": "^2.5.17"
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.21"
   },
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.common.js"
-  }
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

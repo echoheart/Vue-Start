@@ -1,25 +1,64 @@
 <template>
     <div>
-        <g-button>
-            按钮
-        </g-button>
+        <div>
+            <g-button>
+                按钮
+            </g-button>
+        </div>
 
         <g-popover>
-        <template slot="content">
-        <div>popover内容</div>
-        </template>
-        <button>点我</button>
+            <template slot="content">
+            <div>popover内容</div>
+            </template>
+            <button>Popover</button>
         </g-popover>
+
+
         <g-popover>
-        <template slot="content">
-        <div>popover内容</div>
-        </template>
-        <button>点我</button>
+            <template slot="content">
+            <div>popover内容</div>
+            </template>
+            <button>Popover</button>
         </g-popover>
-        <div>hdsadsai</div>
-        <button v-on:click="showToast">
-            click me
-        </button>
+
+
+        <div>
+            <button v-on:click="showToast">
+                click me
+            </button>
+        </div>
+
+
+        <g-tabs :selected.sync="selectedTab">
+            <g-tabs-header>
+                <template slot="actions">
+                <button>设置</button>
+                </template>
+                <g-tabs-item name="woman">
+                    美女
+                </g-tabs-item>
+                <g-tabs-item name="sports">
+                    体育
+                </g-tabs-item>
+                <g-tabs-item name="fiance">
+                 财经
+                </g-tabs-item>
+            </g-tabs-header>
+
+            <g-tabs-body>
+                <g-tabs-pane name="woman">
+                    美女频道内容
+                </g-tabs-pane>
+                <g-tabs-pane name="sports">
+                    体育频道内容
+                </g-tabs-pane>
+                <g-tabs-pane name="fiance">
+                    财经频道内容
+                </g-tabs-pane>
+            </g-tabs-body>
+        </g-tabs>
+
+
     </div>
 </template>
 
@@ -48,7 +87,11 @@
             "g-button": Button,
             "g-popover": Popover,
             "g-toast": Toast,
-
+            "g-tabs": Tabs,
+            "g-tabs-header": TabsHeader,
+            "g-tabs-item": TabsItem,
+            "g-tabs-body": TabsBody,
+            "g-tabs-pane": TabsPane
         },
         methods: {
             inputChange: function (event) {

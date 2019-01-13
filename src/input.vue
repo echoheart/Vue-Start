@@ -42,6 +42,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "var";
     /*--button-height: 32px;*/
     /*--font-size: 14px;*/
     /*--button-bg: #fff;*/
@@ -51,13 +52,6 @@
     /*--border-color: #999;*/
     /*--border-colro-hover: #666;*/
 
-    $border-color: #999;
-    $border-color-hover: #666;
-    $border-radius: 4px;
-    $height: 32px;
-    $font-size: 12px;
-    $box-shadow-color: rgba(0, 0, 0, 0.5);
-    $error-red: #f1453d;
     .wrapper {
         font-size: $font-size;
         display: inline-flex;

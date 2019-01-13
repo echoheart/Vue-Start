@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "vue 起步 组件",
   "scripts": {
-    "server": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit"
   },

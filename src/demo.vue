@@ -58,7 +58,9 @@
             </g-tabs-body>
         </g-tabs>
 
+        <g-cascader v-bind:source="source">
 
+        </g-cascader>
     </div>
 </template>
 
@@ -79,6 +81,7 @@
     import TabsBody from './tabs-body';
     import TabsPane from './tabs-pane';
     import Popover from './popover';
+    import Cascader from './cascader';
 
     Vue.use(plugin);
     export default {
@@ -91,7 +94,48 @@
             "g-tabs-header": TabsHeader,
             "g-tabs-item": TabsItem,
             "g-tabs-body": TabsBody,
-            "g-tabs-pane": TabsPane
+            "g-tabs-pane": TabsPane,
+            "g-cascader": Cascader,
+        },
+        data: function () {
+            return {
+                source:[{
+                    name: '浙江',
+                    children: [
+                        {
+                            name: '杭州',
+                            children: [
+                                {name: '上城区'},
+                                {name: '下城区'},
+                                {name: '江干区'}
+                            ]
+                        },
+                        {name: '嘉兴'},
+                        {name: '湖州'}
+                    ]
+                },{
+                    name: '北京',
+                    children: [
+                        {name: '东城区'},
+                        {name: '西城区'},
+                        {name: '海淀区'}
+                    ]
+                },{
+                    name: '黑龙江',
+                    children: [
+                        {name: '哈尔滨'},
+                        {
+                            name: '佳木斯',
+                            children: [
+                                {name: '东风区'},
+                                {name: '桦南县'}
+                            ]
+                        },
+                        {name: '大庆'}
+                    ]
+                }],
+                selectedTab: 'sports'
+            }
         },
         methods: {
             inputChange: function (event) {

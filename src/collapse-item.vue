@@ -22,47 +22,44 @@
             name: {
                 type: String,
                 require: true
-            }
+            },
 
         },
         data() {
             return {
-                isOpen: false
+                isOpen: false,
+                single: false
             }
         },
         inject: ['eventBus'],
         mounted() {
-            this.eventBus && this.eventBus.$on('update:selected', (name) => {
+            this.eventBus && this.eventBus.$on('update:selected', (names) => {
                 // console.log(this);
-                if (name !== this.name) {
-                    this.close();
+                if (names.indexOf(this.name) >= 0) {
+                    this.isOpen = true;
+
                 } else {
-                    this.show()
+                    this.isOpen = false;
                 }
-            })
-            // this.eventBus.$on('update:selected', function (vm) {
-            //     console.log(this);
-            //     if (vm !== this) {
-            //         this.isOpen = false;
-            //     }
+            });
+
+            // this.eventBus && this.eventBus.$on('update:removeSelected', (names) => {
+            //
             // })
         },
 
         methods: {
             toggle() {
                 if (this.isOpen) {
-                    this.close()
+                    // this.isOpen = false;
+
+                    this.eventBus.$emit('update:removeSelected', this.name);
                 } else {
-                    // this.isOpen = true;
-                    this.eventBus && this.eventBus.$emit('update:selected', this.name)
+
+                    this.eventBus.$emit('update:addSelected', this.name);
+                    // this.eventBus && this.eventBus.$emit('update:selected', this.name)
                 }
             },
-            close() {
-                this.isOpen = false;
-            },
-            show() {
-                this.isOpen = true;
-            }
         },
 
     }

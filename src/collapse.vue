@@ -15,11 +15,8 @@
               default: false
           },
             selected: {
-              type: String,
+              type: Array,
             },
-            _this: {
-              type: Object,
-            }
         },
         data() {
             return {
@@ -27,19 +24,48 @@
             }
         },
         provide() {
-            // if (this.single) {
-                return {
-                    eventBus: this.eventBus
-                }
-            // }
+            return {
+                eventBus: this.eventBus
+            }
         },
         mounted() {
+          this.eventBus.$emit('update:selected', this.selected);
+            // console.log(this.selected)
+          //    添加元素
+          this.eventBus.$on('update:addSelected', (name) => {
+              let selectedCopy = this.selected.slice();
+              // console.log(this.selected);
+              if(this.single) {
+                  selectedCopy = [name];
+              } else {
+                  selectedCopy.push(name);
+              }
 
-              this.eventBus.$emit('update:selected', this.selected);
-              this.eventBus.$on('update:selected', (name) => {
-                  console.log(name);
-                  this.$emit('update:selected', name)
-              })
+              // console.log(name, this.selected)
+              //    通知组件外部更新selected数组
+              this.$emit('update:selected', selectedCopy);
+
+              //
+              this.eventBus.$emit('update:selected', selectedCopy)
+          });
+
+          //    移除元素
+
+            this.eventBus.$on('update:removeSelected', (name) => {
+                let selectedCopy = this.selected.slice();
+                const index = selectedCopy.indexOf(name);
+                // console.log(index);
+                if (this.single) {
+                    selectedCopy = []
+                } else {
+                    selectedCopy.splice(index, 1);
+                }
+
+                console.log(this.selected);
+                this.$emit('update:selected', selectedCopy);
+                this.eventBus.$emit('update:selected', selectedCopy);
+            })
+
         }
     }
 

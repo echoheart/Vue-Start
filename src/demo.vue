@@ -111,14 +111,14 @@
         },
         mounted() {
             console.log(this);
-          this.$children[0].$on('update:selected', (name) => {
-              console.log(name);
-                this.selected = name;
+          this.$children[0].$on('update:selected', (names) => {
+              // console.log(names);
+                this.selected = names;
           })
         },
         data: function () {
             return {
-                selected: '2',
+                selected: ['2'],
                 source:[{
                     name: '浙江',
                     children: [

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import CascaderItem from './cascaderItem';
+    import CascaderItem from './cascader-item';
 
     export default {
         name: 'g-cascader',

@@ -19,6 +19,11 @@
                 type: String,
                 require: true
             },
+            name: {
+                type: String,
+                require: true
+            }
+
         },
         data() {
             return {
@@ -27,10 +32,12 @@
         },
         inject: ['eventBus'],
         mounted() {
-            this.eventBus && this.eventBus.$on('update:selected', (vm) => {
-                console.log(this);
-                if (vm !== this) {
-                    this.isOpen = false;
+            this.eventBus && this.eventBus.$on('update:selected', (name) => {
+                // console.log(this);
+                if (name !== this.name) {
+                    this.close();
+                } else {
+                    this.show()
                 }
             })
             // this.eventBus.$on('update:selected', function (vm) {
@@ -44,11 +51,17 @@
         methods: {
             toggle() {
                 if (this.isOpen) {
-                    this.isOpen = false
+                    this.close()
                 } else {
-                    this.isOpen = true;
-                    this.eventBus && this.eventBus.$emit('update:selected', this)
+                    // this.isOpen = true;
+                    this.eventBus && this.eventBus.$emit('update:selected', this.name)
                 }
+            },
+            close() {
+                this.isOpen = false;
+            },
+            show() {
+                this.isOpen = true;
             }
         },
 

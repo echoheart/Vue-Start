@@ -13,7 +13,13 @@
           single: {
               type: Boolean,
               default: false
-          }
+          },
+            selected: {
+              type: String,
+            },
+            _this: {
+              type: Object,
+            }
         },
         data() {
             return {
@@ -21,12 +27,19 @@
             }
         },
         provide() {
-            if (this.single) {
+            // if (this.single) {
                 return {
                     eventBus: this.eventBus
                 }
-            }
+            // }
+        },
+        mounted() {
 
+              this.eventBus.$emit('update:selected', this.selected);
+              this.eventBus.$on('update:selected', (name) => {
+                  console.log(name);
+                  this.$emit('update:selected', name)
+              })
         }
     }
 

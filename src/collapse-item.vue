@@ -1,6 +1,6 @@
 <template>
-    <div class="collapse-item" v-on:click="toggle">
-        <div class="title">
+    <div class="collapse-item">
+        <div class="title" v-on:click="toggle">
             {{ title }}
         </div>
 

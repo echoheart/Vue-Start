@@ -1,24 +1,44 @@
 <template>
     <div class="cascader">
-        <div class="trigger">
+        <div class="trigger" v-on:click="popoverVisible = !popoverVisible">
             <slot></slot>
         </div>
-        <div class="popover">
-            <div v-for="item in source">
-                <CascaderItem v-bind:sourceItem="item"></CascaderItem>
-            </div>
-
+        <div class="popover" v-if="popoverVisible">
+            <CascaderItems v-bind:items="source"></CascaderItems>
         </div>
     </div>
 </template>
 
 <script>
-    import CascaderItem from './cascader-item';
+    import CascaderItems from './cascader-items';
 
     export default {
         name: 'g-cascader',
         components: {
-            CascaderItem
+            CascaderItems
+        },
+        computed: {
+          level2Items() {
+            if (this.level1Selected) {
+                return this.level1Selected.children;
+            } else {
+                return []
+            }
+          },
+            level3Items() {
+              if (this.level2Selected) {
+                  return this.level2Selected.children;
+              } else {
+                  return []
+              }
+            }
+        },
+        data() {
+            return {
+                popoverVisible: false,
+                level1Selected: null,
+                level2Selected: null
+            }
         },
         props: {
             source: {
@@ -31,6 +51,17 @@
 <style scoped lang="scss">
     @import "var";
     .cascader {
-
+        .trigger {
+            border: 1px solid green;
+            height: 32px;
+            width: 150px;
+        }
+        .popover {
+            display: flex;
+            justify-content: flex-start;
+            width: 10px;
+            /*height: 200px;*/
+            /*border: 1px solid red;*/
+        }
     }
 </style>

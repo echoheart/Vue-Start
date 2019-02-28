@@ -1,4 +1,5 @@
 module.exports = {
+    base:'/Vue-start/',
     title: 'VUE-UI',
     description: 'UI框架',
     themeConfig: {

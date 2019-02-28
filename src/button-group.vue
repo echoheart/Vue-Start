@@ -17,7 +17,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+    $button-radius: 4px;
     .g-button-group {
         display: inline-flex;
         vertical-align: middle;
@@ -28,12 +29,12 @@ export default {
             }
             /*<!--margin-left: -1px;-->*/
             &:first-child {
-                border-top-left-radius: var(--button-radius);
-                border-bottom-left-radius: var(--button-radius);
+                border-top-left-radius: $button-radius;
+                border-bottom-left-radius: $button-radius;
             }
             &:last-child {
-                border-top-right-radius: var(--button-radius);
-                border-bottom-right-radius: var(--button-radius);
+                border-top-right-radius: $button-radius;
+                border-bottom-right-radius: $button-radius;
             }
             &:hover {
                 z-index: 1;

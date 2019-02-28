@@ -10,7 +10,12 @@ module.exports = {
         sidebar: [
             '/',
             '/install/',
-            '/getStart/'
+            '/getStart/',
+            {
+                title: '组件',
+                children: ['components/Button']
+            },
+            
         ]
     },
 };

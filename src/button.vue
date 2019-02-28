@@ -19,7 +19,7 @@
         <!--</svg>-->
         <g-icon v-if="icon && !loading" v-bind:name="icon"></g-icon>
         <g-icon v-if="loading" class="loading" name="loading"></g-icon>
-        <div class="content">
+        <div class="g-content">
             <slot></slot>
         </div>
     </button>
@@ -28,6 +28,7 @@
     import Icon from './icon';
     export default {
         // props: ['icon', 'iconPosition']
+        // name: 'g-button',
         components: {
           'g-icon': Icon
         },
@@ -56,7 +57,26 @@
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+
+    :root {
+        --button-height: 32px;
+        --font-size: 14px;
+        --button-bg: #fff;
+        --button-active-bg: #eee;
+        --button-radius: 4px;
+        --color: #333;
+        --border-color: #999;
+        --border-colro-hover: #666;
+    }
+
+    $button-height: 32px;
+    $button-radius: 4px;
+    $font-size: 14px;
+    $button-bg: #fff;
+    $border-color-hover: #666;
+    $button-active-bg: #eee;
+
     @keyframes spin {
         0% {
             transform: rotate(0deg);
@@ -66,21 +86,21 @@
         }
     }
     .g-button {
-        height: var(--button-height);
-        font-size: var(--font-size);
+        height: $button-height;
+        font-size: $font-size;
         padding: 0 1em;
-        border-radius: var(--button-radius);
-        background: var(--button-bg);
+        border-radius: $button-radius;
+        background: $button-bg;
         display: inline-flex;
         justify-content: center;
         align-items: center;
         /*解决内联元素不能上下对齐问题,该值默认值为base-line*/
         vertical-align: middle;
         &:hover {
-            border-color: var(--button-color-hover);
+            border-color: $border-color-hover;
         }
         &:active {
-            background-color: var(--button-active-bg);
+            background-color: $button-active-bg;
         }
         &:focus {
             outline: none;
@@ -89,7 +109,7 @@
             order: 1;
             margin-right: .3em;
         }
-        > .content {
+        > .g-content {
             order: 2;
         }
         &.icon-right {
@@ -98,7 +118,7 @@
                 margin-left: .3em;
                 margin-right: 0;
             }
-            > .content {
+            > .g-content {
                 order: 1;
             }
         }

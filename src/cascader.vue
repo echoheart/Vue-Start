@@ -3,8 +3,12 @@
         <div class="trigger" v-on:click="popoverVisible = !popoverVisible">
             <slot></slot>
         </div>
-        <div class="popover" v-if="popoverVisible">
-            <CascaderItems v-bind:items="source"></CascaderItems>
+        <div class="popover-wrapper" v-if="popoverVisible">
+            <CascaderItems
+                    v-bind:items="source"
+                    class="popover"
+                    v-bind:height="popoverHeight"
+            ></CascaderItems>
         </div>
     </div>
 </template>
@@ -18,20 +22,7 @@
             CascaderItems
         },
         computed: {
-          level2Items() {
-            if (this.level1Selected) {
-                return this.level1Selected.children;
-            } else {
-                return []
-            }
-          },
-            level3Items() {
-              if (this.level2Selected) {
-                  return this.level2Selected.children;
-              } else {
-                  return []
-              }
-            }
+
         },
         data() {
             return {
@@ -43,6 +34,12 @@
         props: {
             source: {
                 type: Array
+            },
+            popoverClassName: {
+                type: String,
+            },
+            popoverHeight: {
+                type: String,
             }
         }
     }
@@ -53,11 +50,12 @@
     .cascader {
         position: relative;
         .trigger {
-            border: 1px solid green;
+            border: 1px solid black;
             height: 32px;
             width: 150px;
         }
-        .popover {
+        .popover-wrapper {
+            @extend .box-shadow;
             position: absolute;
             top: 100%;
             left: 0;
@@ -66,9 +64,7 @@
             justify-content: flex-start;
             /*width: 10px;*/
             height: 200px;
-            .label {
-                white-space: nowrap;
-            }
+
             /*border: 1px solid red;*/
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="source-item">
+    <div class="source-item" v-bind:style="{height: height}">
         <div class="left"
 
              >
@@ -7,19 +7,26 @@
                  v-for="item in items"
                  v-on:click="leftSelected = item">
                 {{ item.name }}
+                <!--<span v-if="item.children"> > </span>-->
+                <Icon name="right" v-if="item.children"></Icon>
             </div>
         </div>
         <div class="right" v-if="rightItems">
-            <CascaderItems v-bind:items="rightItems"></CascaderItems>
+            <CascaderItems
+                    v-bind:items="rightItems"
+                    v-bind:height="height"
+            ></CascaderItems>
         </div>
     </div>
 </template>
 
 <script>
+    import Icon from './icon';
     const component = {
         name: 'CascaderItems',
         components: {
             CascaderItems: 'CascaderItems',
+            Icon: Icon,
         },
         data() {
             return {
@@ -38,6 +45,9 @@
         props: {
             items: {
                 type: Array
+            },
+            height: {
+                type: String
             }
         }
     };
@@ -46,20 +56,23 @@
 </script>
 
 <style lang="scss" scoped>
+    @import 'var';
     .source-item {
-        border: 1px solid red;
-        /*margin: 10px;*/
-        margin-top: -1px;
+
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
         .left {
-            /*border: 1px solid red;*/
-            /*display: flex;*/
-            /*align-items: flex-start;*/
-            /*display: flex;*/
-            /*justify-content: flex-end;*/
-            /*align-items: flex-end;*/
+            padding-top: .3em;
+
+            .label {
+
+                padding: .3em 1em;
+            }
         }
+        .right {
+            border-left: 1px solid $grey;
+        }
+
     }
 </style>

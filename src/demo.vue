@@ -58,7 +58,7 @@
             <!--</g-tabs-body>-->
         <!--</g-tabs>-->
         <p>111</p>
-        <g-cascader v-bind:source="source">
+        <g-cascader v-bind:source="source" popoverClassName="xxx" popover-height="200px">
 
         </g-cascader>
         <p>222</p>

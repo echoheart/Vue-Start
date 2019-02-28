@@ -8,7 +8,7 @@
             图标按钮
         </g-button>
 
-        <g-button :loading="true">
+        <g-button loading>
             图标按钮
         </g-button>
 
@@ -38,11 +38,11 @@
                         默认按钮
                     </g-button>
 
-                    <g-button icon="settings">
+                    <g-button icon="setting">
                         图标按钮
                     </g-button>
 
-                    <g-button :loading="true">
+                    <g-button loading>
                         图标按钮
                     </g-button>
 

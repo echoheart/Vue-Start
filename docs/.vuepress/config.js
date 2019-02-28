@@ -1,12 +1,12 @@
 module.exports = {
-    base:'/Vue-start/',
+    base:'/Vue-Start/',
     title: 'VUE-UI',
     description: 'UI框架',
     themeConfig: {
         nav: [
-            { text: 'Home', link: '/' },
-            { text: 'Guide', link: '/install/' },
-            { text: 'External', link: 'https://google.com' },
+            { text: '首页', link: 'https://echoheart.github.io/Vue-Start/' },
+            { text: '博客', link: 'www.echoheart.cn' },
+            // { text: 'External', link: 'https://google.com' },
         ],
         sidebar: [
             '/',

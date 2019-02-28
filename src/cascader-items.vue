@@ -1,10 +1,13 @@
 <template>
     <div class="source-item">
         <div class="left"
-             v-for="item in items"
-             v-on:click="leftSelected = item"
+
              >
-            {{ item.name }}
+            <div class="label"
+                 v-for="item in items"
+                 v-on:click="leftSelected = item">
+                {{ item.name }}
+            </div>
         </div>
         <div class="right" v-if="rightItems">
             <CascaderItems v-bind:items="rightItems"></CascaderItems>

@@ -51,16 +51,24 @@
 <style scoped lang="scss">
     @import "var";
     .cascader {
+        position: relative;
         .trigger {
             border: 1px solid green;
             height: 32px;
             width: 150px;
         }
         .popover {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
             display: flex;
             justify-content: flex-start;
-            width: 10px;
-            /*height: 200px;*/
+            /*width: 10px;*/
+            height: 200px;
+            .label {
+                white-space: nowrap;
+            }
             /*border: 1px solid red;*/
         }
     }

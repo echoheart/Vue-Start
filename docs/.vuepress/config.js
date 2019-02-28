@@ -9,8 +9,8 @@ module.exports = {
         ],
         sidebar: [
             '/',
-            '/install',
-            '/get-start'
+            '/install/',
+            '/getStart/'
         ]
     },
 };

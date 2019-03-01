@@ -57,19 +57,25 @@
                 <!--</g-tabs-pane>-->
             <!--</g-tabs-body>-->
         <!--</g-tabs>-->
-        <p>111</p>
-        <g-cascader v-bind:source="source" popoverClassName="xxx" popover-height="200px">
+        <p>{{ selected }}</p>
+        <g-cascader
+                v-bind:source="source"
+                popoverClassName="xxx"
+                popover-height="200px"
+                v-bind:selected="selected"
+                v-on:update:selected="selected = $event"
+        >
 
         </g-cascader>
         <p>222</p>
 
-        <g-collapse v-bind:selected="selected">
-            <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
-            <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>
-            <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>
-        </g-collapse>
+        <!--<g-collapse v-bind:selected="selectedTab">-->
+            <!--<g-collapse-item title="标题1" name="1">内容1</g-collapse-item>-->
+            <!--<g-collapse-item title="标题2" name="2">内容2</g-collapse-item>-->
+            <!--<g-collapse-item title="标题3" name="3">内容3</g-collapse-item>-->
+        <!--</g-collapse>-->
 
-        {{ selected }}
+        <!--{{ selectedTab }}-->
     </div>
 </template>
 
@@ -110,6 +116,11 @@
             "g-collapse": Collapse,
             "g-collapse-item": CollapseItem
         },
+        methods: {
+          onUpdate(copySeleted) {
+              this.selected = copySeleted;
+          }
+        },
         mounted() {
             console.log(this);
           this.$children[0].$on('update:selected', (names) => {
@@ -119,7 +130,8 @@
         },
         data: function () {
             return {
-                selected: ['2'],
+                selectedTab: ['2'],
+                selected:[],
                 source:[{
                     name: '浙江',
                     children: [

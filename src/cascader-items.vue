@@ -1,13 +1,14 @@
 <template>
     <div class="source-item" v-bind:style="{height: height}">
-        <div class="left"
-
-             >
+        <!--selected: {{ selected[level] && selected[level].name }}-->
+        <!--level: {{ level }}-->
+        <!--{{ rightItems }}-->
+        <div class="left">
             <div class="label"
                  v-for="item in items"
-                 v-on:click="leftSelected = item">
+                 v-on:click="onClickHandle(item)">
                 {{ item.name }}
-                <!--<span v-if="item.children"> > </span>-->
+
                 <Icon name="right" v-if="item.children"></Icon>
             </div>
         </div>
@@ -15,8 +16,13 @@
             <CascaderItems
                     v-bind:items="rightItems"
                     v-bind:height="height"
-            ></CascaderItems>
+                    v-bind:selected="selected"
+                    v-bind:level="level + 1"
+                    v-on:update:selected="onUpdate"
+            >
+            </CascaderItems>
         </div>
+
     </div>
 </template>
 
@@ -28,6 +34,16 @@
             CascaderItems: 'CascaderItems',
             Icon: Icon,
         },
+        methods: {
+          onClickHandle(item) {
+              const copySelected = this.selected.slice();
+              copySelected[this.level] = item;
+              this.$emit('update:selected', copySelected);
+          },
+            onUpdate(copySelected) {
+              this.$emit('update:selected', copySelected)
+            }
+        },
         data() {
             return {
                 leftSelected: null,
@@ -35,8 +51,9 @@
         },
         computed: {
             rightItems() {
-                if (this.leftSelected && this.leftSelected.children) {
-                    return this.leftSelected.children
+                const currentSelected = this.selected[this.level];
+                if (currentSelected && currentSelected.children) {
+                    return this.selected[this.level].children
                 } else {
                     return null;
                 }
@@ -48,6 +65,14 @@
             },
             height: {
                 type: String
+            },
+            selected: {
+                type: Array,
+                default: () => []
+            },
+            level: {
+                type: Number,
+                default: 0
             }
         }
     };

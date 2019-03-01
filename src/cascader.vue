@@ -8,7 +8,10 @@
                     v-bind:items="source"
                     class="popover"
                     v-bind:height="popoverHeight"
-            ></CascaderItems>
+                    v-bind:selected="selected"
+                    v-on:update:selected="onUpdate"
+            >
+            </CascaderItems>
         </div>
     </div>
 </template>
@@ -20,6 +23,11 @@
         name: 'g-cascader',
         components: {
             CascaderItems
+        },
+        methods: {
+            onUpdate(copySelected) {
+                this.$emit('update:selected', copySelected)
+            }
         },
         computed: {
 
@@ -40,7 +48,12 @@
             },
             popoverHeight: {
                 type: String,
-            }
+            },
+            selected: {
+                type: Array,
+                default: () => []
+            },
+
         }
     }
 </script>

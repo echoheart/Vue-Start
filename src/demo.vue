@@ -65,7 +65,6 @@
                 v-bind:selected="selected"
                 v-on:update:selected="selected = $event"
         >
-
         </g-cascader>
         <!--<p>222</p>-->
 

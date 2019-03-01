@@ -1,7 +1,7 @@
 <template>
     <div class="cascader">
         <div class="trigger" v-on:click="popoverVisible = !popoverVisible">
-            <slot></slot>
+            {{ result || '&nbsp'}}
         </div>
         <div class="popover-wrapper" v-if="popoverVisible">
             <CascaderItems
@@ -30,7 +30,11 @@
             }
         },
         computed: {
-
+            result() {
+                return this.selected.map((item) => {
+                    return item.name;
+                }).join('/');
+            }
         },
         data() {
             return {
@@ -63,9 +67,15 @@
     .cascader {
         position: relative;
         .trigger {
-            border: 1px solid black;
-            height: 32px;
-            width: 150px;
+            border: 1px solid $grey;
+            height: $input-height;
+            /*width: 150px;*/
+            display: inline-flex;
+            align-items: center;
+            padding: 0 1em;
+            min-width: 10em;
+            /*<!--border-color: $grey;-->*/
+            border-radius: $border-radius;
         }
         .popover-wrapper {
             @extend .box-shadow;

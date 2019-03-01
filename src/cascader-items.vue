@@ -37,7 +37,11 @@
         methods: {
           onClickHandle(item) {
               const copySelected = this.selected.slice();
+              //    更新时删除当前层级的后的所有元素
+              copySelected.splice(this.level);
+
               copySelected[this.level] = item;
+
               this.$emit('update:selected', copySelected);
           },
             onUpdate(copySelected) {

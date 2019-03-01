@@ -57,7 +57,7 @@
                 <!--</g-tabs-pane>-->
             <!--</g-tabs-body>-->
         <!--</g-tabs>-->
-        <p>{{ selected }}</p>
+        <!--<p>{{ selected }}</p>-->
         <g-cascader
                 v-bind:source="source"
                 popoverClassName="xxx"
@@ -67,7 +67,7 @@
         >
 
         </g-cascader>
-        <p>222</p>
+        <!--<p>222</p>-->
 
         <!--<g-collapse v-bind:selected="selectedTab">-->
             <!--<g-collapse-item title="标题1" name="1">内容1</g-collapse-item>-->

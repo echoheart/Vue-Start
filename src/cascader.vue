@@ -26,7 +26,15 @@
         },
         methods: {
             onUpdate(copySelected) {
-                this.$emit('update:selected', copySelected)
+                this.$emit('update:selected', copySelected);
+                const { id } = copySelected[copySelected.length - 1];
+                let updateSource = (result) => {
+                    const selectedItem = this.source.filter((item) => {
+                        return item.id === id;
+                    })[0];
+                    this.$set(selectedItem, 'children', result);
+                }
+                this.loadData(id, updateSource);
             }
         },
         computed: {
@@ -57,6 +65,9 @@
                 type: Array,
                 default: () => []
             },
+            loadData: {
+                type: Function,
+            }
 
         }
     }
@@ -79,6 +90,7 @@
         }
         .popover-wrapper {
             @extend .box-shadow;
+            margin-top: 5px;
             position: absolute;
             top: 100%;
             left: 0;

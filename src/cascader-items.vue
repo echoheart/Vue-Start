@@ -93,13 +93,14 @@
         justify-content: flex-start;
         .left {
             padding-top: .3em;
-
+            overflow: auto;
+            height: 100%;
             .label {
-
                 padding: .3em 1em;
             }
         }
         .right {
+            height: 100%;
             border-left: 1px solid $grey;
         }
 

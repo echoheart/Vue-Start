@@ -62,8 +62,8 @@
                 v-bind:source="source"
                 popoverClassName="xxx"
                 popover-height="200px"
-                v-bind:selected="selected"
-                v-on:update:selected="selected = $event"
+                v-bind:selected.sync="selected"
+                v-bind:load-data="loadData"
         >
         </g-cascader>
         <!--<p>222</p>-->
@@ -98,6 +98,19 @@
     import Cascader from './cascader';
     import Collapse from './collapse';
     import CollapseItem from './collapse-item';
+    import DB from './db';
+
+    function ajax(parentId = 0) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const result = DB.filter((item) => {
+                    return item.parent_id === parentId;
+                });
+                resolve(result);
+            }, 2000);
+        });
+    }
+
 
     Vue.use(plugin);
     export default {
@@ -115,11 +128,7 @@
             "g-collapse": Collapse,
             "g-collapse-item": CollapseItem
         },
-        methods: {
-          onUpdate(copySeleted) {
-              this.selected = copySeleted;
-          }
-        },
+
         mounted() {
             console.log(this);
           this.$children[0].$on('update:selected', (names) => {
@@ -127,49 +136,43 @@
                 this.selected = names;
           })
         },
+        created() {
+            ajax().then((result) => {
+                 this.source = result;
+                 // console.log(this.source)
+            });
+        },
         data: function () {
             return {
                 selectedTab: ['2'],
                 selected:[],
-                source:[{
-                    name: '浙江',
-                    children: [
-                        {
-                            name: '杭州',
-                            children: [
-                                {name: '上城区'},
-                                {name: '下城区'},
-                                {name: '江干区'}
-                            ]
-                        },
-                        {name: '嘉兴'},
-                        {name: '湖州'}
-                    ]
-                },{
-                    name: '北京',
-                    children: [
-                        {name: '东城区'},
-                        {name: '西城区'},
-                        {name: '海淀区'}
-                    ]
-                },{
-                    name: '黑龙江',
-                    children: [
-                        {name: '哈尔滨'},
-                        {
-                            name: '佳木斯',
-                            children: [
-                                {name: '东风区'},
-                                {name: '桦南县'}
-                            ]
-                        },
-                        {name: '大庆'}
-                    ]
-                }],
+                source:[],
                 selectedTab: 'sports'
             }
         },
         methods: {
+            onUpdate(copySeleted) {
+                this.selected = copySeleted;
+            },
+
+            updateSelected(selected) {
+                console.log(selected[0]);
+                ajax(selected[0].id).then((result) => {
+                    // selected[0].children = result;
+                    let lastSelectedLevel = this.source.filter((item) => {
+                        return (item.id === this.selected[0].id);
+                    })[0];
+                    console.log(lastSelectedLevel);
+                    this.$set(lastSelectedLevel, 'children', result);
+                })
+            },
+            loadData(id, fn) {
+                // console.log('node', node);
+
+                ajax(id).then((result) => {
+                    fn(result)
+                });
+            },
             inputChange: function (event) {
                 console.log(event);
             },

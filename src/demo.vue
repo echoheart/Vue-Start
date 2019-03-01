@@ -1,74 +1,74 @@
 <template>
     <div>
-        <!--<div>-->
-            <!--<g-button>-->
-                <!--按钮-->
-            <!--</g-button>-->
-        <!--</div>-->
+        <div>
+            <g-button>
+                按钮
+            </g-button>
+        </div>
 
-        <!--<g-popover>-->
-            <!--<template slot="content">-->
-            <!--<div>popover内容</div>-->
-            <!--</template>-->
-            <!--<button>Popover</button>-->
-        <!--</g-popover>-->
-
-
-        <!--<g-popover>-->
-            <!--<template slot="content">-->
-            <!--<div>popover内容</div>-->
-            <!--</template>-->
-            <!--<button>Popover</button>-->
-        <!--</g-popover>-->
+        <g-popover>
+            <template slot="content">
+            <div>popover内容</div>
+            </template>
+            <button>Popover</button>
+        </g-popover>
 
 
-        <!--<div>-->
-            <!--<button v-on:click="showToast">-->
-                <!--click me-->
-            <!--</button>-->
-        <!--</div>-->
+        <g-popover>
+            <template slot="content">
+            <div>popover内容</div>
+            </template>
+            <button>Popover</button>
+        </g-popover>
 
 
-        <!--<g-tabs :selected.sync="selectedTab">-->
-            <!--<g-tabs-header>-->
-                <!--<template slot="actions">-->
-                <!--<button>设置</button>-->
-                <!--</template>-->
-                <!--<g-tabs-item name="woman">-->
-                    <!--美女-->
-                <!--</g-tabs-item>-->
-                <!--<g-tabs-item name="sports">-->
-                    <!--体育-->
-                <!--</g-tabs-item>-->
-                <!--<g-tabs-item name="fiance">-->
-                 <!--财经-->
-                <!--</g-tabs-item>-->
-            <!--</g-tabs-header>-->
+        <div>
+            <button v-on:click="showToast">
+                click me
+            </button>
+        </div>
 
-            <!--<g-tabs-body>-->
-                <!--<g-tabs-pane name="woman">-->
-                    <!--美女频道内容-->
-                <!--</g-tabs-pane>-->
-                <!--<g-tabs-pane name="sports">-->
-                    <!--体育频道内容-->
-                <!--</g-tabs-pane>-->
-                <!--<g-tabs-pane name="fiance">-->
-                    <!--财经频道内容-->
-                <!--</g-tabs-pane>-->
-            <!--</g-tabs-body>-->
-        <!--</g-tabs>-->
+
+        <g-tabs :selected.sync="selectedTab">
+            <g-tabs-header>
+                <template slot="actions">
+                <button>设置</button>
+                </template>
+                <g-tabs-item name="woman">
+                    美女
+                </g-tabs-item>
+                <g-tabs-item name="sports">
+                    体育
+                </g-tabs-item>
+                <g-tabs-item name="fiance">
+                 财经
+                </g-tabs-item>
+            </g-tabs-header>
+
+            <g-tabs-body>
+                <g-tabs-pane name="woman">
+                    美女频道内容
+                </g-tabs-pane>
+                <g-tabs-pane name="sports">
+                    体育频道内容
+                </g-tabs-pane>
+                <g-tabs-pane name="fiance">
+                    财经频道内容
+                </g-tabs-pane>
+            </g-tabs-body>
+        </g-tabs>
 
         <g-cascader v-bind:source="source">
 
         </g-cascader>
 
-        <!--<g-collapse v-bind:selected="selected">-->
-            <!--<g-collapse-item title="标题1" name="1">内容1</g-collapse-item>-->
-            <!--<g-collapse-item title="标题2" name="2">内容2</g-collapse-item>-->
-            <!--<g-collapse-item title="标题3" name="3">内容3</g-collapse-item>-->
-        <!--</g-collapse>-->
+        <g-collapse v-bind:selected="selected">
+            <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
+            <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>
+            <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>
+        </g-collapse>
 
-        <!--{{ selected }}-->
+        {{ selected }}
     </div>
 </template>
 

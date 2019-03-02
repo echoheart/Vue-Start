@@ -20,6 +20,7 @@
                     v-bind:level="level + 1"
                     v-on:update:selected="onUpdate"
                     v-bind:load-data="loadData"
+                    v-bind:should-close="shouldClose"
             >
             </CascaderItems>
         </div>
@@ -48,6 +49,10 @@
                 copySelected[this.level] = item;
 
                 this.$emit('update:selected', copySelected);
+
+                if (!this.isShowRightArrow(item)) {
+                    this.shouldClose()
+                }
             },
             onUpdate(copySelected) {
                 this.$emit('update:selected', copySelected)
@@ -97,6 +102,9 @@
             },
             loadData: {
                 type: Function,
+            },
+            shouldClose: {
+                type: Function
             }
         }
     };

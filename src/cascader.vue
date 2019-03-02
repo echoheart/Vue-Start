@@ -1,5 +1,5 @@
 <template>
-    <div class="cascader" ref="cascader">
+    <div class="cascader" ref="cascader" v-click-out-side="close">
         <div class="trigger" v-on:click="toggle">
             {{ result || '&nbsp'}}
         </div>
@@ -11,6 +11,7 @@
                     v-bind:selected="selected"
                     v-on:update:selected="onUpdate"
                     v-bind:load-data="loadData"
+                    v-bind:shouldClose="close"
             >
             </CascaderItems>
         </div>
@@ -19,12 +20,13 @@
 
 <script>
     import CascaderItems from './cascader-items';
-
+    import clickOutSide from './click-outside';
     export default {
         name: 'g-cascader',
         components: {
             CascaderItems
         },
+        directives: {clickOutSide},
         methods: {
             onHandleDocumentClick(e) {
                 const { cascader } = this.$refs;
@@ -42,11 +44,11 @@
             },
             open() {
               this.popoverVisible = true;
-              document.addEventListener('click', this.onHandleDocumentClick);
+              // document.addEventListener('click', this.onHandleDocumentClick);
             },
             close() {
               this.popoverVisible = false;
-              document.removeEventListener('click', this.onHandleDocumentClick)
+              // document.removeEventListener('click', this.onHandleDocumentClick)
             },
             onUpdate(copySelected) {
                 //  查找
@@ -58,7 +60,6 @@
                 };
 
                 let complex = (children, id) => {
-                    debugger;
                     let noChildren = [];
                     let hasChildren = [];
                     children.forEach((item) => {

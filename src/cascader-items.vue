@@ -120,6 +120,7 @@
             .label {
                 display: flex;
                 cursor: pointer;
+                user-select: none;
                 &:hover {
                     background: $grey;
                 }

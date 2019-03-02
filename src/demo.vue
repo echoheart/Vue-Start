@@ -63,7 +63,7 @@
                 popoverClassName="xxx"
                 popover-height="200px"
                 v-bind:selected.sync="selected"
-
+                v-bind:load-data="loadData"
         >
         </g-cascader>
         <!--<p>222</p>-->
@@ -146,8 +146,8 @@
         },
         created() {
             ajax().then((result) => {
-                this.source = this.sourceStatic;
-                // this.source = result;
+                // this.source = this.sourceStatic;
+                this.source = result;
             });
         },
         data: function () {

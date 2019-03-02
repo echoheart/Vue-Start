@@ -1,6 +1,6 @@
 <template>
-    <div class="cascader">
-        <div class="trigger" v-on:click="popoverVisible = !popoverVisible">
+    <div class="cascader" ref="cascader">
+        <div class="trigger" v-on:click="toggle">
             {{ result || '&nbsp'}}
         </div>
         <div class="popover-wrapper" v-if="popoverVisible">
@@ -26,6 +26,28 @@
             CascaderItems
         },
         methods: {
+            onHandleDocumentClick(e) {
+                const { cascader } = this.$refs;
+                if (e.target === cascader || cascader.contains(e.target)) {
+                    return;
+                }
+                this.close();
+            },
+            toggle() {
+              if (this.popoverVisible) {
+                  this.close();
+              } else {
+                  this.open();
+              }
+            },
+            open() {
+              this.popoverVisible = true;
+              document.addEventListener('click', this.onHandleDocumentClick);
+            },
+            close() {
+              this.popoverVisible = false;
+              document.removeEventListener('click', this.onHandleDocumentClick)
+            },
             onUpdate(copySelected) {
                 //  查找
                 let simplest = (children, id) => {
@@ -95,8 +117,6 @@
         data() {
             return {
                 popoverVisible: false,
-                level1Selected: null,
-                level2Selected: null
             }
         },
         props: {

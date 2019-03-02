@@ -63,7 +63,7 @@
                 popoverClassName="xxx"
                 popover-height="200px"
                 v-bind:selected.sync="selected"
-                v-bind:load-data="loadData"
+
         >
         </g-cascader>
         <!--<p>222</p>-->
@@ -106,6 +106,15 @@
                 const result = DB.filter((item) => {
                     return item.parent_id === parentId;
                 });
+                result.forEach((node) => {
+                    if (DB.filter((item) => {
+                        return item.parent_id === node.id;
+                    }).length > 0) {
+                        node.isLeaf = false;
+                    } else {
+                        node.isLeaf = true;
+                    }
+                });
                 resolve(result);
             }, 2000);
         });
@@ -137,7 +146,8 @@
         },
         created() {
             ajax().then((result) => {
-                this.source = result;
+                this.source = this.sourceStatic;
+                // this.source = result;
             });
         },
         data: function () {
@@ -145,7 +155,42 @@
                 selectedTab: ['2'],
                 selected: [],
                 source: [],
-                selectedTab: 'sports'
+                selectedTab: 'sports',
+                sourceStatic:[{
+                    name: '浙江',
+                    children: [
+                        {
+                            name: '杭州',
+                            children: [
+                                {name: '上城区'},
+                                {name: '下城区'},
+                                {name: '江干区'}
+                            ]
+                        },
+                        {name: '嘉兴'},
+                        {name: '湖州'}
+                    ]
+                },{
+                    name: '北京',
+                    children: [
+                        {name: '东城区'},
+                        {name: '西城区'},
+                        {name: '海淀区'}
+                    ]
+                },{
+                    name: '黑龙江',
+                    children: [
+                        {name: '哈尔滨'},
+                        {
+                            name: '佳木斯',
+                            children: [
+                                {name: '东风区'},
+                                {name: '桦南县'}
+                            ]
+                        },
+                        {name: '大庆'}
+                    ]
+                }],
             }
         },
         methods: {

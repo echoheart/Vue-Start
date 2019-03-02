@@ -7,9 +7,9 @@
             <div class="label"
                  v-for="item in items"
                  v-on:click="onClickHandle(item)">
-                {{ item.name }}
 
-                <Icon name="right" v-if="item.children"></Icon>
+                <span class="name">{{ item.name }}</span>
+                <Icon class="icon" name="right" v-if="isShowRightArrow(item)"></Icon>
             </div>
         </div>
         <div class="right" v-if="rightItems">
@@ -19,6 +19,7 @@
                     v-bind:selected="selected"
                     v-bind:level="level + 1"
                     v-on:update:selected="onUpdate"
+                    v-bind:load-data="loadData"
             >
             </CascaderItems>
         </div>
@@ -36,6 +37,9 @@
             Icon: Icon,
         },
         methods: {
+            isShowRightArrow(item) {
+                return this.loadData ? !item.isLeaf : item.children;
+            },
             onClickHandle(item) {
                 const copySelected = this.selected.slice();
                 //    更新时删除当前层级的后的所有元素
@@ -60,7 +64,7 @@
                 //  由于computed的计算依赖其他属性,所以如果依赖属性没有变化的话,计算属性也不会变化
                 if (this.selected[this.level]) {
                     const currentSelected = this.items.filter((item) => {
-                        return item.id === this.selected[this.level].id;
+                        return item.name === this.selected[this.level].name;
                     })[0];
 
                     if(currentSelected && currentSelected.children && currentSelected.children.length > 0) {
@@ -90,6 +94,9 @@
             level: {
                 type: Number,
                 default: 0
+            },
+            loadData: {
+                type: Function,
             }
         }
     };
@@ -110,9 +117,19 @@
             padding-top: .3em;
             overflow: auto;
             height: 100%;
-
             .label {
-                padding: .3em 1em;
+                display: flex;
+                cursor: pointer;
+                &:hover {
+                    background: $grey;
+                }
+                padding: .5em 1em;
+                > .name {
+                    padding-right: 1em;
+                }
+                > .icon {
+                    margin-left: auto;
+                }
             }
         }
 

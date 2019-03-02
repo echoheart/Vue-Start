@@ -10,6 +10,7 @@
                     v-bind:height="popoverHeight"
                     v-bind:selected="selected"
                     v-on:update:selected="onUpdate"
+                    v-bind:load-data="loadData"
             >
             </CascaderItems>
         </div>
@@ -66,8 +67,8 @@
                 };
 
                 this.$emit('update:selected', copySelected);
-                const lsatItem = copySelected[copySelected.length - 1];
-                const {id} = lsatItem;
+                const lsatSelectedItem = copySelected[copySelected.length - 1];
+                const {id} = lsatSelectedItem;
                 console.log(this.source);
                 console.log(id);
                 let updateSource = (result) => {
@@ -79,7 +80,9 @@
                     this.$emit('update:source', copySource);
 
                 };
-                this.loadData(id, updateSource);
+                if (!lsatSelectedItem.isLeaf) {
+                    this.loadData && this.loadData(id, updateSource);
+                }
             }
         },
         computed: {
@@ -125,7 +128,7 @@
         position: relative;
 
         .trigger {
-            border: 1px solid $grey;
+            border: 1px solid $border-color;
             height: $input-height;
             display: inline-flex;
             align-items: center;

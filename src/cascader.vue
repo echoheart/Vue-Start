@@ -26,14 +26,59 @@
         },
         methods: {
             onUpdate(copySelected) {
-                this.$emit('update:selected', copySelected);
-                const { id } = copySelected[copySelected.length - 1];
-                let updateSource = (result) => {
-                    const selectedItem = this.source.filter((item) => {
+                //  查找
+                let simplest = (children, id) => {
+                    const found = children.filter((item) => {
                         return item.id === id;
-                    })[0];
-                    this.$set(selectedItem, 'children', result);
-                }
+                    });
+                    return found[0];
+                };
+
+                let complex = (children, id) => {
+                    debugger;
+                    let noChildren = [];
+                    let hasChildren = [];
+                    children.forEach((item) => {
+                        if (item.children) {
+                            hasChildren.push(item)
+                        } else {
+                            noChildren.push(item)
+                        }
+                    });
+                    let found = simplest(noChildren, id);
+                    if (found) {
+                        return found;
+                    } else {
+                        found = simplest(hasChildren, id);
+                        if (found) {
+                            return found
+                        } else {
+
+                            for (let i = 0; i < hasChildren.length; i++) {
+                                found = complex(hasChildren[i].children, id);
+                                if(found) {
+                                    return found
+                                }
+                            }
+                        }
+                        return undefined;
+                    }
+                };
+
+                this.$emit('update:selected', copySelected);
+                const lsatItem = copySelected[copySelected.length - 1];
+                const {id} = lsatItem;
+                console.log(this.source);
+                console.log(id);
+                let updateSource = (result) => {
+                    const copySource = JSON.parse(JSON.stringify(this.source));
+                    const selectedItem = complex(copySource, id);
+                    selectedItem.children = result;
+                    // console.log(selectedItem);
+                    // this.$set(selectedItem, 'children', result);
+                    this.$emit('update:source', copySource);
+
+                };
                 this.loadData(id, updateSource);
             }
         },
@@ -75,19 +120,20 @@
 
 <style scoped lang="scss">
     @import "var";
+
     .cascader {
         position: relative;
+
         .trigger {
             border: 1px solid $grey;
             height: $input-height;
-            /*width: 150px;*/
             display: inline-flex;
             align-items: center;
             padding: 0 1em;
             min-width: 10em;
-            /*<!--border-color: $grey;-->*/
             border-radius: $border-radius;
         }
+
         .popover-wrapper {
             @extend .box-shadow;
             margin-top: 5px;
@@ -97,10 +143,7 @@
             background-color: white;
             display: flex;
             justify-content: flex-start;
-            /*width: 10px;*/
             height: 200px;
-
-            /*border: 1px solid red;*/
         }
     }
 </style>

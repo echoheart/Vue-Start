@@ -80,6 +80,7 @@
             align-items: center;
             padding-left: 20px;
         }
+
         &:first-child {
             > .title {
                 border-top-left-radius: $border-radius;

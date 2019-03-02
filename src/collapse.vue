@@ -7,15 +7,16 @@
 
 <script>
     import Vue from 'vue'
+
     export default {
         name: 'g-collapse',
         props: {
-          single: {
-              type: Boolean,
-              default: false
-          },
+            single: {
+                type: Boolean,
+                default: false
+            },
             selected: {
-              type: Array,
+                type: Array,
             },
         },
         data() {
@@ -29,27 +30,27 @@
             }
         },
         mounted() {
-          this.eventBus.$emit('update:selected', this.selected);
+            this.eventBus.$emit('update:selected', this.selected);
             // console.log(this.selected)
-          //    添加元素
-          this.eventBus.$on('update:addSelected', (name) => {
-              let selectedCopy = this.selected.slice();
-              // console.log(this.selected);
-              if(this.single) {
-                  selectedCopy = [name];
-              } else {
-                  selectedCopy.push(name);
-              }
+            //    添加元素
+            this.eventBus.$on('update:addSelected', (name) => {
+                let selectedCopy = this.selected.slice();
+                // console.log(this.selected);
+                if (this.single) {
+                    selectedCopy = [name];
+                } else {
+                    selectedCopy.push(name);
+                }
 
-              // console.log(name, this.selected)
-              //    通知组件外部更新selected数组
-              this.$emit('update:selected', selectedCopy);
+                // console.log(name, this.selected)
+                //    通知组件外部更新selected数组
+                this.$emit('update:selected', selectedCopy);
 
-              //
-              this.eventBus.$emit('update:selected', selectedCopy)
-          });
+                //
+                this.eventBus.$emit('update:selected', selectedCopy)
+            });
 
-          //    移除元素
+            //    移除元素
 
             this.eventBus.$on('update:removeSelected', (name) => {
                 let selectedCopy = this.selected.slice();

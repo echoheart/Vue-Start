@@ -28,6 +28,7 @@
 
 <script>
     import Icon from './icon';
+
     const component = {
         name: 'CascaderItems',
         components: {
@@ -35,22 +36,22 @@
             Icon: Icon,
         },
         methods: {
-          onClickHandle(item) {
-              const copySelected = this.selected.slice();
-              //    更新时删除当前层级的后的所有元素
-              copySelected.splice(this.level);
+            onClickHandle(item) {
+                const copySelected = this.selected.slice();
+                //    更新时删除当前层级的后的所有元素
+                copySelected.splice(this.level);
 
-              copySelected[this.level] = item;
+                copySelected[this.level] = item;
 
-              this.$emit('update:selected', copySelected);
-          },
+                this.$emit('update:selected', copySelected);
+            },
             onUpdate(copySelected) {
-              this.$emit('update:selected', copySelected)
+                this.$emit('update:selected', copySelected)
             }
         },
         data() {
             return {
-                leftSelected: null,
+
             }
         },
         computed: {
@@ -86,19 +87,23 @@
 
 <style lang="scss" scoped>
     @import 'var';
+
     .source-item {
 
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
+
         .left {
             padding-top: .3em;
             overflow: auto;
             height: 100%;
+
             .label {
                 padding: .3em 1em;
             }
         }
+
         .right {
             height: 100%;
             border-left: 1px solid $grey;

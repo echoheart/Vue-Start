@@ -12,6 +12,7 @@
                     v-on:update:selected="onUpdate"
                     v-bind:load-data="loadData"
                     v-bind:shouldClose="close"
+                    v-bind:loadingItem="loadingItem"
             >
             </CascaderItems>
         </div>
@@ -28,13 +29,13 @@
         },
         directives: {clickOutSide},
         methods: {
-            onHandleDocumentClick(e) {
-                const { cascader } = this.$refs;
-                if (e.target === cascader || cascader.contains(e.target)) {
-                    return;
-                }
-                this.close();
-            },
+            // onHandleDocumentClick(e) {
+            //     const { cascader } = this.$refs;
+            //     if (e.target === cascader || cascader.contains(e.target)) {
+            //         return;
+            //     }
+            //     this.close();
+            // },
             toggle() {
               if (this.popoverVisible) {
                   this.close();
@@ -90,8 +91,8 @@
                 };
 
                 this.$emit('update:selected', copySelected);
-                const lsatSelectedItem = copySelected[copySelected.length - 1];
-                const {id} = lsatSelectedItem;
+                const lastSelectedItem = copySelected[copySelected.length - 1];
+                const {id} = lastSelectedItem;
                 console.log(this.source);
                 console.log(id);
                 let updateSource = (result) => {
@@ -101,10 +102,12 @@
                     // console.log(selectedItem);
                     // this.$set(selectedItem, 'children', result);
                     this.$emit('update:source', copySource);
+                    this.loadingItem = {};
 
                 };
-                if (!lsatSelectedItem.isLeaf) {
-                    this.loadData && this.loadData(id, updateSource);
+                if (!lastSelectedItem.isLeaf && this.loadData) {
+                    this.loadData(id, updateSource);
+                    this.loadingItem = lastSelectedItem;
                 }
             }
         },
@@ -118,6 +121,7 @@
         data() {
             return {
                 popoverVisible: false,
+                loadingItem: {}
             }
         },
         props: {

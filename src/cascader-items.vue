@@ -9,7 +9,14 @@
                  v-on:click="onClickHandle(item)">
 
                 <span class="name">{{ item.name }}</span>
-                <Icon class="icon" name="right" v-if="isShowRightArrow(item)"></Icon>
+                <span class="icons">
+                    <template v-if="loadingItem.name === item.name">
+                        <Icon class="icon loading" name="loading"></Icon>
+                    </template>
+                    <template v-else>
+                        <Icon class="icon" name="right" v-if="isShowRightArrow(item)"></Icon>
+                    </template>
+                </span>
             </div>
         </div>
         <div class="right" v-if="rightItems">
@@ -21,6 +28,7 @@
                     v-on:update:selected="onUpdate"
                     v-bind:load-data="loadData"
                     v-bind:should-close="shouldClose"
+                    v-bind:loadingItem="loadingItem"
             >
             </CascaderItems>
         </div>
@@ -105,6 +113,12 @@
             },
             shouldClose: {
                 type: Function
+            },
+            loadingItem: {
+                type: Object,
+                default: () => {
+                    return {};
+                }
             }
         }
     };
@@ -136,8 +150,11 @@
                 > .name {
                     padding-right: 1em;
                 }
-                > .icon {
+                > .icons {
                     margin-left: auto;
+                    >  .loading {
+                        animation: spin 1s infinite linear;
+                    }
                 }
             }
         }

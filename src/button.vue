@@ -60,7 +60,7 @@
     }
 </script>
 <style lang="scss" scoped>
-
+    @import "var";
     :root {
         --button-height: 32px;
         --font-size: 14px;
@@ -79,14 +79,14 @@
     $border-color-hover: #666;
     $button-active-bg: #eee;
 
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
+    /*@keyframes spin {*/
+        /*0% {*/
+            /*transform: rotate(0deg);*/
+        /*}*/
+        /*100% {*/
+            /*transform: rotate(360deg);*/
+        /*}*/
+    /*}*/
     .g-button {
         height: $button-height;
         font-size: $font-size;

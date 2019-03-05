@@ -46,13 +46,19 @@
                 });
                 console.log(names);
                 let index = names.indexOf(this.getDefaultSelected());
-                setInterval(() => {
+
+                const run = () => {
                     if (index === names.length) {
                         index = 0;
                     }
                     this.$emit('update:selected', names[index]);
                     index++
-                },2500)
+                    setTimeout(run, 3000)
+                };
+                // setInterval(() => {
+                //
+                // },2500)
+                run();
             },
             getDefaultSelected() {
                 const first = this.$children[0];

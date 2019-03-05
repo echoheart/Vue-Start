@@ -71,7 +71,7 @@
         <!--</g-cascader>-->
         <!--<p>222</p>-->
 
-        <g-carousel v-bind:selected="selected">
+        <g-carousel v-bind:selected.sync="selected">
 
             <g-carousel-item name="1">
                 <div class="box">1</div>
@@ -171,14 +171,14 @@
                 // this.source = this.sourceStatic;
                 this.source = result;
             });
-            let n = 1;
-            setInterval(() => {
-                if(n > 3) {
-                    n = 1;
-                }
-               this.selected = n.toString();
-               n++
-            },2000)
+            // let n = 1;
+            // setInterval(() => {
+            //     if(n > 3) {
+            //         n = 1;
+            //     }
+            //    this.selected = n.toString();
+            //    n++
+            // },4000)
         },
         data: function () {
             return {

@@ -17,6 +17,10 @@
                 default: () => {
                     return undefined;
                 }
+            },
+            autoPlay: {
+                type: Boolean,
+                default: true
             }
         },
         mounted() {
@@ -27,16 +31,35 @@
             // setTimeout(() => {
                 // this.$children[0].visible = false;
                 // this.$children[1].visible = true;
-            this.onUpdateChildren()
+
             // }, 2500)
+            this.onUpdateChildren();
+            this.playAutomatically();
         },
         updated() {
             this.onUpdateChildren()
         },
         methods: {
-            onUpdateChildren() {
+            playAutomatically() {
+                const names = this.$children.map((vm) => {
+                    return vm.name;
+                });
+                console.log(names);
+                let index = names.indexOf(this.getDefaultSelected());
+                setInterval(() => {
+                    if (index === names.length) {
+                        index = 0;
+                    }
+                    this.$emit('update:selected', names[index]);
+                    index++
+                },2500)
+            },
+            getDefaultSelected() {
                 const first = this.$children[0];
-                const selected = this.selected || first.name;
+                return this.selected || first.name;
+            },
+            onUpdateChildren() {
+                const selected = this.getDefaultSelected();
                this.$children.forEach((vm) => {
                     vm.selected = selected;
                })

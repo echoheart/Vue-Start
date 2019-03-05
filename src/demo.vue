@@ -57,16 +57,33 @@
         <!--</g-tabs-pane>-->
         <!--</g-tabs-body>-->
         <!--</g-tabs>-->
+
+
+
         <!--<p>{{ selected }}</p>-->
-        <g-cascader
-                v-bind:source.sync="source"
-                popoverClassName="xxx"
-                popover-height="200px"
-                v-bind:selected.sync="selected"
-                v-bind:load-data="loadData"
-        >
-        </g-cascader>
+        <!--<g-cascader-->
+                <!--v-bind:source.sync="source"-->
+                <!--popoverClassName="xxx"-->
+                <!--popover-height="200px"-->
+                <!--v-bind:selected.sync="selected"-->
+                <!--v-bind:load-data="loadData"-->
+        <!--&gt;-->
+        <!--</g-cascader>-->
         <!--<p>222</p>-->
+
+        <g-carousel v-bind:selected="selected">
+
+            <g-carousel-item name="1">
+                <div class="box">1</div>
+            </g-carousel-item>
+            <g-carousel-item name="2">
+                <div class="box">2</div>
+            </g-carousel-item>
+            <g-carousel-item name="3">
+                <div class="box">3</div>
+            </g-carousel-item>
+
+        </g-carousel>
 
         <!--<g-collapse v-bind:selected="selectedTab">-->
         <!--<g-collapse-item title="标题1" name="1">内容1</g-collapse-item>-->
@@ -99,6 +116,9 @@
     import Collapse from './collapse';
     import CollapseItem from './collapse-item';
     import DB from './db';
+
+    import Carousel from './carousel';
+    import CarouselItem from './carousel-item';
 
     function ajax(parentId = 0) {
         return new Promise((resolve, reject) => {
@@ -135,11 +155,13 @@
             "g-tabs-pane": TabsPane,
             "g-cascader": Cascader,
             "g-collapse": Collapse,
-            "g-collapse-item": CollapseItem
+            "g-collapse-item": CollapseItem,
+            "g-carousel": Carousel,
+            "g-carousel-item": CarouselItem
         },
 
         mounted() {
-            console.log(this);
+            // console.log(this);
             this.$children[0].$on('update:selected', (names) => {
                 this.selected = names;
             })
@@ -149,11 +171,19 @@
                 // this.source = this.sourceStatic;
                 this.source = result;
             });
+            let n = 1;
+            setInterval(() => {
+                if(n > 3) {
+                    n = 1;
+                }
+               this.selected = n.toString();
+               n++
+            },2000)
         },
         data: function () {
             return {
                 selectedTab: ['2'],
-                selected: [],
+                selected: '1',
                 source: [],
                 selectedTab: 'sports',
                 sourceStatic:[{
@@ -252,5 +282,11 @@
         --color: #333;
         --border-color: #999;
         --border-colro-hover: #666;
+    }
+    .box {
+        width: 200px;
+        height: 150px;
+        background-color: #ddd;
+        border: 1px solid red;
     }
 </style>

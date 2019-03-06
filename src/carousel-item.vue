@@ -51,19 +51,21 @@
         transition: all 1s;
     }
     .fade-enter {
-        transform: translateX(100%);
-
+        transform: translateX(100%) scale(0.5);
+        opacity: 0;
     }
     .fade-enter.reverse {
-        transform: translateX(-100%);
-
+        transform: translateX(-100%) scale(0.5);
+        opacity: 0;
     }
     .fade-leave-to {
-        transform: translateX(-100%);
+        transform: translateX(-100%) scale(0.5);
         position: absolute;
+        opacity: 0
     }
     .fade-leave-to.reverse {
-        transform: translateX(100%);
+        transform: translateX(100%) scale(0.5);
         position: absolute;
+        opacity: 0;
     }
 </style>

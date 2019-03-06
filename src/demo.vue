@@ -284,8 +284,8 @@
         --border-colro-hover: #666;
     }
     .box {
-        width: 200px;
-        height: 150px;
+        width: 400px;
+        height: 300px;
         background-color: #ddd;
         border: 1px solid red;
     }

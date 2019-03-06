@@ -5,6 +5,14 @@
 
            </slot>
        </div>
+        <div class="dots">
+            <span v-for="n in childrenLength"
+                  v-bind:class="{active: selectedIndex === n - 1}"
+                  v-on:click="select(n-1)"
+            >
+                {{ n }}
+            </span>
+        </div>
     </div>
 </template>
 
@@ -23,42 +31,50 @@
                 default: true
             }
         },
+        data() {
+            return {
+                childrenLength: 0,
+                lastSelectedIndex: undefined
+            }
+        },
         mounted() {
-            // console.log(this.$children);
-            // console.log(this.$refs);
-            // this.$children[0].visible = true;
 
-            // setTimeout(() => {
-                // this.$children[0].visible = false;
-                // this.$children[1].visible = true;
-
-            // }, 2500)
             this.onUpdateChildren();
             this.playAutomatically();
+            this.childrenLength = this.names.length;
         },
         updated() {
             this.onUpdateChildren()
         },
-        methods: {
-            playAutomatically() {
-                const names = this.$children.map((vm) => {
+        computed: {
+            names () {
+                return this.$children.map((vm) => {
                     return vm.name;
-                });
-                console.log(names);
-                let index = names.indexOf(this.getDefaultSelected());
+                })
+            },
+            selectedIndex () {
+                return this.names.indexOf(this.selected) || 0;
+            }
+        },
+        methods: {
+            select(index) {
+                this.lastSelected = this.selected;
+                this.$emit('update:selected', this.names[index])
+            },
+            playAutomatically() {
+
+                let index = this.names.indexOf(this.getDefaultSelected());
 
                 const run = () => {
-                    if (index === names.length) {
+                    if (index === this.names.length) {
                         index = 0;
                     }
-                    this.$emit('update:selected', names[index]);
+                    // this.$emit('update:selected', this.names[index]);
+                    this.select(index);
                     index++;
                     setTimeout(run, 3000)
                 };
-                // setInterval(() => {
-                //
-                // },2500)
-                run();
+
             },
             getDefaultSelected() {
                 const first = this.$children[0];
@@ -67,11 +83,11 @@
             onUpdateChildren() {
                 const selected = this.getDefaultSelected();
                this.$children.forEach((vm) => {
-                   const names = this.$children.map((vm) => {return vm.name});
-                   const oldIndex = names.indexOf(vm.selected);
-                   const newIndex = names.indexOf(selected);
+
+                   const oldIndex = this.names.indexOf(this.lastSelected);
+                   const newIndex = this.names.indexOf(selected);
                     vm.selected = selected;
-                    vm.reverse = newIndex - oldIndex <= 0;
+                    vm.reverse = newIndex - oldIndex > 0;
                })
             }
         }
@@ -81,8 +97,13 @@
 <style lang="scss" scoped>
     .g-carousel {
         border: 1px solid black;
-        display: inline-block;
+        /*display: inline-block;*/
         position: relative;
         overflow: hidden;
+        > .dots{
+            & .active {
+                color: red;
+            }
+        }
     }
 </style>

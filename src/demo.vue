@@ -183,7 +183,7 @@
         data: function () {
             return {
                 selectedTab: ['2'],
-                selected: '2',
+                selected: '1',
                 source: [],
                 selectedTab: 'sports',
                 sourceStatic:[{
@@ -284,7 +284,7 @@
         --border-colro-hover: #666;
     }
     .box {
-        width: 400px;
+        width: 100%;
         height: 300px;
         background-color: #ddd;
         border: 1px solid red;

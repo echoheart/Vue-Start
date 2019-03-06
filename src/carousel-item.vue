@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class="g-carousel-item" v-if="visible">
+        <div class="g-carousel-item" v-if="visible" v-bind:class="{reverse}">
             <slot></slot>
         </div>
     </transition>
@@ -26,6 +26,10 @@
                 // visible: false
                 selected: {
                     type: String,
+                },
+                reverse: {
+                    type: Boolean,
+                    default: false
                 }
             }
         },
@@ -50,8 +54,16 @@
         transform: translateX(100%);
 
     }
+    .fade-enter.reverse {
+        transform: translateX(-100%);
+
+    }
     .fade-leave-to {
         transform: translateX(-100%);
+        position: absolute;
+    }
+    .fade-leave-to.reverse {
+        transform: translateX(100%);
         position: absolute;
     }
 </style>

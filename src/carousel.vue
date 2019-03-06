@@ -52,7 +52,7 @@
                         index = 0;
                     }
                     this.$emit('update:selected', names[index]);
-                    index++
+                    index++;
                     setTimeout(run, 3000)
                 };
                 // setInterval(() => {
@@ -67,7 +67,11 @@
             onUpdateChildren() {
                 const selected = this.getDefaultSelected();
                this.$children.forEach((vm) => {
+                   const names = this.$children.map((vm) => {return vm.name});
+                   const oldIndex = names.indexOf(vm.selected);
+                   const newIndex = names.indexOf(selected);
                     vm.selected = selected;
+                    vm.reverse = newIndex - oldIndex <= 0;
                })
             }
         }

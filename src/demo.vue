@@ -183,7 +183,7 @@
         data: function () {
             return {
                 selectedTab: ['2'],
-                selected: '1',
+                selected: '2',
                 source: [],
                 selectedTab: 'sports',
                 sourceStatic:[{

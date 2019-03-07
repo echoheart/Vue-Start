@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import Icon from '../icon';
+    import Icon from '../Icon/icon';
     export default {
         name: 'g-carousel',
         components: {

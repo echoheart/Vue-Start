@@ -37,7 +37,7 @@
 </template>
 
 <script>
-    import Icon from '../icon';
+    import Icon from '../Icon/icon';
 
     const component = {
         name: 'CascaderItems',

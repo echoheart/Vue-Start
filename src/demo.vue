@@ -99,7 +99,7 @@
     import Vue from 'vue';
     import Button from './Button/button';
     import studyVue from './studyVue';
-    import Icon from './icon';
+    import Icon from './Icon/icon';
     import buttonGroup from './Button/button-group';
     import Input from './input';
     import Col from './col';

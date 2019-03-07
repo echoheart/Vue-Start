@@ -25,7 +25,7 @@
     </button>
 </template>
 <script>
-    import Icon from '../icon';
+    import Icon from '../Icon/icon';
     export default {
         // props: ['icon', 'iconPosition']
         // name: 'g-button',

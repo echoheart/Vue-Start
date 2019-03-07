@@ -113,8 +113,8 @@
     import TabsPane from './Tabs/tabs-pane';
     import Popover from './popover';
     import Cascader from './Cascader/cascader';
-    import Collapse from './collapse';
-    import CollapseItem from './collapse-item';
+    import Collapse from './Collapse/collapse';
+    import CollapseItem from './Collapse/collapse-item';
     import DB from '../test/fixtures/db';
 
     import Carousel from './Carousel/carousel';

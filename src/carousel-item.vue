@@ -50,7 +50,7 @@
         height: 100%;
     }
     .fade-enter-active, .fade-leave-active {
-        transition: all 1s;
+        transition: all .8s;
     }
     .fade-enter {
         transform: translateX(100%) scale(0.5);

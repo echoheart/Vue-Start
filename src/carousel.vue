@@ -63,17 +63,24 @@
             },
             playAutomatically() {
 
-                let index = this.names.indexOf(this.getDefaultSelected());
+
 
                 const run = () => {
+                    let index = this.names.indexOf(this.getDefaultSelected());
                     if (index === this.names.length) {
                         index = 0;
                     }
-                    // this.$emit('update:selected', this.names[index]);
-                    this.select(index);
-                    index++;
-                    setTimeout(run, 3000)
+                    let newIndex = index - 1;
+                    if (newIndex === -1) {
+                        newIndex = this.names.length - 1;
+                    }
+                    if (newIndex === this.names.length) {
+                        newIndex = 0;
+                    }
+                    this.select(newIndex);
+                    setTimeout(run, 6000)
                 };
+                run();
 
             },
             getDefaultSelected() {
@@ -99,7 +106,7 @@
 
 <style lang="scss" scoped>
     .g-carousel {
-        border: 1px solid black;
+        /*border: 1px solid black;*/
         /*display: inline-block;*/
         position: relative;
         overflow: hidden;

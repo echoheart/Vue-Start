@@ -86,8 +86,11 @@
 
                    const oldIndex = this.names.indexOf(this.lastSelected);
                    const newIndex = this.names.indexOf(selected);
-                    vm.selected = selected;
-                    vm.reverse = newIndex - oldIndex > 0;
+                   vm.reverse = newIndex - oldIndex <= 0;
+                   this.$nextTick(() => {
+                       vm.selected = selected;
+                   });
+
                })
             }
         }

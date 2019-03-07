@@ -13,19 +13,31 @@
             </slot>
         </div>
         <div class="dots">
+            <span v-on:click="onClickPrve">
+                <Icon name="left" ></Icon>
+            </span>
             <span v-for="n in childrenLength"
                   v-bind:class="{active: selectedIndex === n - 1}"
                   v-on:click="select(n-1)"
             >
                 {{ n }}
             </span>
+
+            <span v-on:click="onClickNext">
+                <Icon name="right" ></Icon>
+            </span>
+
         </div>
     </div>
 </template>
 
 <script>
+    import Icon from './icon';
     export default {
         name: 'g-carousel',
+        components: {
+            Icon
+        },
         props: {
             selected: {
                 type: String,
@@ -50,7 +62,7 @@
         mounted() {
             this.onUpdateChildren();
             this.playAutomatically();
-            this.childrenLength = this.names.length;
+            this.childrenLength = this.items.length;
         },
         updated() {
             this.onUpdateChildren()
@@ -62,15 +74,27 @@
                 })
             },
             selectedIndex() {
-                let selectedIndex = this.names.indexOf(this.selected)
+                let selectedIndex = this.names.indexOf(this.selected);
                 if (selectedIndex === -1) {
                     selectedIndex = 0;
                 }
                 return selectedIndex === -1 ? 0 : selectedIndex;
             },
+            items () {
+                return this.$children.filter((vm) => {
 
+                    return vm.$options.name === 'g-carousel-item'
+                })
+            }
         },
         methods: {
+            onClickPrve () {
+                console.log(123123);
+                this.select(this.selectedIndex - 1)
+            },
+            onClickNext () {
+                this.select(this.selectedIndex + 1)
+            },
             onTouchstart(e) {
                 this.pause();
                 if (e.touches.length > 1) {
@@ -116,13 +140,13 @@
             select(newIndex) {
                 this.lastSelected = this.selected;
                 if (newIndex === -1) {
-                    newIndex = this.names.length - 1;
+                    newIndex = this.items.length - 1;
                 }
-                if (newIndex === this.names.length) {
+                if (newIndex === this.items.length) {
                     newIndex = 0;
                 }
                 this.$emit('update:selected', this.names[newIndex])
-            },
+    },
             playAutomatically() {
                 if (this.timerId) {
                     return;
@@ -136,12 +160,12 @@
                 this.timerId = setTimeout(run, 3000);
             },
             getDefaultSelected() {
-                const first = this.$children[0];
+                const first = this.items[0];
                 return this.selected || first.name;
             },
             onUpdateChildren() {
                 const selected = this.getDefaultSelected();
-                this.$children.forEach((vm) => {
+                this.items.forEach((vm) => {
 
                     const oldIndex = this.names.indexOf(this.lastSelected);
                     const newIndex = this.names.indexOf(selected);

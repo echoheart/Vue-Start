@@ -1,6 +1,6 @@
 <template>
     <div class="g-carousel">
-       <div class="g-carousel-window" ref="window">
+       <div class="g-carousel-window" ref="window" v-on:mouseenter="onMouseEnter" v-on:mouseleave="onMouseLeave">
            <slot>
 
            </slot>
@@ -34,11 +34,11 @@
         data() {
             return {
                 childrenLength: 0,
-                lastSelectedIndex: undefined
+                lastSelectedIndex: undefined,
+                timerId: undefined
             }
         },
         mounted() {
-
             this.onUpdateChildren();
             this.playAutomatically();
             this.childrenLength = this.names.length;
@@ -54,22 +54,35 @@
             },
             selectedIndex () {
                 return this.names.indexOf(this.selected) || 0;
-            }
+            },
+
         },
         methods: {
+            pause () {
+                window.clearTimeout(this.timerId);
+                this.timerId = undefined;
+            },
+            onMouseLeave () {
+                this.playAutomatically()
+            },
+            onMouseEnter () {
+                this.pause();
+            },
             select(index) {
                 this.lastSelected = this.selected;
+                // this.$nextTick(() => {
                 this.$emit('update:selected', this.names[index])
+                // })
             },
             playAutomatically() {
-
-
-
+                if (this.timerId) {
+                    return;
+                }
                 const run = () => {
                     let index = this.names.indexOf(this.getDefaultSelected());
-                    if (index === this.names.length) {
-                        index = 0;
-                    }
+                    // if (index === this.names.length) {
+                    //     index = 0;
+                    // }
                     let newIndex = index - 1;
                     if (newIndex === -1) {
                         newIndex = this.names.length - 1;
@@ -78,9 +91,9 @@
                         newIndex = 0;
                     }
                     this.select(newIndex);
-                    setTimeout(run, 6000)
+                    this.timerId = setTimeout(run, 3000)
                 };
-                run();
+                this.timerId = setTimeout(run, 3000);
 
             },
             getDefaultSelected() {
@@ -97,7 +110,6 @@
                    this.$nextTick(() => {
                        vm.selected = selected;
                    });
-
                })
             }
         }
@@ -110,9 +122,27 @@
         /*display: inline-block;*/
         position: relative;
         overflow: hidden;
+        /*.g-carousel-window {*/
+            /*overflow: hidden;*/
+        /*}*/
         > .dots{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            > span {
+                width: 1.2em;
+                height: 1.2em;
+                background-color: #ddd;
+                border-radius: 50%;
+                margin: 6px 6px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
             & .active {
-                color: red;
+                color: #FFF;
+                background-color: #000;
             }
         }
     }

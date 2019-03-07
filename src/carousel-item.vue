@@ -50,15 +50,17 @@
         height: 100%;
     }
     .fade-enter-active, .fade-leave-active {
-        transition: all .8s;
+        transition: all 1s;
     }
     .fade-enter {
         transform: translateX(100%) scale(0.5);
         opacity: 0;
+        position: absolute;
     }
     .fade-enter.reverse {
         transform: translateX(-100%) scale(0.5);
         opacity: 0;
+        position: absolute;
     }
     .fade-leave-to {
         transform: translateX(-100%) scale(0.5);

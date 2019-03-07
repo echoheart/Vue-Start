@@ -98,12 +98,11 @@
 <script>
     import Vue from 'vue';
     import Button from './Button/button';
-    import studyVue from './studyVue';
     import Icon from './Icon/icon';
     import buttonGroup from './Button/button-group';
     import Input from './Input/input';
-    import Col from './col';
-    import Row from './row';
+    import Col from './Grid/col';
+    import Row from './Grid/row';
     import Toast from './Toast/toast';
     import plugin from './plugin';
     import Tabs from './Tabs/tabs';

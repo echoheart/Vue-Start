@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import Icon from './Icon/icon'
+    import Icon from '../Icon/icon'
     export default {
         components: {Icon},
         name: 'g-input',
@@ -42,7 +42,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "var";
+    @import "../var";
     /*--button-height: 32px;*/
     /*--font-size: 14px;*/
     /*--button-bg: #fff;*/

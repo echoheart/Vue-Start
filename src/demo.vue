@@ -101,7 +101,7 @@
     import studyVue from './studyVue';
     import Icon from './Icon/icon';
     import buttonGroup from './Button/button-group';
-    import Input from './input';
+    import Input from './Input/input';
     import Col from './col';
     import Row from './row';
     import Toast from './Toast/toast';

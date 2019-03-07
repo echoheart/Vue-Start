@@ -1,4 +1,4 @@
-import Toast from './toast';
+import Toast from './Toast/toast';
 /*
 * helper 函数
 *

@@ -104,7 +104,7 @@
     import Input from './input';
     import Col from './col';
     import Row from './row';
-    import Toast from './toast';
+    import Toast from './Toast/toast';
     import plugin from './plugin';
     import Tabs from './Tabs/tabs';
     import TabsHeader from './Tabs/tabs-header';

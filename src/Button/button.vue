@@ -25,7 +25,7 @@
     </button>
 </template>
 <script>
-    import Icon from './icon';
+    import Icon from '../icon';
     export default {
         // props: ['icon', 'iconPosition']
         // name: 'g-button',
@@ -60,7 +60,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    @import "var";
+    @import "../var";
     :root {
         --button-height: 32px;
         --font-size: 14px;

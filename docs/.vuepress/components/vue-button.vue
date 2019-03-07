@@ -26,7 +26,7 @@
 
 
 <script>
-    import Button from '../../../src/button';
+    import Button from '../../../src/Button/button';
     export default {
         components: {
             'g-button': Button,

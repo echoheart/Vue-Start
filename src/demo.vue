@@ -97,10 +97,10 @@
 
 <script>
     import Vue from 'vue';
-    import Button from './button';
+    import Button from './Button/button';
     import studyVue from './studyVue';
     import Icon from './icon';
-    import buttonGroup from './button-group';
+    import buttonGroup from './Button/button-group';
     import Input from './input';
     import Col from './col';
     import Row from './row';
@@ -115,7 +115,7 @@
     import Cascader from './cascader';
     import Collapse from './collapse';
     import CollapseItem from './collapse-item';
-    import DB from './db';
+    import DB from '../test/fixtures/db';
 
     import Carousel from './carousel';
     import CarouselItem from './carousel-item';

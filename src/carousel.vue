@@ -13,7 +13,7 @@
             </slot>
         </div>
         <div class="dots">
-            <span v-on:click="onClickPrve">
+            <span v-on:click="onClickPrev">
                 <Icon name="left" ></Icon>
             </span>
             <span v-for="n in childrenLength"
@@ -88,7 +88,7 @@
             }
         },
         methods: {
-            onClickPrve () {
+            onClickPrev () {
                 console.log(123123);
                 this.select(this.selectedIndex - 1)
             },
@@ -198,6 +198,7 @@
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
+                user-select: none;
             }
 
             & .active {

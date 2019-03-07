@@ -117,8 +117,8 @@
     import CollapseItem from './collapse-item';
     import DB from '../test/fixtures/db';
 
-    import Carousel from './carousel';
-    import CarouselItem from './carousel-item';
+    import Carousel from './Carousel/carousel';
+    import CarouselItem from './Carousel/carousel-item';
 
     function ajax(parentId = 0) {
         return new Promise((resolve, reject) => {

@@ -1,10 +1,17 @@
 <template>
     <div class="g-carousel">
-       <div class="g-carousel-window" ref="window" v-on:mouseenter="onMouseEnter" v-on:mouseleave="onMouseLeave">
-           <slot>
+        <div
+                class="g-carousel-window" ref="window"
+                v-on:mouseenter="onMouseEnter"
+                v-on:mouseleave="onMouseLeave"
+                v-on:touchstart="onTouchstart"
+                v-on:touchmove="onTouchMove"
+                v-on:touchend="onTouchEnd"
+        >
+            <slot>
 
-           </slot>
-       </div>
+            </slot>
+        </div>
         <div class="dots">
             <span v-for="n in childrenLength"
                   v-bind:class="{active: selectedIndex === n - 1}"
@@ -35,7 +42,9 @@
             return {
                 childrenLength: 0,
                 lastSelectedIndex: undefined,
-                timerId: undefined
+                timerId: undefined,
+                startPoint: undefined,
+                endPoint: undefined
             }
         },
         mounted() {
@@ -47,32 +56,72 @@
             this.onUpdateChildren()
         },
         computed: {
-            names () {
+            names() {
                 return this.$children.map((vm) => {
                     return vm.name;
                 })
             },
-            selectedIndex () {
-                return this.names.indexOf(this.selected) || 0;
+            selectedIndex() {
+                let selectedIndex = this.names.indexOf(this.selected)
+                if (selectedIndex === -1) {
+                    selectedIndex = 0;
+                }
+                return selectedIndex === -1 ? 0 : selectedIndex;
             },
 
         },
         methods: {
-            pause () {
+            onTouchstart(e) {
+                this.pause();
+                if (e.touches.length > 1) {
+                    return;
+                }
+                this.startPoint = e.changedTouches[0];
+            },
+            onTouchMove(e) {
+            },
+            onTouchEnd(e) {
+                if (e.changedTouches.length > 1) {
+                    return;
+                }
+                this.endPoint = e.changedTouches[0];
+
+                const {clientX: x1, clientY: y1} = this.startPoint;
+                const {clientX: x2, clientY: y2} = this.endPoint;
+
+                //  移动的距离
+                const distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+                const deltaY = Math.abs(y1 - y2);
+                const rate = distance / deltaY;
+                if (rate > 2) {
+                    if (x2 > x1) {
+                        this.select(this.selectedIndex + 1);
+                    } else {
+                        this.select(this.selectedIndex - 1);
+                    }
+                }
+                this.playAutomatically();
+
+            },
+            pause() {
                 window.clearTimeout(this.timerId);
                 this.timerId = undefined;
             },
-            onMouseLeave () {
+            onMouseLeave() {
                 this.playAutomatically()
             },
-            onMouseEnter () {
+            onMouseEnter() {
                 this.pause();
             },
-            select(index) {
+            select(newIndex) {
                 this.lastSelected = this.selected;
-                // this.$nextTick(() => {
-                this.$emit('update:selected', this.names[index])
-                // })
+                if (newIndex === -1) {
+                    newIndex = this.names.length - 1;
+                }
+                if (newIndex === this.names.length) {
+                    newIndex = 0;
+                }
+                this.$emit('update:selected', this.names[newIndex])
             },
             playAutomatically() {
                 if (this.timerId) {
@@ -80,21 +129,11 @@
                 }
                 const run = () => {
                     let index = this.names.indexOf(this.getDefaultSelected());
-                    // if (index === this.names.length) {
-                    //     index = 0;
-                    // }
-                    let newIndex = index - 1;
-                    if (newIndex === -1) {
-                        newIndex = this.names.length - 1;
-                    }
-                    if (newIndex === this.names.length) {
-                        newIndex = 0;
-                    }
+                    let newIndex = index + 1;
                     this.select(newIndex);
                     this.timerId = setTimeout(run, 3000)
                 };
                 this.timerId = setTimeout(run, 3000);
-
             },
             getDefaultSelected() {
                 const first = this.$children[0];
@@ -102,15 +141,15 @@
             },
             onUpdateChildren() {
                 const selected = this.getDefaultSelected();
-               this.$children.forEach((vm) => {
+                this.$children.forEach((vm) => {
 
-                   const oldIndex = this.names.indexOf(this.lastSelected);
-                   const newIndex = this.names.indexOf(selected);
-                   vm.reverse = newIndex - oldIndex <= 0;
-                   this.$nextTick(() => {
-                       vm.selected = selected;
-                   });
-               })
+                    const oldIndex = this.names.indexOf(this.lastSelected);
+                    const newIndex = this.names.indexOf(selected);
+                    vm.reverse = newIndex - oldIndex <= 0;
+                    this.$nextTick(() => {
+                        vm.selected = selected;
+                    });
+                })
             }
         }
     }
@@ -118,17 +157,13 @@
 
 <style lang="scss" scoped>
     .g-carousel {
-        /*border: 1px solid black;*/
-        /*display: inline-block;*/
         position: relative;
         overflow: hidden;
-        /*.g-carousel-window {*/
-            /*overflow: hidden;*/
-        /*}*/
-        > .dots{
+        > .dots {
             display: flex;
             justify-content: center;
             align-items: center;
+
             > span {
                 width: 1.2em;
                 height: 1.2em;
@@ -140,6 +175,7 @@
                 align-items: center;
                 cursor: pointer;
             }
+
             & .active {
                 color: #FFF;
                 background-color: #000;

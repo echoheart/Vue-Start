@@ -106,11 +106,11 @@
     import Row from './row';
     import Toast from './toast';
     import plugin from './plugin';
-    import Tabs from './tabs';
-    import TabsHeader from './tabs-header';
-    import TabsItem from './tabs-item';
-    import TabsBody from './tabs-body';
-    import TabsPane from './tabs-pane';
+    import Tabs from './Tabs/tabs';
+    import TabsHeader from './Tabs/tabs-header';
+    import TabsItem from './Tabs/tabs-item';
+    import TabsBody from './Tabs/tabs-body';
+    import TabsPane from './Tabs/tabs-pane';
     import Popover from './popover';
     import Cascader from './cascader';
     import Collapse from './collapse';

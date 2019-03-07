@@ -37,7 +37,7 @@
 </template>
 
 <script>
-    import Icon from './icon';
+    import Icon from '../icon';
 
     const component = {
         name: 'CascaderItems',
@@ -127,7 +127,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import 'var';
+    @import '../var';
 
     .source-item {
 

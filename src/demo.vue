@@ -112,7 +112,7 @@
     import TabsBody from './Tabs/tabs-body';
     import TabsPane from './Tabs/tabs-pane';
     import Popover from './popover';
-    import Cascader from './cascader';
+    import Cascader from './Cascader/cascader';
     import Collapse from './collapse';
     import CollapseItem from './collapse-item';
     import DB from '../test/fixtures/db';

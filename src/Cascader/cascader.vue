@@ -21,7 +21,7 @@
 
 <script>
     import CascaderItems from './cascader-items';
-    import clickOutSide from './click-outside';
+    import clickOutSide from '../click-outside';
     export default {
         name: 'g-cascader',
         components: {
@@ -147,7 +147,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "var";
+    @import "../var";
 
     .cascader {
         position: relative;

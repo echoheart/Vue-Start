@@ -111,7 +111,7 @@
     import TabsItem from './Tabs/tabs-item';
     import TabsBody from './Tabs/tabs-body';
     import TabsPane from './Tabs/tabs-pane';
-    import Popover from './popover';
+    import Popover from './Popover/popover';
     import Cascader from './Cascader/cascader';
     import Collapse from './Collapse/collapse';
     import CollapseItem from './Collapse/collapse-item';

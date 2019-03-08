@@ -1,7 +1,10 @@
 <template>
     <div class="g-sub-nav" v-bind:class="{active}" v-click-out-side="close">
-        <span  v-on:click="toggle">
+        <span  v-on:click="toggle" class="g-sub-nav-label">
             <slot name="title"></slot>
+            <span class="g-sub-nav-icon" v-bind:class="{isOpen}">
+                <Icon name="right"></Icon>
+            </span>
         </span>
 
         <div class="g-sub-nav-popover" v-show="isOpen">
@@ -13,10 +16,15 @@
 
 <script>
     import clickOutSide from './../click-outside';
+    import Icon from './../Icon/icon';
     export default {
         name: "GSubNav",
+        components: {Icon},
         inject:['root'],
         directives: {clickOutSide},
+        component: {
+            Icon
+        },
         props: {
             name: {
                 type: String,
@@ -53,6 +61,7 @@
 <style scoped lang="scss">
     .g-sub-nav {
         position: relative;
+        user-select: none;
         &.active {
             &::after {
                 content: '';
@@ -80,6 +89,20 @@
             background-color: #fff;
             box-shadow: 0 0 3px rgba(0,0,0,.5);
             border-radius: 4px;
+        }
+        .g-sub-nav-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .g-sub-nav-icon {
+            transition: transform 300ms;
+            display: inline-flex; margin-left: 1em;
+            transform: rotate(90deg);
+            svg {fill: #000;}
+            &.isOpen {
+                transform: rotate(-90deg);
+            }
         }
     }
     .g-sub-nav .g-sub-nav .g-sub-nav-popover {

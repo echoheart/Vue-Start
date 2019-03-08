@@ -26,7 +26,8 @@
         },
         data () {
             return {
-                items: []
+                items: [],
+                namePath: []
             }
         },
         computed: {
@@ -78,5 +79,6 @@
 <style scoped lang="scss">
     .g-nav {
         display: flex;
+        border-bottom: 1px solid #ddd;
     }
 </style>

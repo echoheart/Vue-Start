@@ -96,15 +96,15 @@
         <g-nav v-bind:selected.sync="selected">
             <g-nav-item name="home">首页</g-nav-item>
 
-            <g-sub-nav>
-                <template slot="title">关于</template>
+            <g-sub-nav name="about">
+                <template slot="title" >关于</template>
                 <g-nav-item name="culture">企业文化</g-nav-item>
                 <g-nav-item name="team">开发团队</g-nav-item>
-                <g-sub-nav>
+                <g-sub-nav name="contact">
                     <template slot="title">联系方式</template>
                     <g-nav-item name="wechat">微信</g-nav-item>
                     <g-nav-item name="qq">QQ</g-nav-item>
-                    <g-sub-nav>
+                    <g-sub-nav name="mobile">
                         <template slot="title">电话</template>
                         <g-nav-item name="cm">移动</g-nav-item>
                         <g-nav-item name="cu">联通</g-nav-item>

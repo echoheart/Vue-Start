@@ -100,7 +100,17 @@
                 <template slot="title">关于</template>
                 <g-nav-item name="culture">企业文化</g-nav-item>
                 <g-nav-item name="team">开发团队</g-nav-item>
-                <g-nav-item name="contacts">联系电话</g-nav-item>
+                <g-sub-nav>
+                    <template slot="title">联系方式</template>
+                    <g-nav-item name="wechat">微信</g-nav-item>
+                    <g-nav-item name="qq">QQ</g-nav-item>
+                    <g-sub-nav>
+                        <template slot="title">电话</template>
+                        <g-nav-item name="cm">移动</g-nav-item>
+                        <g-nav-item name="cu">联通</g-nav-item>
+                        <g-nav-item name="cn">电信</g-nav-item>
+                    </g-sub-nav>
+                </g-sub-nav>
             </g-sub-nav>
             <g-nav-item name="hire">招聘</g-nav-item>
         </g-nav>

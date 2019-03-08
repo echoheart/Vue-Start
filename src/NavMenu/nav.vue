@@ -1,5 +1,5 @@
 <template>
-    <div class="g-nav">
+    <div class="g-nav" v-bind:class="{vertical:vertical}">
         <slot></slot>
     </div>
 </template>
@@ -9,7 +9,8 @@
         name: "GNav",
         provide () {
           return {
-              root: this
+              root: this,
+              vertical: this.vertical
           }
         },
         props: {
@@ -20,6 +21,10 @@
                 }
             },
             multiple: {
+                type: Boolean,
+                default: false
+            },
+            vertical: {
                 type: Boolean,
                 default: false
             }
@@ -80,5 +85,8 @@
     .g-nav {
         display: flex;
         border-bottom: 1px solid #ddd;
+        &.vertical {
+            flex-direction: column;
+        }
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="g-nav-item"
-         v-bind:class="{selected}"
+         v-bind:class="{selected,vertical}"
          v-on:click="addSelect"
     >
         <slot></slot>
@@ -10,7 +10,7 @@
 <script>
     export default {
         name: "GNavItem",
-        inject: ['root'],
+        inject: ['root', 'vertical'],
         props: {
             name: {
                 type: String,
@@ -44,22 +44,36 @@
         padding: 20px 30px;
         cursor: pointer;
         position: relative;
+        &:hover {
+            color:#1890ff;
+        }
     }
     .selected {
         &::after {
             content: '';
             position: absolute;
-            /*top: 100%;*/
             bottom: 0;
             left: 0;
             width: 100%;
             height: 2px;
-            background-color: blue;
+            background-color: #1890ff;
+        }
+    }
+    .vertical.selected {
+        &::after {
+            content: '';
+            position: absolute;
+            /*top: 100%;*/
+            bottom: 0;
+            left: 100%;
+            width: 2px;
+            height: 100%;
+            background-color: #1890ff;
         }
     }
     .g-sub-nav .g-nav-item {
         &.selected {
-            background: #ddd;
+            background: #e6f7ff;
             &::after {
                 display: none;
             }

@@ -1,5 +1,5 @@
 <template>
-    <div class="pager">
+    <div class="pager" v-bind:class="{hide: isHideOnePage && totalPage === 1}">
         <!--<span v-for="(i,index) in pages" v-bind:key="index" class="pager-item" v-bind:class="{active: i === currentPage, separator: i === '...'}">-->
             <!--{{ i }}-->
         <!--</span>-->
@@ -107,7 +107,11 @@
 <style scoped lang="scss">
 
     @import "../var";
+    
     .pager {
+        &.hide {
+            display: none;
+        }
         display: flex;
         align-items: center;
         .right,
@@ -118,7 +122,7 @@
             font-size: 1.2em;
             background-color: #eee;
             border-radius: $border-radius;
-
+            cursor: pointer;
         }
         .disabled {
             cursor: not-allowed;

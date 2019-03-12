@@ -93,27 +93,27 @@
 
         <!--{{ selectedTab }}-->
 
-        <g-nav v-bind:selected.sync="selected" vertical style="margin: 100px; width: 300px; border: 1px solid #ddd; padding: 10px;">
-            <g-nav-item name="home">首页</g-nav-item>
+        <!--<g-nav v-bind:selected.sync="selected" vertical style="margin: 100px; width: 300px; border: 1px solid #ddd; padding: 10px;">-->
+            <!--<g-nav-item name="home">首页</g-nav-item>-->
 
-            <g-sub-nav name="about">
-                <template slot="title" >关于</template>
-                <g-nav-item name="culture">企业文化</g-nav-item>
-                <g-nav-item name="team">开发团队</g-nav-item>
-                <g-sub-nav name="contact">
-                    <template slot="title">联系方式</template>
-                    <g-nav-item name="wechat">微信</g-nav-item>
-                    <g-nav-item name="qq">QQ</g-nav-item>
-                    <g-sub-nav name="mobile">
-                        <template slot="title">电话</template>
-                        <g-nav-item name="cm">移动</g-nav-item>
-                        <g-nav-item name="cu">联通</g-nav-item>
-                        <g-nav-item name="cn">电信</g-nav-item>
-                    </g-sub-nav>
-                </g-sub-nav>
-            </g-sub-nav>
-            <g-nav-item name="hire">招聘</g-nav-item>
-        </g-nav>
+            <!--<g-sub-nav name="about">-->
+                <!--<template slot="title" >关于</template>-->
+                <!--<g-nav-item name="culture">企业文化</g-nav-item>-->
+                <!--<g-nav-item name="team">开发团队</g-nav-item>-->
+                <!--<g-sub-nav name="contact">-->
+                    <!--<template slot="title">联系方式</template>-->
+                    <!--<g-nav-item name="wechat">微信</g-nav-item>-->
+                    <!--<g-nav-item name="qq">QQ</g-nav-item>-->
+                    <!--<g-sub-nav name="mobile">-->
+                        <!--<template slot="title">电话</template>-->
+                        <!--<g-nav-item name="cm">移动</g-nav-item>-->
+                        <!--<g-nav-item name="cu">联通</g-nav-item>-->
+                        <!--<g-nav-item name="cn">电信</g-nav-item>-->
+                    <!--</g-sub-nav>-->
+                <!--</g-sub-nav>-->
+            <!--</g-sub-nav>-->
+            <!--<g-nav-item name="hire">招聘</g-nav-item>-->
+        <!--</g-nav>-->
 
         <!--<g-nav v-bind:selected.sync="selected" style="margin: 100px">-->
             <!--<g-nav-item name="home">首页</g-nav-item>-->
@@ -137,7 +137,7 @@
             <!--<g-nav-item name="hire">招聘</g-nav-item>-->
         <!--</g-nav>-->
 
-
+    <Pager v-bind:total-page="16" v-bind:current-page="1"></Pager>
 
 
 
@@ -153,7 +153,7 @@
     import Col from './Grid/col';
     import Row from './Grid/row';
     import Toast from './Toast/toast';
-    import plugin from './plugin';
+    import plugin from './Toast/plugin';
     import Tabs from './Tabs/tabs';
     import TabsHeader from './Tabs/tabs-header';
     import TabsItem from './Tabs/tabs-item';
@@ -171,6 +171,8 @@
     import Nav from './NavMenu/nav';
     import NavItem from './NavMenu/nav-item';
     import SubNav from './NavMenu/sub-nav';
+
+    import Pager from './Pagination/Pager';
 
     function ajax(parentId = 0) {
         return new Promise((resolve, reject) => {
@@ -212,7 +214,8 @@
             "g-carousel-item": CarouselItem,
             "g-nav": Nav,
             "g-nav-item": NavItem,
-            "g-sub-nav": SubNav
+            "g-sub-nav": SubNav,
+            Pager
         },
 
         mounted() {

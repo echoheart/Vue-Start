@@ -29,7 +29,7 @@
     import Button from '../../../src/Button/button';
     export default {
         components: {
-            'vue-button': Button,
+            'g-button': Button,
         },
         data() {
             return {

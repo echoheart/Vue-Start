@@ -137,7 +137,7 @@
             <!--<g-nav-item name="hire">招聘</g-nav-item>-->
         <!--</g-nav>-->
 
-    <Pager v-bind:total-page="16" v-bind:current-page="1"></Pager>
+    <Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>
 
 
 
@@ -244,6 +244,7 @@
                 selected: ['home'],
                 source: [],
                 selectedTab: 'sports',
+                currentPage: 5,
                 sourceStatic:[{
                     name: '浙江',
                     children: [

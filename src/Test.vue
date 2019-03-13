@@ -137,9 +137,10 @@
             <!--<g-nav-item name="hire">招聘</g-nav-item>-->
         <!--</g-nav>-->
 
-    <Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>
+    <!--<Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>-->
 
 
+        <Table v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px"></Table>
 
     </div>
 </template>
@@ -173,6 +174,8 @@
     import SubNav from './NavMenu/sub-nav';
 
     import Pager from './Pagination/Pager';
+
+    import Table from './Table/table';
 
     function ajax(parentId = 0) {
         return new Promise((resolve, reject) => {
@@ -215,108 +218,44 @@
             "g-nav": Nav,
             "g-nav-item": NavItem,
             "g-sub-nav": SubNav,
-            Pager
+            Pager,
+            Table
         },
 
         mounted() {
-            // console.log(this);
-            this.$children[0].$on('update:selected', (names) => {
-                this.selected = names;
-            })
+
         },
         created() {
-            ajax().then((result) => {
-                // this.source = this.sourceStatic;
-                this.source = result;
-            });
-            // let n = 1;
-            // setInterval(() => {
-            //     if(n > 3) {
-            //         n = 1;
-            //     }
-            //    this.selected = n.toString();
-            //    n++
-            // },4000)
+
         },
         data: function () {
             return {
-                selectedTab: ['2'],
-                selected: ['home'],
-                source: [],
-                selectedTab: 'sports',
-                currentPage: 5,
-                sourceStatic:[{
-                    name: '浙江',
-                    children: [
-                        {
-                            name: '杭州',
-                            children: [
-                                {name: '上城区'},
-                                {name: '下城区'},
-                                {name: '江干区'}
-                            ]
-                        },
-                        {name: '嘉兴'},
-                        {name: '湖州'}
-                    ]
-                },{
-                    name: '北京',
-                    children: [
-                        {name: '东城区'},
-                        {name: '西城区'},
-                        {name: '海淀区'}
-                    ]
-                },{
-                    name: '黑龙江',
-                    children: [
-                        {name: '哈尔滨'},
-                        {
-                            name: '佳木斯',
-                            children: [
-                                {name: '东风区'},
-                                {name: '桦南县'}
-                            ]
-                        },
-                        {name: '大庆'}
-                    ]
-                }],
+                dataSource: [
+                    {
+                        id: 1,
+                        name: '小红',
+                        score: 99
+                    },
+                    {
+                        id: 2,
+                        name: '小明',
+                        score: 100
+                    }
+                ],
+                columns: [
+                    {
+                        text: '姓名',
+                        field: 'name'
+                    },
+                    {
+                        text: '分数',
+                        field: 'score'
+                    }
+                ]
             }
         },
         methods: {
-            onUpdate(copySeleted) {
-                this.selected = copySeleted;
-            },
 
-            updateSelected(selected) {
-                console.log(selected[0]);
-                ajax(selected[0].id).then((result) => {
-                    // selected[0].children = result;
-                    let lastSelectedLevel = this.source.filter((item) => {
-                        return (item.id === this.selected[0].id);
-                    })[0];
-                    console.log(lastSelectedLevel);
-                    this.$set(lastSelectedLevel, 'children', result);
-                })
-            },
-            loadData(id, fn) {
-                ajax(id).then((result) => {
-                    fn(result)
-                });
-            },
-            inputChange: function (event) {
-                console.log(event);
-            },
-            showToast() {
-                this.$toast('我是toast', {
-                    position: 'top',
-                    closeButton: {
-                        text: '知道了',
-                        callback: () => {
-                            console.log('知道了');
-                        }
-                    }
-                });
-            }
         }
     }
 </script>

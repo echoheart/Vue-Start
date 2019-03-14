@@ -3,7 +3,7 @@
         <table class="table" v-bind:class="{compact: compact,bordered: bordered, noStriped: !striped}">
             <thead>
                 <tr>
-                    <th><input type="checkbox" v-on:change="onChangeAllItems" ref="selectAll"></th>
+                    <th><input type="checkbox" v-on:change="onChangeAllItems" ref="selectAll" v-bind:checked="allItemsSelected"></th>
                     <th v-if="numberVisible">#</th>
                     <th v-for="column in columns">
                         {{ column.text }}
@@ -12,7 +12,7 @@
             </thead>
 
             <tbody>
-                <tr v-for="item, index in dataSource">
+                <tr v-for="(item, index) in dataSource" v-bind:key="item.id">
                     <th><input type="checkbox" v-on:change="onChangeItem(item, index, $event)" v-bind:checked="inSelectedItems(item)"></th>
                     <td v-if="numberVisible">{{ index + 1 }}</td>
                     <template v-for="column in columns">
@@ -62,13 +62,28 @@
                 default: () => []
             }
         },
-        // computed: {
-        //
-        // },
+        computed: {
+            allItemsSelected() {
+                const a = this.dataSource.map((item) =>{return item.id}).sort();
+                const b = this.selectedItems.map((item) => {return item.id}).sort();
+                if (a.length !== b.length) {
+                    return false
+                }
+                let equal = true;
+                for(let i = 0; i < a.length; i++) {
+                    console.log(a[i], b[i]);
+                    if (a[i] !== b[i]) {
+                        equal = false;
+                    }
+                }
+                console.log(equal);
+                return equal;
+            }
+        },
         watch: {
             selectedItems () {
                 if (this.selectedItems.length === this.dataSource.length) {
-                    this.$refs.selectAll.checked = true;
+                    // this.$refs.selectAll.checked = true;
                     this.$refs.selectAll.indeterminate = false;
                 } else if (this.selectedItems.length === 0) {
                     this.$refs.selectAll.indeterminate = false;

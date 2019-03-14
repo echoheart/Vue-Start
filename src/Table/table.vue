@@ -72,6 +72,7 @@
                     this.$refs.selectAll.indeterminate = false;
                 } else if (this.selectedItems.length === 0) {
                     this.$refs.selectAll.indeterminate = false;
+                    this.$refs.selectAll.checked = false;
                 } else {
                     this.$refs.selectAll.indeterminate = true;
                 }
@@ -87,12 +88,15 @@
                 // console.log(e.target.checked);
                 // this.$emit('changeItem', {selected: e.target.checked, index, item});
                 const isChecked = e.target.checked;
-                const copy = JSON.parse(JSON.stringify(this.selectedItems));
+                let copy = JSON.parse(JSON.stringify(this.selectedItems));
                 if (isChecked) {
                     copy.push(item)
                 } else {
-                    const _index = this.selectedItems.indexOf(item);
-                    copy.splice(_index, 1);
+                    // const _index = this.selectedItems.indexOf(item);
+                    // copy.splice(_index, 1);
+                    copy = copy.filter((_item, index) => {
+                        return !(item.id === _item.id);
+                    })
                 }
                 this.$emit('update:selectedItems', copy);
             },

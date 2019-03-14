@@ -138,8 +138,8 @@
 
         <!--<Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>-->
 
-
-        <Table v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-on:changeItem="onChangeItem"></Table>
+        {{selectedItems}}
+        <Table v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems"></Table>
         <Table v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px"></Table>
         <Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>
         <Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>
@@ -232,7 +232,7 @@
         },
         data: function () {
             return {
-                selected: [],
+                selectedItems: [],
                 dataSource: [
                     {
                         id: 1,
@@ -261,7 +261,7 @@
                     },
                     {
                         id: 6,
-                        name: '小明3',
+                        name: '小明2',
                         score: 100
                     },
                     {
@@ -288,10 +288,16 @@
             }
         },
         methods: {
-            onChangeItem(params) {
-                let { selected, index, item } = params;
-                console.log(selected, index, item);
-            }
+            // onChangeItem(params) {
+            //     let { selected, index, item } = params;
+            //     console.log(selected, index, item);
+            //     const _index = this.selected.indexOf(item);
+            //     if (selected) {
+            //         this.selected.push(item);
+            //     } else {
+            //         this.selected.splice(_index, 1);
+            //     }
+            // }
         }
     }
 </script>

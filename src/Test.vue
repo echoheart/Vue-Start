@@ -139,7 +139,7 @@
         <!--<Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>-->
 
 
-        <Table v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px"></Table>
+        <Table v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-on:changeItem="onChangeItem"></Table>
         <Table v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px"></Table>
         <Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>
         <Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>
@@ -232,6 +232,7 @@
         },
         data: function () {
             return {
+                selected: [],
                 dataSource: [
                     {
                         id: 1,
@@ -286,7 +287,12 @@
                 ]
             }
         },
-        methods: {}
+        methods: {
+            onChangeItem(params) {
+                let { selected, index, item } = params;
+                console.log(selected, index, item);
+            }
+        }
     }
 </script>
 

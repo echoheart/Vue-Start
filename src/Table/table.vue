@@ -13,7 +13,7 @@
 
             <tbody>
                 <tr v-for="item, index in dataSource">
-                    <th><input type="checkbox" name=""></th>
+                    <th><input type="checkbox" v-on:change="onChangeItem(item, index, $event)"></th>
                     <td v-if="numberVisible">{{ index + 1 }}</td>
                     <template v-for="column in columns">
                         <td>{{ item[column.field] }}</td>
@@ -51,6 +51,12 @@
             striped: {
                 type: Boolean,
                 default: true
+            }
+        },
+        methods: {
+            onChangeItem (item, index, e) {
+                // console.log(e.target.checked);
+                this.$emit('changeItem', {selected: e.target.checked, index, item});
             }
         }
     }

@@ -59,29 +59,28 @@
         <!--</g-tabs>-->
 
 
-
         <!--<p>{{ selected }}</p>-->
         <!--<g-cascader-->
-                <!--v-bind:source.sync="source"-->
-                <!--popoverClassName="xxx"-->
-                <!--popover-height="200px"-->
-                <!--v-bind:selected.sync="selected"-->
-                <!--v-bind:load-data="loadData"-->
+        <!--v-bind:source.sync="source"-->
+        <!--popoverClassName="xxx"-->
+        <!--popover-height="200px"-->
+        <!--v-bind:selected.sync="selected"-->
+        <!--v-bind:load-data="loadData"-->
         <!--&gt;-->
         <!--</g-cascader>-->
         <!--<p>222</p>-->
 
         <!--<g-carousel v-bind:selected.sync="selected">-->
 
-            <!--<g-carousel-item name="1">-->
-                <!--<div class="box">1</div>-->
-            <!--</g-carousel-item>-->
-            <!--<g-carousel-item name="2">-->
-                <!--<div class="box">2</div>-->
-            <!--</g-carousel-item>-->
-            <!--<g-carousel-item name="3">-->
-                <!--<div class="box">3</div>-->
-            <!--</g-carousel-item>-->
+        <!--<g-carousel-item name="1">-->
+        <!--<div class="box">1</div>-->
+        <!--</g-carousel-item>-->
+        <!--<g-carousel-item name="2">-->
+        <!--<div class="box">2</div>-->
+        <!--</g-carousel-item>-->
+        <!--<g-carousel-item name="3">-->
+        <!--<div class="box">3</div>-->
+        <!--</g-carousel-item>-->
 
         <!--</g-carousel>-->
 
@@ -94,53 +93,56 @@
         <!--{{ selectedTab }}-->
 
         <!--<g-nav v-bind:selected.sync="selected" vertical style="margin: 100px; width: 300px; border: 1px solid #ddd; padding: 10px;">-->
-            <!--<g-nav-item name="home">首页</g-nav-item>-->
+        <!--<g-nav-item name="home">首页</g-nav-item>-->
 
-            <!--<g-sub-nav name="about">-->
-                <!--<template slot="title" >关于</template>-->
-                <!--<g-nav-item name="culture">企业文化</g-nav-item>-->
-                <!--<g-nav-item name="team">开发团队</g-nav-item>-->
-                <!--<g-sub-nav name="contact">-->
-                    <!--<template slot="title">联系方式</template>-->
-                    <!--<g-nav-item name="wechat">微信</g-nav-item>-->
-                    <!--<g-nav-item name="qq">QQ</g-nav-item>-->
-                    <!--<g-sub-nav name="mobile">-->
-                        <!--<template slot="title">电话</template>-->
-                        <!--<g-nav-item name="cm">移动</g-nav-item>-->
-                        <!--<g-nav-item name="cu">联通</g-nav-item>-->
-                        <!--<g-nav-item name="cn">电信</g-nav-item>-->
-                    <!--</g-sub-nav>-->
-                <!--</g-sub-nav>-->
-            <!--</g-sub-nav>-->
-            <!--<g-nav-item name="hire">招聘</g-nav-item>-->
+        <!--<g-sub-nav name="about">-->
+        <!--<template slot="title" >关于</template>-->
+        <!--<g-nav-item name="culture">企业文化</g-nav-item>-->
+        <!--<g-nav-item name="team">开发团队</g-nav-item>-->
+        <!--<g-sub-nav name="contact">-->
+        <!--<template slot="title">联系方式</template>-->
+        <!--<g-nav-item name="wechat">微信</g-nav-item>-->
+        <!--<g-nav-item name="qq">QQ</g-nav-item>-->
+        <!--<g-sub-nav name="mobile">-->
+        <!--<template slot="title">电话</template>-->
+        <!--<g-nav-item name="cm">移动</g-nav-item>-->
+        <!--<g-nav-item name="cu">联通</g-nav-item>-->
+        <!--<g-nav-item name="cn">电信</g-nav-item>-->
+        <!--</g-sub-nav>-->
+        <!--</g-sub-nav>-->
+        <!--</g-sub-nav>-->
+        <!--<g-nav-item name="hire">招聘</g-nav-item>-->
         <!--</g-nav>-->
 
         <!--<g-nav v-bind:selected.sync="selected" style="margin: 100px">-->
-            <!--<g-nav-item name="home">首页</g-nav-item>-->
+        <!--<g-nav-item name="home">首页</g-nav-item>-->
 
-            <!--<g-sub-nav name="about">-->
-                <!--<template slot="title" >关于</template>-->
-                <!--<g-nav-item name="culture">企业文化</g-nav-item>-->
-                <!--<g-nav-item name="team">开发团队</g-nav-item>-->
-                <!--<g-sub-nav name="contact">-->
-                    <!--<template slot="title">联系方式</template>-->
-                    <!--<g-nav-item name="wechat">微信</g-nav-item>-->
-                    <!--<g-nav-item name="qq">QQ</g-nav-item>-->
-                    <!--<g-sub-nav name="mobile">-->
-                        <!--<template slot="title">电话</template>-->
-                        <!--<g-nav-item name="cm">移动</g-nav-item>-->
-                        <!--<g-nav-item name="cu">联通</g-nav-item>-->
-                        <!--<g-nav-item name="cn">电信</g-nav-item>-->
-                    <!--</g-sub-nav>-->
-                <!--</g-sub-nav>-->
-            <!--</g-sub-nav>-->
-            <!--<g-nav-item name="hire">招聘</g-nav-item>-->
+        <!--<g-sub-nav name="about">-->
+        <!--<template slot="title" >关于</template>-->
+        <!--<g-nav-item name="culture">企业文化</g-nav-item>-->
+        <!--<g-nav-item name="team">开发团队</g-nav-item>-->
+        <!--<g-sub-nav name="contact">-->
+        <!--<template slot="title">联系方式</template>-->
+        <!--<g-nav-item name="wechat">微信</g-nav-item>-->
+        <!--<g-nav-item name="qq">QQ</g-nav-item>-->
+        <!--<g-sub-nav name="mobile">-->
+        <!--<template slot="title">电话</template>-->
+        <!--<g-nav-item name="cm">移动</g-nav-item>-->
+        <!--<g-nav-item name="cu">联通</g-nav-item>-->
+        <!--<g-nav-item name="cn">电信</g-nav-item>-->
+        <!--</g-sub-nav>-->
+        <!--</g-sub-nav>-->
+        <!--</g-sub-nav>-->
+        <!--<g-nav-item name="hire">招聘</g-nav-item>-->
         <!--</g-nav>-->
 
-    <!--<Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>-->
+        <!--<Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>-->
 
 
         <Table v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px"></Table>
+        <Table v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px"></Table>
+        <Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>
+        <Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>
 
     </div>
 </template>
@@ -240,7 +242,37 @@
                         id: 2,
                         name: '小明',
                         score: 100
-                    }
+                    },
+                    {
+                        id: 3,
+                        name: '小红1',
+                        score: 99
+                    },
+                    {
+                        id: 4,
+                        name: '小明1',
+                        score: 100
+                    },
+                    {
+                        id: 5,
+                        name: '小红2',
+                        score: 99
+                    },
+                    {
+                        id: 6,
+                        name: '小明3',
+                        score: 100
+                    },
+                    {
+                        id: 7,
+                        name: '小红3',
+                        score: 99
+                    },
+                    {
+                        id: 8,
+                        name: '小明3',
+                        score: 100
+                    },
                 ],
                 columns: [
                     {
@@ -254,9 +286,7 @@
                 ]
             }
         },
-        methods: {
-
-        }
+        methods: {}
     }
 </script>
 
@@ -281,6 +311,7 @@
         --border-color: #999;
         --border-colro-hover: #666;
     }
+
     .box {
         width: 100%;
         height: 300px;

@@ -27,6 +27,9 @@
                 </tr>
             </tbody>
         </table>
+        <div v-if="loading" class="table-loading">
+            <Icon name="loading"/>
+        </div>
     </div>
 </template>
 
@@ -74,6 +77,10 @@
             orderBy: {
                 type: Object,
                 default: () => {return {}}
+            },
+            loading: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
@@ -150,11 +157,33 @@
 </script>
 
 <style scoped lang="scss">
+    @import "../var";
+    .table-wrapper {
+        position: relative;
+    }
+    .table-loading {
+        background-color: rgba(255,255,255,.75);
+
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+            animation: spin 1s infinite linear;
+            width: 50px;
+            height: 50px;
+        }
+    }
     .table {
         border-collapse: collapse;
         border-spacing: 0;
         /*border: 1px solid #ddd;*/
         width: 100%;
+
 
         &.compact {
             td,th {

@@ -139,7 +139,7 @@
         <!--<Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>-->
 
         <!--{{selectedItems}}-->
-        <Table v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
+        <Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>-->
@@ -233,6 +233,7 @@
         data: function () {
             return {
                 selectedItems: [],
+                loading: false,
                 orderBy: {
                     name: 'asc',
                     // score: true
@@ -305,6 +306,7 @@
             onChangeOrderBy (obj) {
                 console.log('触发更新');
                 const { copy, key } = obj;
+                this.loading = true;
                 this.orderBy = copy;
                 console.log(copy[key]);
                 if (copy[key] === 'asc') {
@@ -313,13 +315,17 @@
                         this.dataSource = JSON.parse(JSON.stringify(this.dataSource)).sort((a,b) => {
                             return a.score - b.score;
                         })
-                    },1500);
+                        this.loading = false;
+                    }, 1000);
                 } else if (copy[key] === 'desc') {
                     setTimeout(() => {
                         this.dataSource = JSON.parse(JSON.stringify(this.dataSource)).sort((a,b) => {
                             return b.score - a.score;
                         })
-                    },1500);
+                        this.loading = false;
+                    }, 1000);
+                } else {
+                    this.loading = false;
                 }
             }
         }

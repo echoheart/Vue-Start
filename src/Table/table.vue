@@ -6,7 +6,13 @@
                     <th><input type="checkbox" v-on:change="onChangeAllItems" ref="selectAll" v-bind:checked="allItemsSelected"></th>
                     <th v-if="numberVisible">#</th>
                     <th v-for="column in columns">
-                        {{ column.text }}
+                        <div class="column-item" v-if="column.field in orderBy">
+                            {{ column.text }}
+                            <span class="table-sorter" v-on:click="changeOrderBy(column.field)">
+                                <Icon name="asc" class="asc" v-bind:class="{active: orderBy[column.field] === 'asc'}"></Icon>
+                                <Icon name="desc" class="desc" v-bind:class="{active: orderBy[column.field] === 'desc'}"></Icon>
+                            </span>
+                        </div>
                     </th>
                 </tr>
             </thead>
@@ -25,8 +31,12 @@
 </template>
 
 <script>
+    import Icon from './../Icon/icon';
     export default {
         name: "g-table",
+        components: {
+            Icon
+        },
         props: {
             dataSource: {
                 type: Array,
@@ -60,6 +70,10 @@
             selectedItems: {
                 type: Array,
                 default: () => []
+            },
+            orderBy: {
+                type: Object,
+                default: () => {return {}}
             }
         },
         computed: {
@@ -71,12 +85,12 @@
                 }
                 let equal = true;
                 for(let i = 0; i < a.length; i++) {
-                    console.log(a[i], b[i]);
+                    // console.log(a[i], b[i]);
                     if (a[i] !== b[i]) {
                         equal = false;
                     }
                 }
-                console.log(equal);
+                // console.log(equal);
                 return equal;
             }
         },
@@ -94,6 +108,18 @@
             }
         },
         methods: {
+            changeOrderBy (key) {
+                console.log('hello');
+                const copy = JSON.parse(JSON.stringify(this.orderBy));
+                if(this.orderBy[key] === 'asc') {
+                    copy[key] = 'desc';
+                } else if (this.orderBy[key] === 'desc'){
+                    copy[key] = true;
+                } else {
+                    copy[key] = 'asc';
+                }
+                this.$emit('update:orderBy', {copy, key});
+            },
             inSelectedItems(item) {
                 return this.selectedItems.filter((_item, index) => {
                     return item.id === _item.id;
@@ -141,6 +167,25 @@
                 border: 1px solid #ddd;
             }
         }
+        .column-item {
+            display: inline-flex;
+            align-items: center;
+            .table-sorter {
+                display: inline-flex;
+                flex-direction: column;
+                margin-left: 5px;
+                .asc,.desc {
+                    &.active {
+                        fill: #000;
+                    }
+                    fill: #aaa;
+                    height: 1em;
+                    width: 1em;
+                    cursor: pointer;
+                }
+            }
+        }
+
         td,th {
             border-bottom: 1px solid #ddd;
             text-align: left;

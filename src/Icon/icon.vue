@@ -1,5 +1,5 @@
 <template>
-    <svg class="g-icon">
+    <svg class="g-icon" v-on:click="$emit('click', $event)">
         <use v-bind:xlink:href="`#icon-${name}`"></use>
     </svg>
 </template>

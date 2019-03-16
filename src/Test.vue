@@ -139,9 +139,9 @@
         <!--<Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>-->
 
         <!-- {{selectedItems}} -->
-        <Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
-        <Table v-bind:height="'500px'" bordered v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
 
+        <Table v-bind:height="500" bordered v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
+        <!--<Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>-->
 
@@ -320,15 +320,36 @@
                         name: '小明3',
                         score: 100
                     },
+                    {
+                        id: 17,
+                        name: '小红2',
+                        score: 99
+                    },
+                    {
+                        id: 18,
+                        name: '小明2',
+                        score: 100
+                    },
+                    {
+                        id: 19,
+                        name: '小红3',
+                        score: 99
+                    },
+                    {
+                        id: 20,
+                        name: '小明3',
+                        score: 100
+                    },
                 ],
                 columns: [
                     {
                         text: '姓名',
-                        field: 'name'
+                        field: 'name',
+                        width: 100
                     },
                     {
                         text: '分数',
-                        field: 'score'
+                        field: 'score',
                     }
                 ]
             }

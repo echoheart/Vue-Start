@@ -1,15 +1,15 @@
 <template>
 
     <div class="table-wrapper" ref="wrapper">
-        <div class="table-inner" v-bind:style="{height}">
+        <div class="table-inner" v-bind:style="{height: height + 'px'}">
             <table ref="table" class="table" v-bind:class="{compact: compact,bordered: bordered, noStriped: !striped}">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" v-on:change="onChangeAllItems" ref="selectAll"
+                        <th v-bind:style="{width: '50px'}"><input type="checkbox" v-on:change="onChangeAllItems" ref="selectAll"
                                    v-bind:checked="allItemsSelected"></th>
                         <th v-if="numberVisible">#</th>
                         <!--{{columns}}-->
-                        <th v-for="column in columns">
+                        <th v-for="column in columns" v-bind:style="{width: `${column.width}px`}">
                             <div class="column-item" v-if="column.field in orderBy">
                                 {{ column.text }}
                                 <span class="table-sorter" v-on:click="changeOrderBy(column.field)">
@@ -25,11 +25,11 @@
 
                 <tbody>
                     <tr v-for="(item, index) in dataSource" v-bind:key="item.id">
-                        <th><input type="checkbox" v-on:change="onChangeItem(item, index, $event)"
+                        <th v-bind:style="{width: '50px'}"><input type="checkbox" v-on:change="onChangeItem(item, index, $event)"
                                    v-bind:checked="inSelectedItems(item)"></th>
                         <td v-if="numberVisible">{{ index + 1 }}</td>
                         <template v-for="column in columns">
-                            <td>{{ item[column.field] }}</td>
+                            <td v-bind:style="{width: `${column.width}px`}">{{ item[column.field] }}</td>
                         </template>
                     </tr>
                 </tbody>
@@ -95,7 +95,7 @@
                 default: false
             },
             height: {
-                type: String,
+                type: Number,
 
             }
         },
@@ -103,16 +103,20 @@
             console.log(this.height);
             if (this.height) {
                 const table = this.table = this.$refs.table;
-                const copyTable = this.copyTable = table.cloneNode(true);
+                const copyTable = this.copyTable = table.cloneNode(false);
+                const tableHeader = table.children[0];
+                const {height} = tableHeader.getBoundingClientRect();
+                table.style.marginTop = height + 'px';
+                copyTable.appendChild(tableHeader);
 
-                this.updateHeaderWidth();
-                document.addEventListener('resize', this.updateHeaderWidth);
+                // this.updateHeaderWidth();
+                // document.addEventListener('resize', this.updateHeaderWidth);
                 copyTable.classList.add('copy-table');
                 this.$refs.wrapper.appendChild(copyTable);
             }
         },
         beforeDestroy() {
-            document.removeEventListener('resize', this.updateHeaderWidth);
+            // document.removeEventListener('resize', this.updateHeaderWidth);
             this.copyTable && this.copyTable.remove();
         },
         computed: {
@@ -151,30 +155,30 @@
             }
         },
         methods: {
-            updateHeaderWidth() {
-                const table = this.table;
-                const copyTable = this.copyTable;
-                Array.from(table.children).map((node) => {
-                    if(node.tagName.toLowerCase() === 'thead') {
-                        node.remove()
-                    } else {
-                        this.tableHeader = node;
-                    }
-                });
-                Array.from(copyTable.children).map((node) => {
-                    if(node.tagName.toLowerCase() !== 'thead') {
-                        node.remove()
-                    } else {
-                        this.copyHeader = node;
-                    }
-                });
-
-                Array.from(this.tableHeader.children[0].children).map((th, index) => {
-                    const { height, width } = th.getBoundingClientRect();
-                    this.copyHeader.children[0].children[index].width = width;
-                    this.copyHeader.children[0].children[index].height = height;
-                });
-            },
+            // updateHeaderWidth() {
+            //     const table = this.table;
+            //     const copyTable = this.copyTable;
+            //     Array.from(table.children).map((node) => {
+            //         if(node.tagName.toLowerCase() === 'thead') {
+            //             node.remove()
+            //         } else {
+            //             this.tableHeader = node;
+            //         }
+            //     });
+            //     Array.from(copyTable.children).map((node) => {
+            //         if(node.tagName.toLowerCase() !== 'thead') {
+            //             node.remove()
+            //         } else {
+            //             this.copyHeader = node;
+            //         }
+            //     });
+            //
+            //     Array.from(this.tableHeader.children[0].children).map((th, index) => {
+            //         const { height, width } = th.getBoundingClientRect();
+            //         this.copyHeader.children[0].children[index].width = width;
+            //         this.copyHeader.children[0].children[index].height = height;
+            //     });
+            // },
             changeOrderBy(key) {
                 console.log('hello');
                 const copy = JSON.parse(JSON.stringify(this.orderBy));

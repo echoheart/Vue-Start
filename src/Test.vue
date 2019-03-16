@@ -138,9 +138,10 @@
 
         <!--<Pager v-bind:total-page="100" v-bind:current-page.sync="currentPage" style="margin: 200px"></Pager>-->
 
-        {{selectedItems}}
-        <Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
-        <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px"></Table>-->
+        <!-- {{selectedItems}} -->
+        <Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
+        <Table v-bind:height="'500px'" bordered v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
+
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>-->
 
@@ -236,7 +237,7 @@
                 loading: false,
                 orderBy: {
                     name: 'asc',
-                    // score: true
+                    score: true
                 },
                 dataSource: [
                     {
@@ -276,6 +277,46 @@
                     },
                     {
                         id: 8,
+                        name: '小明3',
+                        score: 100
+                    },
+                    {
+                        id: 9,
+                        name: '小红',
+                        score: 99
+                    },
+                    {
+                        id: 10,
+                        name: '小明',
+                        score: 100
+                    },
+                    {
+                        id: 11,
+                        name: '小红1',
+                        score: 99
+                    },
+                    {
+                        id: 12,
+                        name: '小明1',
+                        score: 100
+                    },
+                    {
+                        id: 13,
+                        name: '小红2',
+                        score: 99
+                    },
+                    {
+                        id: 14,
+                        name: '小明2',
+                        score: 100
+                    },
+                    {
+                        id: 15,
+                        name: '小红3',
+                        score: 99
+                    },
+                    {
+                        id: 16,
                         name: '小明3',
                         score: 100
                     },

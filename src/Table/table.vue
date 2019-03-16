@@ -1,40 +1,50 @@
 <template>
-    <div class="table-wrapper">
-        <table class="table" v-bind:class="{compact: compact,bordered: bordered, noStriped: !striped}">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" v-on:change="onChangeAllItems" ref="selectAll" v-bind:checked="allItemsSelected"></th>
-                    <th v-if="numberVisible">#</th>
-                    <th v-for="column in columns">
-                        <div class="column-item" v-if="column.field in orderBy">
-                            {{ column.text }}
-                            <span class="table-sorter" v-on:click="changeOrderBy(column.field)">
-                                <Icon name="asc" class="asc" v-bind:class="{active: orderBy[column.field] === 'asc'}"></Icon>
-                                <Icon name="desc" class="desc" v-bind:class="{active: orderBy[column.field] === 'desc'}"></Icon>
-                            </span>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
 
-            <tbody>
-                <tr v-for="(item, index) in dataSource" v-bind:key="item.id">
-                    <th><input type="checkbox" v-on:change="onChangeItem(item, index, $event)" v-bind:checked="inSelectedItems(item)"></th>
-                    <td v-if="numberVisible">{{ index + 1 }}</td>
-                    <template v-for="column in columns">
-                        <td>{{ item[column.field] }}</td>
-                    </template>
-                </tr>
-            </tbody>
-        </table>
+    <div class="table-wrapper" ref="wrapper">
+        <div class="table-inner" v-bind:style="{height}">
+            <table ref="table" class="table" v-bind:class="{compact: compact,bordered: bordered, noStriped: !striped}">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" v-on:change="onChangeAllItems" ref="selectAll"
+                                   v-bind:checked="allItemsSelected"></th>
+                        <th v-if="numberVisible">#</th>
+                        <!--{{columns}}-->
+                        <th v-for="column in columns">
+                            <div class="column-item" v-if="column.field in orderBy">
+                                {{ column.text }}
+                                <span class="table-sorter" v-on:click="changeOrderBy(column.field)">
+                                    <Icon name="asc" class="asc"
+                                          v-bind:class="{active: orderBy[column.field] === 'asc'}"></Icon>
+                                    <Icon name="desc" class="desc"
+                                          v-bind:class="{active: orderBy[column.field] === 'desc'}"></Icon>
+                                </span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for="(item, index) in dataSource" v-bind:key="item.id">
+                        <th><input type="checkbox" v-on:change="onChangeItem(item, index, $event)"
+                                   v-bind:checked="inSelectedItems(item)"></th>
+                        <td v-if="numberVisible">{{ index + 1 }}</td>
+                        <template v-for="column in columns">
+                            <td>{{ item[column.field] }}</td>
+                        </template>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div v-if="loading" class="table-loading">
             <Icon name="loading"/>
         </div>
     </div>
+
 </template>
 
 <script>
     import Icon from './../Icon/icon';
+
     export default {
         name: "g-table",
         components: {
@@ -76,22 +86,48 @@
             },
             orderBy: {
                 type: Object,
-                default: () => {return {}}
+                default: () => {
+                    return {}
+                }
             },
             loading: {
                 type: Boolean,
                 default: false
+            },
+            height: {
+                type: String,
+
             }
+        },
+        mounted() {
+            console.log(this.height);
+            if (this.height) {
+                const table = this.table = this.$refs.table;
+                const copyTable = this.copyTable = table.cloneNode(true);
+
+                this.updateHeaderWidth();
+                document.addEventListener('resize', this.updateHeaderWidth);
+                copyTable.classList.add('copy-table');
+                this.$refs.wrapper.appendChild(copyTable);
+            }
+        },
+        beforeDestroy() {
+            document.removeEventListener('resize', this.updateHeaderWidth);
+            this.copyTable && this.copyTable.remove();
         },
         computed: {
             allItemsSelected() {
-                const a = this.dataSource.map((item) =>{return item.id}).sort();
-                const b = this.selectedItems.map((item) => {return item.id}).sort();
+                const a = this.dataSource.map((item) => {
+                    return item.id
+                }).sort();
+                const b = this.selectedItems.map((item) => {
+                    return item.id
+                }).sort();
                 if (a.length !== b.length) {
                     return false
                 }
                 let equal = true;
-                for(let i = 0; i < a.length; i++) {
+                for (let i = 0; i < a.length; i++) {
                     // console.log(a[i], b[i]);
                     if (a[i] !== b[i]) {
                         equal = false;
@@ -102,7 +138,7 @@
             }
         },
         watch: {
-            selectedItems () {
+            selectedItems() {
                 if (this.selectedItems.length === this.dataSource.length) {
                     // this.$refs.selectAll.checked = true;
                     this.$refs.selectAll.indeterminate = false;
@@ -115,12 +151,36 @@
             }
         },
         methods: {
-            changeOrderBy (key) {
+            updateHeaderWidth() {
+                const table = this.table;
+                const copyTable = this.copyTable;
+                Array.from(table.children).map((node) => {
+                    if(node.tagName.toLowerCase() === 'thead') {
+                        node.remove()
+                    } else {
+                        this.tableHeader = node;
+                    }
+                });
+                Array.from(copyTable.children).map((node) => {
+                    if(node.tagName.toLowerCase() !== 'thead') {
+                        node.remove()
+                    } else {
+                        this.copyHeader = node;
+                    }
+                });
+
+                Array.from(this.tableHeader.children[0].children).map((th, index) => {
+                    const { height, width } = th.getBoundingClientRect();
+                    this.copyHeader.children[0].children[index].width = width;
+                    this.copyHeader.children[0].children[index].height = height;
+                });
+            },
+            changeOrderBy(key) {
                 console.log('hello');
                 const copy = JSON.parse(JSON.stringify(this.orderBy));
-                if(this.orderBy[key] === 'asc') {
+                if (this.orderBy[key] === 'asc') {
                     copy[key] = 'desc';
-                } else if (this.orderBy[key] === 'desc'){
+                } else if (this.orderBy[key] === 'desc') {
                     copy[key] = true;
                 } else {
                     copy[key] = 'asc';
@@ -132,7 +192,7 @@
                     return item.id === _item.id;
                 }).length > 0;
             },
-            onChangeItem (item, index, e) {
+            onChangeItem(item, index, e) {
                 // console.log(e.target.checked);
                 // this.$emit('changeItem', {selected: e.target.checked, index, item});
                 const isChecked = e.target.checked;
@@ -148,7 +208,7 @@
                 }
                 this.$emit('update:selectedItems', copy);
             },
-            onChangeAllItems (e) {
+            onChangeAllItems(e) {
                 const isChecked = e.target.checked;
                 this.$emit('update:selectedItems', isChecked ? this.dataSource : [])
             }
@@ -158,11 +218,28 @@
 
 <style scoped lang="scss">
     @import "../var";
+
     .table-wrapper {
         position: relative;
+
+        .table-inner {
+            overflow: auto;
+        }
+
+        .copy-table {
+            position: absolute;
+            top: 0;
+            right: 0;
+            /*background-color: #fff;*/
+        }
     }
+
+    .table {
+        overflow: auto;
+    }
+
     .table-loading {
-        background-color: rgba(255,255,255,.75);
+        background-color: rgba(255, 255, 255, .75);
 
         position: absolute;
         height: 100%;
@@ -172,41 +249,51 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
+
         svg {
             animation: spin 1s infinite linear;
             width: 50px;
             height: 50px;
         }
     }
+
     .table {
         border-collapse: collapse;
         border-spacing: 0;
         /*border: 1px solid #ddd;*/
         width: 100%;
-
+        thead {
+            background: #fff;
+        }
 
         &.compact {
-            td,th {
+            td, th {
                 padding: 5px;
             }
         }
+
         &.bordered {
             border: 1px solid #ddd;
-            td,th {
+
+            td, th {
                 border: 1px solid #ddd;
             }
         }
+
         .column-item {
             display: inline-flex;
             align-items: center;
+
             .table-sorter {
                 display: inline-flex;
                 flex-direction: column;
                 margin-left: 5px;
-                .asc,.desc {
+
+                .asc, .desc {
                     &.active {
                         fill: #000;
                     }
+
                     fill: #aaa;
                     height: 1em;
                     width: 1em;
@@ -215,21 +302,24 @@
             }
         }
 
-        td,th {
+        td, th {
             border-bottom: 1px solid #ddd;
             text-align: left;
             padding: 10px 10px;
         }
+
         tbody {
             > tr {
                 &:nth-child(odd) {
                     background: #fff;
                 }
+
                 &:nth-child(even) {
                     background: lighten(#ddd, 10%);
                 }
             }
         }
+
         &.noStriped {
             tbody {
                 > tr {

@@ -140,8 +140,13 @@
 
         <!-- {{selectedItems}} -->
 
-        <Table expend-field="description" v-bind:height="500" bordered v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
-        <!--<Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>-->
+        <Table expend-field="description" v-bind:height="500" bordered v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy">
+            <template slot-scope="xxx">
+                <Button v-on:click="edit(xxx.item)">编辑</Button>
+                <Button v-on:click="view(xxx.item)" v-bind:style="{marginLeft: '10px'}">查看</Button>
+            </template>
+        </Table>
+        <Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>-->
 
@@ -222,7 +227,8 @@
             "g-nav-item": NavItem,
             "g-sub-nav": SubNav,
             Pager,
-            Table
+            Table,
+            Button
         },
 
         mounted() {
@@ -354,6 +360,7 @@
                     {
                         text: '分数',
                         field: 'score',
+                        width: 100
                     }
                 ]
             }
@@ -369,6 +376,12 @@
             //         this.selected.splice(_index, 1);
             //     }
             // }
+            edit(item) {
+                alert(`你需要自定义编辑这一项${item}`)
+            },
+            view(item) {
+                alert(`自定义查看这一项${item}`)
+            },
             onChangeOrderBy (obj) {
                 console.log('触发更新');
                 const { copy, key } = obj;

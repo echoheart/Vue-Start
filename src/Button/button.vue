@@ -28,7 +28,7 @@
     import Icon from '../Icon/icon';
     export default {
         // props: ['icon', 'iconPosition']
-        // name: 'g-button',
+        name: 'g-button',
         components: {
           'g-icon': Icon
         },
@@ -61,32 +61,9 @@
 </script>
 <style lang="scss" scoped>
     @import "../var";
-    :root {
-        --button-height: 32px;
-        --font-size: 14px;
-        --button-bg: #fff;
-        --button-active-bg: #eee;
-        --button-radius: 4px;
-        --color: #333;
-        --border-color: #999;
-        --border-colro-hover: #666;
-    }
 
-    $button-height: 32px;
-    $button-radius: 4px;
-    $font-size: 14px;
-    $button-bg: #fff;
-    $border-color-hover: #666;
-    $button-active-bg: #eee;
 
-    /*@keyframes spin {*/
-        /*0% {*/
-            /*transform: rotate(0deg);*/
-        /*}*/
-        /*100% {*/
-            /*transform: rotate(360deg);*/
-        /*}*/
-    /*}*/
+
     .g-button {
         height: $button-height;
         font-size: $font-size;

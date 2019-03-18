@@ -21,6 +21,7 @@
                                 </span>
                             </div>
                         </th>
+                        <th ref="actionsHeader" v-if="$scopedSlots.default"></th>
                     </tr>
                 </thead>
 
@@ -38,11 +39,16 @@
                             <template v-for="column in columns">
                                 <td v-bind:style="{width: `${column.width}px`}">{{ item[column.field] }}</td>
                             </template>
+                            <td v-if="$scopedSlots.default">
+                                <div ref="actions" v-bind:style="{display: 'inline-block'}">
+                                    <slot v-bind:item="item" li="li"></slot>
+                                </div>
+                            </td>
                         </tr>
 
                         <tr v-bind:key="`${item.id}expend-key`" v-if="inExpendeds(item.id)">
                             <td :style="{ borderRightColor: 'transparent'}"></td>
-                            <td v-bind:colspan="columns.length + 1">
+                            <td v-bind:colspan="columns.length + 2">
                                 {{ item[expendField] }}
                             </td>
                         </tr>
@@ -122,7 +128,7 @@
             }
         },
         mounted() {
-            console.log(this.height);
+            // console.log(this.height);
             if (this.height) {
                 const table = this.table = this.$refs.table;
                 const copyTable = this.copyTable = table.cloneNode(false);
@@ -135,6 +141,23 @@
                 // document.addEventListener('resize', this.updateHeaderWidth);
                 copyTable.classList.add('copy-table');
                 this.$refs.wrapper.appendChild(copyTable);
+            }
+
+            if (this.$scopedSlots.default) {
+                const div = this.$refs.actions[0];
+                const { width } = div.getBoundingClientRect();
+                const parent = div.parentNode;
+                const style = getComputedStyle(parent);
+                const paddingLeft = style.getPropertyValue('padding-left');
+                const paddingRight = style.getPropertyValue('padding-right');
+                const borderLeft = style.getPropertyValue('border-left-width');
+                const borderRight = style.getPropertyValue('border-right-width');
+                const computedWidth = width + parseInt(paddingLeft) + parseInt(paddingRight) + parseInt(borderLeft) + parseInt(borderLeft) + parseInt(borderRight) + 'px';
+                this.$refs.actionsHeader.style.width = computedWidth;
+                this.$refs.actions.map((el) => {
+                    el.parentNode.style.width = computedWidth
+                });
+                console.log(paddingLeft)
             }
         },
         beforeDestroy() {
@@ -261,6 +284,9 @@
 
         .table-inner {
             overflow: auto;
+        }
+        .table-inner::-webkit-scrollbar{
+            width:0;
         }
 
         .copy-table {

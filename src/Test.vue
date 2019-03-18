@@ -140,7 +140,7 @@
 
         <!-- {{selectedItems}} -->
 
-        <Table v-bind:height="500" bordered v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
+        <Table expend-field="description" v-bind:height="500" bordered v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
         <!--<Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>-->
@@ -243,22 +243,26 @@
                     {
                         id: 1,
                         name: '小红',
-                        score: 99
+                        score: 99,
+                        description: '这是描述'
                     },
                     {
                         id: 2,
                         name: '小明',
-                        score: 100
+                        score: 100,
+                        description: '这是描述1'
                     },
                     {
                         id: 3,
                         name: '小红1',
-                        score: 99
+                        score: 99,
+                        description: '这是描述2'
                     },
                     {
                         id: 4,
                         name: '小明1',
-                        score: 100
+                        score: 100,
+                        description: '这是描述3'
                     },
                     {
                         id: 5,

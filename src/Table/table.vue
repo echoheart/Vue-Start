@@ -5,6 +5,7 @@
             <table ref="table" class="table" v-bind:class="{compact: compact,bordered: bordered, noStriped: !striped}">
                 <thead>
                     <tr>
+                        <td v-bind:style="{width: '50px'}"></td>
                         <th v-bind:style="{width: '50px'}"><input type="checkbox" v-on:change="onChangeAllItems" ref="selectAll"
                                    v-bind:checked="allItemsSelected"></th>
                         <th v-if="numberVisible">#</th>
@@ -24,14 +25,28 @@
                 </thead>
 
                 <tbody>
-                    <tr v-for="(item, index) in dataSource" v-bind:key="item.id">
-                        <th v-bind:style="{width: '50px'}"><input type="checkbox" v-on:change="onChangeItem(item, index, $event)"
-                                   v-bind:checked="inSelectedItems(item)"></th>
-                        <td v-if="numberVisible">{{ index + 1 }}</td>
-                        <template v-for="column in columns">
-                            <td v-bind:style="{width: `${column.width}px`}">{{ item[column.field] }}</td>
-                        </template>
-                    </tr>
+                    <template v-for="(item, index) in dataSource">
+                        <tr v-bind:key="item.id">
+                            <td v-bind:style="{width: '50px'}" >
+                                <span class="icon-wrapper">
+                                    <Icon v-bind:class="{active: inExpendeds(item.id)}" v-on:click="expendAction(item.id)" v-if="item[expendField]" name="right"></Icon>
+                                </span>
+                            </td>
+                            <td v-bind:style="{width: '50px'}"><input type="checkbox" v-on:change="onChangeItem(item, index, $event)"
+                                                                      v-bind:checked="inSelectedItems(item)"></td>
+                            <td v-if="numberVisible">{{ index + 1 }}</td>
+                            <template v-for="column in columns">
+                                <td v-bind:style="{width: `${column.width}px`}">{{ item[column.field] }}</td>
+                            </template>
+                        </tr>
+
+                        <tr v-bind:key="`${item.id}expend-key`" v-if="inExpendeds(item.id)">
+                            <td :style="{ borderRightColor: 'transparent'}"></td>
+                            <td v-bind:colspan="columns.length + 1">
+                                {{ item[expendField] }}
+                            </td>
+                        </tr>
+                    </template>
                 </tbody>
             </table>
         </div>
@@ -49,6 +64,11 @@
         name: "g-table",
         components: {
             Icon
+        },
+        data() {
+            return {
+                expendedIds: []
+            }
         },
         props: {
             dataSource: {
@@ -96,7 +116,9 @@
             },
             height: {
                 type: Number,
-
+            },
+            expendField: {
+                type: String
             }
         },
         mounted() {
@@ -179,6 +201,17 @@
             //         this.copyHeader.children[0].children[index].height = height;
             //     });
             // },
+            inExpendeds(id) {
+                return this.expendedIds.indexOf(id) > -1
+            },
+            expendAction (id) {
+                const index = this.expendedIds.indexOf(id);
+                if (index > -1) {
+                    this.expendedIds.splice(index, 1)
+                } else {
+                    this.expendedIds.push(id);
+                }
+            },
             changeOrderBy(key) {
                 console.log('hello');
                 const copy = JSON.parse(JSON.stringify(this.orderBy));
@@ -240,6 +273,17 @@
 
     .table {
         overflow: auto;
+        .icon-wrapper {
+            height: 100%;
+            width: 100%;
+            display: inline-block;
+            .g-icon {
+                transition: all .2s linear;
+                &.active {
+                    transform: rotate(90deg);
+                }
+            }
+        }
     }
 
     .table-loading {

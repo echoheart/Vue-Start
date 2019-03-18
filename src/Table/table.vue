@@ -27,7 +27,7 @@
 
                 <tbody>
                     <template v-for="(item, index) in dataSource">
-                        <tr v-bind:key="item.id">
+                        <tr v-bind:key="item.id" class="tbody-item">
                             <td v-bind:style="{width: '50px'}" >
                                 <span class="icon-wrapper">
                                     <Icon v-bind:class="{active: inExpendeds(item.id)}" v-on:click="expendAction(item.id)" v-if="item[expendField]" name="right"></Icon>
@@ -308,6 +308,11 @@
                 &.active {
                     transform: rotate(90deg);
                 }
+            }
+        }
+        .tbody-item {
+            &:hover {
+                background: #ccc;
             }
         }
     }

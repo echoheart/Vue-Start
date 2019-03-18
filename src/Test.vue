@@ -377,10 +377,10 @@
             //     }
             // }
             edit(item) {
-                alert(`你需要自定义编辑这一项${item}`)
+                alert(`你需要自定义编辑这一项是${item.name}`)
             },
             view(item) {
-                alert(`自定义查看这一项${item}`)
+                alert(`自定义查看这一项是${item.name}`)
             },
             onChangeOrderBy (obj) {
                 console.log('触发更新');

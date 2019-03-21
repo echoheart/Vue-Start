@@ -140,15 +140,26 @@
 
         <!-- {{selectedItems}} -->
 
-        <Table expend-field="description" v-bind:height="500" bordered v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy">
-            <template slot-scope="xxx">
-                <Button v-on:click="edit(xxx.item)">编辑</Button>
-                <Button v-on:click="view(xxx.item)" v-bind:style="{marginLeft: '10px'}">查看</Button>
-            </template>
-        </Table>
-        <Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>
+        <!--<Table expend-field="description" v-bind:height="500" bordered v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy">-->
+            <!--<template slot-scope="xxx">-->
+                <!--<Button v-on:click="edit(xxx.item)">编辑</Button>-->
+                <!--<Button v-on:click="view(xxx.item)" v-bind:style="{marginLeft: '10px'}">查看</Button>-->
+            <!--</template>-->
+        <!--</Table>-->
+        <!--<Table v-bind:loading="loading" v-bind:data-source="dataSource" v-bind:columns="columns" v-bind:striped="false" style="margin:100px" v-bind:selected-items.sync="selectedItems" v-bind:orderBy.sync="orderBy" v-on:update:orderBy="onChangeOrderBy"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>-->
+
+        <Uploader v-bind:parseResponse="parseResponse" accept="image/*" method="post" action="http://127.0.0.1:3000/upload" name="file">
+
+            <Button>上传</Button>
+
+            <template slot="tips">
+                <div>只能上传300KB以内的文件</div>
+            </template>
+        </Uploader>
+
+
 
     </div>
 </template>
@@ -184,6 +195,8 @@
     import Pager from './Pagination/Pager';
 
     import Table from './Table/table';
+
+    import Uploader from './Uploader/uploader';
 
     function ajax(parentId = 0) {
         return new Promise((resolve, reject) => {
@@ -228,7 +241,8 @@
             "g-sub-nav": SubNav,
             Pager,
             Table,
-            Button
+            Button,
+            Uploader
         },
 
         mounted() {
@@ -376,6 +390,13 @@
             //         this.selected.splice(_index, 1);
             //     }
             // }
+            parseResponse (res) {
+                const object = JSON.parse(res);
+                const id = object.filename;
+                const url = `http://127.0.0.1:3000/preview/${id}`;
+                console.log(url);
+                return url;
+            },
             edit(item) {
                 alert(`你需要自定义编辑这一项是${item.name}`)
             },

@@ -150,7 +150,7 @@
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>-->
 
-        <Uploader v-bind:parseResponse="parseResponse" accept="image/*" method="post" action="http://127.0.0.1:3000/upload" name="file">
+        <Uploader v-bind:fileList.sync="fileList" v-bind:parseResponse="parseResponse" accept="image/*" method="post" action="http://127.0.0.1:3000/upload" name="file">
 
             <Button>上传</Button>
 
@@ -253,6 +253,7 @@
         },
         data: function () {
             return {
+                fileList: [],
                 selectedItems: [],
                 loading: false,
                 orderBy: {

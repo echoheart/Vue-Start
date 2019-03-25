@@ -122,6 +122,6 @@
 
 <style scoped lang="scss">
     .uploader {
-        border: 1px solid red;
+        /*border: 1px solid red;*/
     }
 </style>

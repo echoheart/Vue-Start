@@ -150,14 +150,21 @@
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" bordered style="margin:100px"></Table>-->
         <!--<Table v-bind:data-source="dataSource" v-bind:columns="columns" compact style="margin:100px"></Table>-->
 
-        <Uploader v-bind:fileList.sync="fileList" v-bind:parseResponse="parseResponse" accept="image/*" method="post" action="http://127.0.0.1:3000/upload" name="file">
+        <!--<Uploader v-bind:fileList.sync="fileList" v-bind:parseResponse="parseResponse" accept="image/*" method="post" action="http://127.0.0.1:3000/upload" name="file">-->
 
-            <Button>上传</Button>
+            <!--<Button>上传</Button>-->
 
-            <template slot="tips">
-                <div>只能上传300KB以内的文件</div>
-            </template>
-        </Uploader>
+            <!--&lt;!&ndash;<template slot="tips">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div>只能上传300KB以内的文件</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</template>&ndash;&gt;-->
+        <!--</Uploader>-->
+
+        <Sticky style="border: 1px solid green">
+            我是sticky
+        </Sticky>
+        <div style="height: 1000px; border: 1px solid red; margin-top: 100px">
+            我是滚动测试div
+        </div>
 
 
 
@@ -197,6 +204,8 @@
     import Table from './Table/table';
 
     import Uploader from './Uploader/uploader';
+
+    import Sticky from './Sticky/sticky';
 
     function ajax(parentId = 0) {
         return new Promise((resolve, reject) => {
@@ -242,7 +251,8 @@
             Pager,
             Table,
             Button,
-            Uploader
+            Uploader,
+            Sticky
         },
 
         mounted() {

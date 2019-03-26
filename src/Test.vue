@@ -158,11 +158,13 @@
                 <!--&lt;!&ndash;<div>只能上传300KB以内的文件</div>&ndash;&gt;-->
             <!--&lt;!&ndash;</template>&ndash;&gt;-->
         <!--</Uploader>-->
-
-        <Sticky style="border: 1px solid green">
+        <div style="height: 300px; border: 1px solid red; margin-top: 100px">
+            我是滚动测试div
+        </div>
+        <Sticky style="border: 1px solid green; margin-top: 100px; height: 100px;">
             我是sticky
         </Sticky>
-        <div style="height: 1000px; border: 1px solid red; margin-top: 100px">
+        <div style="height: 500px; border: 1px solid red; margin-top: 100px">
             我是滚动测试div
         </div>
 

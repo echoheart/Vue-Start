@@ -9,7 +9,7 @@
     import Vue from 'vue'
 
     export default {
-        name: 'g-collapse',
+        name: 'Collapse',
         props: {
             single: {
                 type: Boolean,

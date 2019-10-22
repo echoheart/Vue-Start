@@ -9,7 +9,7 @@
 <script>
     import Vue from 'vue';
     export default {
-        name: 'g-tabs',
+        name: 'Tabs',
         props: {
             selected: {
                 type: String,

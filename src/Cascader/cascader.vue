@@ -20,10 +20,10 @@
 </template>
 
 <script>
-    import CascaderItems from './cascader-items';
+    import CascaderItems from '../CascaderItem/cascader-items';
     import clickOutSide from '../click-outside';
     export default {
-        name: 'g-cascader',
+        name: 'Cascader',
         components: {
             CascaderItems
         },

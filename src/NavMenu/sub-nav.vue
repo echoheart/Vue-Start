@@ -32,7 +32,7 @@
     import Icon from './../Icon/icon';
 
     export default {
-        name: "GSubNav",
+        name: "SubNav",
         components: {Icon},
         inject: ['root', 'vertical'],
         directives: {clickOutSide},

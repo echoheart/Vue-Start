@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: 'g-carousel-item',
+        name: 'CarouselItem',
         props: {
             // visible: {
             //     type: Boolean,

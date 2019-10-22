@@ -13,7 +13,7 @@
 
 <script>
     export default {
-        name: 'g-collapse-item',
+        name: 'CollapseItem',
         props: {
             title: {
                 type: String,

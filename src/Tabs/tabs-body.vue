@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: 'g-tabs-body'
+        name: 'TabsBody'
     }
 </script>
 

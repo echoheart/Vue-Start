@@ -34,7 +34,7 @@
 <script>
     import Icon from '../Icon/icon';
     export default {
-        name: 'g-carousel',
+        name: 'Carousel',
         components: {
             Icon
         },

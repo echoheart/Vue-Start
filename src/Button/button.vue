@@ -28,7 +28,7 @@
     import Icon from '../Icon/icon';
     export default {
         // props: ['icon', 'iconPosition']
-        name: 'g-button',
+        name: 'Button',
         components: {
           'g-icon': Icon
         },

@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: "GNavItem",
+        name: "NavItem",
         inject: ['root', 'vertical'],
         props: {
             name: {

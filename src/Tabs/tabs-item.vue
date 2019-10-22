@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: 'g-tabs-item',
+        name: 'TabsItem',
         inject: ['eventBus'],
         data() {
             return {

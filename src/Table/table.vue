@@ -67,7 +67,7 @@
     import Icon from './../Icon/icon';
 
     export default {
-        name: "g-table",
+        name: "Table",
         components: {
             Icon
         },

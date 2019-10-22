@@ -12,7 +12,7 @@
 
 <script>
     export default {
-        name: 'g-tabs-header',
+        name: 'TabsHeader',
         inject: ['eventBus'],
         mounted() {
             this.eventBus.$on('update:selected', (item, vm) => {

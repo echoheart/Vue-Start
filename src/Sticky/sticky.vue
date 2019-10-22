@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: "sticky",
+    name: "Sticky",
     props: {
       distance: {
         type: Number,

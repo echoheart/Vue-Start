@@ -25,7 +25,7 @@
   import Button from '../Button/button';
 
   export default {
-    name: "g-uploader",
+    name: "Uploader",
     components: {
       Button
     },

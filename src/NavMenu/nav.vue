@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "GNav",
+        name: "Nav",
         provide () {
           return {
               root: this,

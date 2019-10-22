@@ -21,7 +21,7 @@
     import Icon from '../Icon/icon'
     export default {
         components: {Icon},
-        name: 'g-input',
+        name: 'Input',
         props: {
             value: {
                 type: String

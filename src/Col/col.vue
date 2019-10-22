@@ -11,6 +11,7 @@
 
 <script>
     export default {
+        name: 'Col',
         props: {
             span: [Number, String],
             offset: [Number, String],

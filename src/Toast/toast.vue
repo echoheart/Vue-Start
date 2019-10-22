@@ -18,7 +18,7 @@
     //     console.log('i am toast')
     // }
     export default {
-        name: 'g-toast',
+        name: 'Toast',
         props: {
             autoClose: {
                 type: Boolean,

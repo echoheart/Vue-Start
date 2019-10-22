@@ -18,27 +18,30 @@ import Icon from './Icon/index';
 
 import Input from './Input/index';
 
-import Toast from './Toast/toast';
+import Nav from './Nav/index';
+import NavItem from './NavItem/index';
+import SubNav from './SubNav/index';
 
-import plugin from './Toast/plugin';
-import Tabs from './Tabs/tabs';
-import TabsHeader from './Tabs/tabs-header';
-import TabsItem from './Tabs/tabs-item';
-import TabsBody from './Tabs/tabs-body';
-import TabsPane from './Tabs/tabs-pane';
-import Popover from './Popover/popover';
+import Pager from './Pagination/index';
 
+import Popover from './Popover/index';
 
-import DB from '../test/fixtures/db';
+import Table from './Table/index';
 
-import Nav from './NavMenu/nav';
-import NavItem from './NavMenu/nav-item';
-import SubNav from './NavMenu/sub-nav';
-import Pager from './Pagination/Pager';
-import Table from './Table/table';
-import Uploader from './Uploader/uploader';
+import Toast from './Toast/index';
+
+import Uploader from './Uploader/index';
+
 import Sticky from './Sticky/index';
 
+import Tabs from './Tabs/index';
+import TabsHeader from './TabsHeader/index';
+import TabsItem from './TabsItem/index';
+import TabsBody from './TabsBody/index';
+import TabsPane from './TabsPane/index';
+
+import DB from '../test/fixtures/db';
+import plugin from './Toast/plugin';
 const components = [
   Button,
   Icon,
@@ -65,6 +68,7 @@ const components = [
   Collapse,
   Carousel,
   Cascader,
+  Table
 ];
 
 const install = function() {
@@ -101,5 +105,5 @@ export default {
   Carousel,
   Cascader,
   DB,
-  CascaderItem
+  CascaderItem,
 }

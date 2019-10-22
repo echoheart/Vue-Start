@@ -28,8 +28,8 @@
 </template>
 
 <script>
-    import clickOutSide from './../click-outside';
-    import Icon from './../Icon/icon';
+    import clickOutSide from '../click-outside';
+    import Icon from '../Icon/icon';
 
     export default {
         name: "SubNav",

@@ -21,7 +21,7 @@
 
 <script>
     import CascaderItems from '../CascaderItem/cascader-items';
-    import clickOutSide from '../click-outside';
+    import clickOutSide from '../utils/click-outside';
     export default {
         name: 'Cascader',
         components: {

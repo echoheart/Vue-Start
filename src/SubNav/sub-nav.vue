@@ -28,7 +28,7 @@
 </template>
 
 <script>
-    import clickOutSide from '../click-outside';
+    import clickOutSide from '../utils/click-outside';
     import Icon from '../Icon/icon';
 
     export default {

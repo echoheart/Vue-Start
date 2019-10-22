@@ -3,7 +3,7 @@
     <div style="height: 1500px; border: 1px solid red; margin-top: 100px">
       我是滚动测试div
     </div>
-    <Sticky style="border: 1px solid green;" distance="100">
+    <Sticky style="border: 1px solid green;" :distance="100">
       <div style="height: 500px;">
         我是sticky
       </div>

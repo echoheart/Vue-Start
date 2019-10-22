@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper-sticky" ref="wrapper" :style="{height}">
-    <div class="wrapper-sticky-inner" :class="classes" :style="{left, width}">
+    <div class="wrapper-sticky-inner" :class="classes" :style="{left, width, top}">
       <slot></slot>
     </div>
   </div>
@@ -9,12 +9,19 @@
 <script>
   export default {
     name: "sticky",
+    props: {
+      distance: {
+        type: Number,
+        default: 0
+      }
+    },
     data() {
       return {
         sticky: false,
         height: undefined,
         width: undefined,
         left: undefined,
+        top: undefined
       }
     },
     computed: {
@@ -44,7 +51,8 @@
         this.height = height + 'px';
         this.width = width + 'px';
         this.left = left + 'px';
-        this.sticky = top < window.scrollY;
+        this.top = this.distance + 'px';
+        this.sticky = top < window.scrollY + this.distance;
       }
     }
   }

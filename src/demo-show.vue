@@ -1,12 +1,14 @@
 <template>
   <div>
-    <div style="height: 300px; border: 1px solid red; margin-top: 100px">
+    <div style="height: 1500px; border: 1px solid red; margin-top: 100px">
       我是滚动测试div
     </div>
-    <Sticky style="border: 1px solid green; margin-top: 100px; height: 100px;">
-      我是sticky
+    <Sticky style="border: 1px solid green; margin: 30px" distance="100">
+      <div style="height: 500px; margin: 30px">
+        我是sticky
+      </div>
     </Sticky>
-    <div style="height: 500px; border: 1px solid red; margin-top: 100px">
+    <div style="height: 1500px; border: 1px solid red; margin-top: 100px">
       我是滚动测试div
     </div>
   </div>
@@ -71,7 +73,7 @@
 
   Vue.use(plugin);
   export default {
-    name: "demo",
+    name: "demo-show",
     components: {
       "g-button": Button,
       "g-popover": Popover,

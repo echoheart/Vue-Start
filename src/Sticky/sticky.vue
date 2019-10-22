@@ -1,6 +1,6 @@
 <template>
-  <div class="sticky" ref="wrapper" :style="{height}">
-    <div class="sticky-inner" :class="classes" :style="{left, width}">
+  <div class="wrapper-sticky" ref="wrapper" :style="{height}">
+    <div class="wrapper-sticky-inner" :class="classes" :style="{left, width}">
       <slot></slot>
     </div>
   </div>
@@ -25,7 +25,7 @@
       }
     },
     mounted() {
-      let top = this.getTop();
+      this.onScrollHandler = this._onScrollHandler.bind(this);
       document.addEventListener('scroll', this.onScrollHandler)
     },
     beforeDestroy() {
@@ -38,7 +38,8 @@
         console.log('top:',top, 'scrollY:', scrollY);
         return top + scrollY
       },
-      onScrollHandler() {
+      _onScrollHandler() {
+        let top = this.getTop();
         const {height, left, width} = this.$refs.wrapper.getBoundingClientRect();
         this.height = height + 'px';
         this.width = width + 'px';
@@ -50,7 +51,11 @@
 </script>
 
 <style scoped lang="scss">
-  .sticky {
+  .wrapper-sticky {
+    &-inner {
+      background: green;
+      opacity: 0.3;
+    }
     .sticky {
       position: fixed;
       top: 0;

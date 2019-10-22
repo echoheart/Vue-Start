@@ -1,4 +1,6 @@
 import Toast from './toast';
-import Vue from 'vue';
-Vue.component(Toast.name, Toast);
+Toast.install = function(Vue) {
+  Vue.component(Toast.name, Toast);
+};
+
 export default Toast;

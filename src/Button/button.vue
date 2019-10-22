@@ -17,8 +17,8 @@
         <!--<svg v-if="icon" class="icon">-->
             <!--<use v-bind:xlink:href="`#icon-${icon}`"></use>-->
         <!--</svg>-->
-        <g-icon v-if="icon && !loading" v-bind:name="icon"></g-icon>
-        <g-icon v-if="loading" class="loading" name="loading"></g-icon>
+        <Icon v-if="icon && !loading" v-bind:name="icon"></Icon>
+        <Icon v-if="loading" class="loading" name="loading"></Icon>
         <div class="g-content">
             <slot></slot>
         </div>
@@ -30,7 +30,7 @@
         // props: ['icon', 'iconPosition']
         name: 'Button',
         components: {
-          'g-icon': Icon
+          Icon
         },
         props: {
             icon: {

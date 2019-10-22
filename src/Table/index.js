@@ -1,4 +1,6 @@
 import Table from './table';
-import Vue from 'vue';
-Vue.component(Table.name, Table);
+Table.install = function(Vue) {
+  Vue.component(Table.name, Table);
+};
+
 export default Table;

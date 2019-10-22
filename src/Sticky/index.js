@@ -1,4 +1,7 @@
 import Sticky from './sticky';
-import Vue from 'vue';
-Vue.component(Sticky.name, Sticky);
+Sticky.install = function(Vue) {
+  Vue.component(Sticky.name, Sticky);
+};
+
+
 export default Sticky;

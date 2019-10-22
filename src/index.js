@@ -76,8 +76,11 @@ const install = function() {
     Vue.component(component.name, component);
   });
 };
-install();
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
+}
 export default {
+  install,
   Button,
   Icon,
   ButtonGroup,

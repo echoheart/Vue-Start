@@ -1,4 +1,6 @@
 import CascaderItem from './cascader-items';
-import Vue from 'vue';
-Vue.component(CascaderItem.name, CascaderItem);
+CascaderItem.install = function(Vue) {
+  Vue.component(CascaderItem.name, CascaderItem);
+};
+
 export default CascaderItem;

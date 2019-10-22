@@ -1,4 +1,6 @@
 import Paper from './Pager';
-import Vue from 'vue';
-Vue.component(Paper.name, Paper);
+Paper.install = function(Vue) {
+  Vue.component(Paper.name, Paper);
+};
+
 export default Paper;

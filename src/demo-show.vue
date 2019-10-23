@@ -30,6 +30,12 @@
         <Button>按钮</Button>
       </Button-group>
     </div>
+    <div class="demo-show-item">
+      <Input :value="inputValue" v-on:change="onInputChange"></Input>
+      <Input :disabled="true"></Input>
+      <Input :readonly="true"></Input>
+      <Input error="密码太短"></Input>
+    </div>
   </div>
 </template>
 
@@ -72,7 +78,9 @@
 
     },
     data: function () {
-      return {}
+      return {
+        inputValue: '初始值'
+      }
     },
     methods: {
       onIconClick(e) {
@@ -80,6 +88,10 @@
       },
       onButtonClick(e) {
         console.log(e);
+      },
+      onInputChange(e) {
+        console.log(e.srcElement.value);
+        this.inputValue = e.srcElement.value;
       },
     }
   }
@@ -93,9 +105,12 @@
     &-item {
       width: 40%;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       margin: 25px;
       flex-wrap: wrap;
+       > * {
+         margin-bottom: 8px;
+       }
     }
   }
   * {

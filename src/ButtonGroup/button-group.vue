@@ -17,7 +17,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   $button-radius: 4px;
   .g-button-group {
     display: inline-flex;

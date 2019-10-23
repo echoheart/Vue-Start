@@ -1,11 +1,10 @@
 <template>
-  <!--使用css控制icon位置-->
   <button class="g-button" v-bind:class="{[`icon-${iconPosition}`]: true}" v-on:click="$emit('click')">
     <Icon v-if="icon && !loading" v-bind:name="icon"></Icon>
     <Icon v-if="loading" class="loading" name="loading"></Icon>
-    <div class="g-content">
+    <span class="g-content">
       <slot>button</slot>
-    </div>
+    </span>
   </button>
 </template>
 <script>
@@ -30,7 +29,6 @@
         validator(value) {
           return value === 'left' || value === 'right';
         }
-
       }
     }
   }
@@ -48,8 +46,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    /*解决内联元素不能上下对齐问题,该值默认值为base-line*/
-    vertical-align: middle;
+    line-height: 1em;
 
     &:hover {
       border-color: $border-color-hover;

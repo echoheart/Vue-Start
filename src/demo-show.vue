@@ -1,7 +1,35 @@
 <template>
-  <div>
-    <Icon name="loading" v-on:click="this.onIconClick"></Icon>
-    <Button></Button>
+  <div class="demo-show">
+    <div class="demo-show-item">
+      <Icon name="loading" v-on:click="this.onIconClick"></Icon>
+      <Icon name="left" v-on:click="this.onIconClick"></Icon>
+      <Icon name="right" v-on:click="this.onIconClick"></Icon>
+    </div>
+    <div class="demo-show-item">
+      <Button v-on:click="onButtonClick" icon="left" :loading="false"></Button>
+      <Button :loading="true"></Button>
+      <Button icon="right" iconPosition="right"></Button>
+
+    </div>
+    <div class="demo-show-item">
+
+    </div>
+    <div class="demo-show-item">
+
+    </div>
+    <div class="demo-show-item">
+      <Button-group>
+        <Button>按钮</Button>
+        <Button>按钮</Button>
+        <Button>按钮</Button>
+      </Button-group>
+    </div>
+    <div class="demo-show-item">
+      <Button-group>
+        <Button>按钮</Button>
+        <Button>按钮</Button>
+      </Button-group>
+    </div>
   </div>
 </template>
 
@@ -10,6 +38,7 @@
   import VueUI from './index';
   import plugin from './Toast/plugin';
   import DB from '../test/fixtures/db';
+
   Vue.use(VueUI);
   Vue.use(plugin);
 
@@ -48,12 +77,27 @@
     methods: {
       onIconClick(e) {
         console.log(e);
-      }
+      },
+      onButtonClick(e) {
+        console.log(e);
+      },
     }
   }
 </script>
 
-<style>
+<style lang="scss">
+  .demo-show {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    &-item {
+      width: 40%;
+      display: flex;
+      justify-content: space-around;
+      margin: 25px;
+      flex-wrap: wrap;
+    }
+  }
   * {
     padding: 0;
     margin: 0;
@@ -75,13 +119,4 @@
     --border-colro-hover: #666;
   }
 
-  .box {
-    width: 100%;
-    height: 300px;
-    background-color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 38px;
-  }
 </style>

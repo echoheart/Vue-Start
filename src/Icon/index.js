@@ -1,7 +1,6 @@
 import Icon from './icon';
 Icon.install = function(Vue) {
-  Vue.component(Icon.name, CollaIconpseItem);
+  Vue.component(Icon.name, Icon);
 };
-
 
 export default Icon;

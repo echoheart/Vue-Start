@@ -1,26 +1,18 @@
 <template>
   <div>
-    <div style="height: 1500px; border: 1px solid red; margin-top: 100px">
-      我是滚动测试div
-    </div>
-    <Sticky style="border: 1px solid green;" :distance="100">
-      <div style="height: 500px;">
-        我是sticky
-      </div>
-    </Sticky>
-    <div style="height: 1500px; border: 1px solid red; margin-top: 100px">
-      我是滚动测试div
-    </div>
+    <Icon name="loading" v-on:click="this.onIconClick"></Icon>
+    <Button></Button>
   </div>
 </template>
 
 <script>
   import Vue from 'vue';
-  import Components from './index';
+  import VueUI from './index';
   import plugin from './Toast/plugin';
   import DB from '../test/fixtures/db';
+  Vue.use(VueUI);
   Vue.use(plugin);
-  Vue.use(Components);
+
 
   function ajax(parentId = 0) {
     return new Promise((resolve, reject) => {
@@ -44,8 +36,6 @@
 
   export default {
     name: "demo-show",
-
-
     mounted() {
 
     },
@@ -56,7 +46,9 @@
       return {}
     },
     methods: {
-
+      onIconClick(e) {
+        console.log(e);
+      }
     }
   }
 </script>
@@ -91,6 +83,5 @@
     justify-content: center;
     align-items: center;
     font-size: 38px;
-    /*border: 1px solid red;*/
   }
 </style>

@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Button from './Button/index';
 import ButtonGroup from './ButtonGroup/index';
 
@@ -71,7 +70,7 @@ const components = [
   Table
 ];
 
-const install = function() {
+const install = function(Vue) {
   components.forEach(component => {
     Vue.component(component.name, component);
   });

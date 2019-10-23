@@ -40,7 +40,7 @@ import TabsBody from './TabsBody/index';
 import TabsPane from './TabsPane/index';
 
 import DB from '../test/fixtures/db';
-import plugin from './Toast/plugin';
+// import plugin from './Toast/plugin';
 const components = [
   Button,
   Icon,
@@ -74,6 +74,7 @@ const install = function(Vue) {
   components.forEach(component => {
     Vue.component(component.name, component);
   });
+  Vue.prototype.$toast = Toast;
 };
 export default {
   install,
@@ -84,7 +85,6 @@ export default {
   Col,
   Row,
   Toast,
-  plugin,
   Table,
   Uploader,
   Sticky,

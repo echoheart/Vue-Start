@@ -36,17 +36,18 @@
       <Input :readonly="true"></Input>
       <Input error="密码太短"></Input>
     </div>
+    <div class="demo-show-item">
+      <Button @click="onToastClick">Toast</Button>
+    </div>
   </div>
 </template>
 
 <script>
   import Vue from 'vue';
   import VueUI from './index';
-  import plugin from './Toast/plugin';
   import DB from '../test/fixtures/db';
 
   Vue.use(VueUI);
-  Vue.use(plugin);
 
 
   function ajax(parentId = 0) {
@@ -92,6 +93,10 @@
       onInputChange(e) {
         console.log(e.srcElement.value);
         this.inputValue = e.srcElement.value;
+      },
+      onToastClick() {
+        console.log(this);
+        this.$toast('success');
       },
     }
   }

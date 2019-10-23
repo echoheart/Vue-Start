@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper-animation" v-bind:class="toastClasses">
-    <div class="toast">
+    <div class="toast" ref="toast">
       <slot></slot>
-<!--      <div class="line"></div>-->
+      <div class="line" ref="line"></div>
       <span class="close"
             v-if="closeButton"
             v-on:click="onClickClose"
@@ -27,11 +27,8 @@
       }
     },
     mounted() {
-      if (this.autoClose) {
-        setTimeout(() => {
-          this.close();
-        }, this.autoCloseDelay * 1000)
-      }
+    	this.updateStyles();
+      this.onAutoClose();
     },
     computed: {
       toastClasses() {
@@ -39,6 +36,18 @@
       }
     },
     methods: {
+			onAutoClose () {
+				if (this.autoClose) {
+					setTimeout(() => {
+						this.close();
+					}, this.autoCloseDelay * 1000)
+				}
+			},
+			updateStyles () {
+				this.$nextTick(() => {
+					this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
+        })
+			},
       close() {
         this.$el.remove();
         this.$emit('close');
@@ -117,7 +126,7 @@
       display: flex;
       align-items: center;
       background-color: rgba(0, 0, 0, 0.75);
-      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
       color: #FFF;
       padding: 0 14px;
       border-radius: 4px;
@@ -125,10 +134,11 @@
       .close {
         padding-left: 16px;
         flex-shrink: 0;
+        cursor: pointer;
       }
 
       .line {
-        height: 100%;
+        /*height: 100%;*/
         border: 1px solid #666;
         margin-left: 16px;
       }

@@ -153,9 +153,8 @@
       onToastClick() {
         this.$toast('message');
       },
-			onTabClick(name, tab) {
+			onTabClick(name) {
       	this.tabValue = name;
-				console.log(name);
 			},
     }
   }

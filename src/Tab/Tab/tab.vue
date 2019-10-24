@@ -35,7 +35,7 @@
 		data() {
 			return {
 				eventBus: new Vue(),
-        labelsNames: []
+        labelsNames: [],
 			}
 		},
     methods: {
@@ -53,14 +53,13 @@
       }
     },
 		created() {
-      this.eventBus.$on('update-value',(name, tab) => {
-      	this.$emit('click', name, tab);
+      this.eventBus.$on('update-value',(name) => {
+      	this.$emit('click', name);
 			})
 		},
 		mounted() {
-			console.log('parent-mounted');
       this.labelsNames = this.getLabelsNames();
-      /*v-for渲染的子组件生命周期有误?*/
+      /*v-for渲染的子组件生命周期和父组件生命周期顺序不符合预期*/
       this.$nextTick(() => {
 				this.eventBus.$emit('update-value', this.value);
       });

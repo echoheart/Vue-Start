@@ -1,4 +1,4 @@
-import TabsHeader from './tabs-header.vue';
+import TabsHeader from './tab-header.vue';
 TabsHeader.install = function(Vue) {
   Vue.component(TabsHeader.name, TabsHeader);
 };

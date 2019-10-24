@@ -10,8 +10,8 @@ import CascaderItem from './CascaderItem/index';
 import Collapse from './Collapse/index';
 import CollapseItem from './CollapseItem/index';
 
-import Col from './Col/index';
-import Row from './Row/index';
+import Col from './Grid/Col/index';
+import Row from './Grid/Row/index';
 
 import Icon from './Icon/index';
 
@@ -33,11 +33,11 @@ import Uploader from './Uploader/index';
 
 import Sticky from './Sticky/index';
 
-import Tabs from './Tabs/index';
-import TabsHeader from './TabsHeader/index';
-import TabsItem from './TabsItem/index';
-import TabsBody from './TabsBody/index';
-import TabsPane from './TabsPane/index';
+import Tab from './Tab/Tab/index';
+import TabHeader from './Tab/TabHeader/index';
+import TabItem from './Tab/TabItem/index';
+import TabBody from './Tab/TabBody/index';
+import TabPane from './Tab/TabPane/index';
 
 import DB from '../test/fixtures/db';
 // import plugin from './Toast/plugin';
@@ -56,11 +56,11 @@ const components = [
   SubNav,
   Nav,
   NavItem,
-  Tabs,
-  TabsBody,
-  TabsHeader,
-  TabsItem,
-  TabsPane,
+  Tab,
+  TabBody,
+  TabHeader,
+  TabItem,
+  TabPane,
   CarouselItem,
   CollapseItem,
   Popover,
@@ -92,11 +92,11 @@ export default {
   SubNav,
   Nav,
   NavItem,
-  Tabs,
-  TabsBody,
-  TabsHeader,
-  TabsItem,
-  TabsPane,
+  Tab,
+  TabBody,
+  TabHeader,
+  TabItem,
+  TabPane,
   CarouselItem,
   CollapseItem,
   Popover,

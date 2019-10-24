@@ -85,6 +85,15 @@
         </Col>
       </Row>
     </div>
+
+    <div class="demo-show-item">
+      <Tab :value="this.tabValue" v-on:click="this.onTabClick">
+        <TabPane name="你好1" label="标题一">1</TabPane>
+        <TabPane name="哈哈2" label="标题二">2</TabPane>
+        <TabPane name="你好3" label="标题三">3</TabPane>
+        <TabPane name="哈哈4" label="标题四">4</TabPane>
+      </Tab>
+    </div>
   </div>
 </template>
 
@@ -124,9 +133,10 @@
     created() {
 
     },
-    data: function () {
+    data() {
       return {
-        inputValue: '初始值'
+        inputValue: '初始值',
+				tabValue: '你好1'
       }
     },
     methods: {
@@ -143,6 +153,9 @@
       onToastClick() {
         this.$toast('message');
       },
+			onTabClick(tab, event) {
+      	this.tabValue = tab;
+			},
     }
   }
 </script>

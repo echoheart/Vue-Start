@@ -9,13 +9,6 @@
       <Button v-on:click="onButtonClick" icon="left" :loading="false"></Button>
       <Button :loading="true"></Button>
       <Button icon="right" iconPosition="right"></Button>
-
-    </div>
-    <div class="demo-show-item">
-
-    </div>
-    <div class="demo-show-item">
-
     </div>
     <div class="demo-show-item">
       <Button-group>
@@ -38,6 +31,59 @@
     </div>
     <div class="demo-show-item">
       <Button @click="onToastClick">Toast</Button>
+    </div>
+
+    <div class="demo-show-item">
+      <Row style="width: 100%;" class="row-bg">
+        <Col span="10">
+          <div class="grid-content bg-purple"></div>
+        </Col>
+        <Col span="14">
+          <div class="grid-content bg-purple-light"></div>
+        </Col>
+      </Row>
+    </div>
+    <div class="demo-show-item">
+      <Row style="width: 100%;" class="row-bg">
+        <Col span="2">
+          <div class="grid-content bg-purple"></div>
+        </Col>
+        <Col span="22">
+          <div class="grid-content bg-purple-light"></div>
+        </Col>
+      </Row>
+    </div>
+    <div class="demo-show-item">
+      <Row style="width: 100%;" class="row-bg" gutter="20">
+        <Col span="6">
+          <div class="grid-content bg-purple"></div>
+        </Col>
+        <Col span="6">
+          <div class="grid-content bg-purple-light"></div>
+        </Col>
+        <Col span="6">
+          <div class="grid-content bg-purple"></div>
+        </Col>
+        <Col span="6">
+          <div class="grid-content bg-purple-light"></div>
+        </Col>
+      </Row>
+    </div>
+    <div class="demo-show-item">
+      <Row style="width: 100%;" class="row-bg fff">
+        <Col span="6">
+          <div class="grid-content bg-purple"></div>
+        </Col>
+        <Col span="6">
+          <div class="grid-content bg-purple-light"></div>
+        </Col>
+        <Col span="6">
+          <div class="grid-content bg-purple"></div>
+        </Col>
+        <Col span="3">
+          <div class="grid-content bg-purple-light"></div>
+        </Col>
+      </Row>
     </div>
   </div>
 </template>
@@ -95,14 +141,29 @@
         this.inputValue = e.srcElement.value;
       },
       onToastClick() {
-        console.log(this);
-        this.$toast('success');
+        this.$toast('message');
       },
     }
   }
 </script>
 
 <style lang="scss">
+  .row-bg {
+    &.fff {
+      background: #fff;
+    }
+    background-color: #f9fafc;
+    .grid-content {
+      border-radius: 4px;
+      min-height: 36px;
+    }
+    .bg-purple {
+      background: #d3dce6;
+    }
+    .bg-purple-light {
+      background: #e5e9f2;
+    }
+  }
   .demo-show {
     display: flex;
     justify-content: space-around;
@@ -116,6 +177,8 @@
        > * {
          margin-bottom: 8px;
        }
+      border: 1px solid #eee;
+      padding: 8px;
     }
   }
   * {

@@ -53,8 +53,8 @@
       }
     },
 		created() {
-      this.eventBus.$on('update-value',(name) => {
-      	this.$emit('click', name);
+      this.eventBus.$on('update-value',(name, tab) => {
+      	this.$emit('click', name, tab);
 			})
 		},
 		mounted() {

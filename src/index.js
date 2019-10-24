@@ -34,13 +34,9 @@ import Uploader from './Uploader/index';
 import Sticky from './Sticky/index';
 
 import Tab from './Tab/Tab/index';
-import TabHeader from './Tab/TabHeader/index';
-import TabItem from './Tab/TabItem/index';
-import TabBody from './Tab/TabBody/index';
 import TabPane from './Tab/TabPane/index';
 
 import DB from '../test/fixtures/db';
-// import plugin from './Toast/plugin';
 const components = [
   Button,
   Icon,
@@ -57,9 +53,6 @@ const components = [
   Nav,
   NavItem,
   Tab,
-  TabBody,
-  TabHeader,
-  TabItem,
   TabPane,
   CarouselItem,
   CollapseItem,
@@ -92,10 +85,6 @@ export default {
   SubNav,
   Nav,
   NavItem,
-  Tab,
-  TabBody,
-  TabHeader,
-  TabItem,
   TabPane,
   CarouselItem,
   CollapseItem,

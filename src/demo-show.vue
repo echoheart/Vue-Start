@@ -88,10 +88,10 @@
 
     <div class="demo-show-item">
       <Tab :value="this.tabValue" v-on:click="this.onTabClick">
-        <TabPane name="你好1" label="标题一">1</TabPane>
-        <TabPane name="哈哈2" label="标题二">2</TabPane>
-        <TabPane name="你好3" label="标题三">3</TabPane>
-        <TabPane name="哈哈4" label="标题四">4</TabPane>
+        <TabPane name="one" label="标题一">one</TabPane>
+        <TabPane name="two" label="标题二">two</TabPane>
+        <TabPane name="three" label="标题三">three</TabPane>
+        <TabPane name="four" label="标题四">four</TabPane>
       </Tab>
     </div>
   </div>
@@ -136,7 +136,7 @@
     data() {
       return {
         inputValue: '初始值',
-				tabValue: '你好1'
+				tabValue: 'one'
       }
     },
     methods: {
@@ -153,8 +153,9 @@
       onToastClick() {
         this.$toast('message');
       },
-			onTabClick(tab, event) {
-      	this.tabValue = tab;
+			onTabClick(name, tab) {
+      	this.tabValue = name;
+				console.log(name);
 			},
     }
   }

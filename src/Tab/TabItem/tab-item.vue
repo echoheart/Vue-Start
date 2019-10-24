@@ -36,11 +36,11 @@
 			});
 		},
     mounted() {
-
+      console.log(this)
     },
 		methods: {
 			emitUpdateSelected() {
-				this.eventBus.$emit('update-value', this.name);
+				this.eventBus.$emit('update-value', this.name, this);
 			}
 		}
 	}

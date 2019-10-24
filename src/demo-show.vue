@@ -43,6 +43,22 @@
         </Col>
       </Row>
     </div>
+    <div class="demo-show-item" style="justify-content: center;">
+      <Row style="width: 100%;" class="row-bg-gutter" gutter="20">
+        <Col span="6">
+          <div class="grid-content bg-purple">1</div>
+        </Col>
+        <Col span="6">
+          <div class="grid-content bg-purple-light">2</div>
+        </Col>
+        <Col span="6">
+          <div class="grid-content bg-purple">3</div>
+        </Col>
+        <Col span="6">
+          <div class="grid-content bg-purple-light">4</div>
+        </Col>
+      </Row>
+    </div>
     <div class="demo-show-item">
       <Row style="width: 100%;" class="row-bg">
         <Col span="2">
@@ -53,24 +69,9 @@
         </Col>
       </Row>
     </div>
+
     <div class="demo-show-item">
-      <Row style="width: 100%;" class="row-bg" gutter="50">
-        <Col span="6">
-          <div class="grid-content bg-purple"></div>
-        </Col>
-        <Col span="6">
-          <div class="grid-content bg-purple-light"></div>
-        </Col>
-        <Col span="6">
-          <div class="grid-content bg-purple"></div>
-        </Col>
-        <Col span="6">
-          <div class="grid-content bg-purple-light"></div>
-        </Col>
-      </Row>
-    </div>
-    <div class="demo-show-item">
-      <Row style="width: 100%;" class="row-bg fff" gutter="10">
+      <Row style="width: 100%;" class="row-bg fff">
         <Col span="6">
           <div class="grid-content bg-purple"></div>
         </Col>
@@ -94,106 +95,127 @@
         <TabPane name="four" label="标题四">four</TabPane>
       </Tab>
     </div>
+    <div class="demo-show-item">
+      <Popover>
+        <Button>按钮</Button>
+      </Popover>
+      <Popover>
+        <Button>按钮</Button>
+      </Popover>
+    </div>
   </div>
 </template>
 
 <script>
-  import Vue from 'vue';
-  import VueUI from './index';
-  import DB from '../test/fixtures/db';
+	import Vue from 'vue';
+	import VueUI from './index';
+	import DB from '../test/fixtures/db';
 
-  Vue.use(VueUI);
+	Vue.use(VueUI);
 
 
-  function ajax(parentId = 0) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const result = DB.filter((item) => {
-          return item.parent_id === parentId;
-        });
-        result.forEach((node) => {
-          if (DB.filter((item) => {
-            return item.parent_id === node.id;
-          }).length > 0) {
-            node.isLeaf = false;
-          } else {
-            node.isLeaf = true;
-          }
-        });
-        resolve(result);
-      }, 300);
-    });
-  }
+	function ajax(parentId = 0) {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				const result = DB.filter((item) => {
+					return item.parent_id === parentId;
+				});
+				result.forEach((node) => {
+					if (DB.filter((item) => {
+						return item.parent_id === node.id;
+					}).length > 0) {
+						node.isLeaf = false;
+					} else {
+						node.isLeaf = true;
+					}
+				});
+				resolve(result);
+			}, 300);
+		});
+	}
 
-  export default {
-    name: "demo-show",
-    mounted() {
+	export default {
+		name: "demo-show",
+		mounted() {
 
-    },
-    created() {
+		},
+		created() {
 
-    },
-    data() {
-      return {
-        inputValue: '初始值',
+		},
+		data() {
+			return {
+				inputValue: '初始值',
 				tabValue: 'one'
-      }
-    },
-    methods: {
-      onIconClick(e) {
-        console.log(e);
-      },
-      onButtonClick(e) {
-        console.log(e);
-      },
-      onInputChange(e) {
-        console.log(e.srcElement.value);
-        this.inputValue = e.srcElement.value;
-      },
-      onToastClick() {
-        this.$toast('message');
-      },
-			onTabClick(name) {
-      	this.tabValue = name;
+			}
+		},
+		methods: {
+			onIconClick(e) {
+				console.log(e);
 			},
-    }
-  }
+			onButtonClick(e) {
+				console.log(e);
+			},
+			onInputChange(e) {
+				console.log(e.srcElement.value);
+				this.inputValue = e.srcElement.value;
+			},
+			onToastClick() {
+				this.$toast('message');
+			},
+			onTabClick(name) {
+				this.tabValue = name;
+			},
+		}
+	}
 </script>
 
 <style lang="scss">
   .row-bg {
+    &-gutter {
+      background-color: #fff;
+    }
+
     &.fff {
       background: #fff;
     }
+
     background-color: #f9fafc;
-    .grid-content {
-      border-radius: 4px;
-      min-height: 36px;
-    }
-    .bg-purple {
-      background: #d3dce6;
-    }
-    .bg-purple-light {
-      background: #e5e9f2;
-    }
   }
+
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+
+  .bg-purple {
+    background: #d3dce6;
+  }
+
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+
   .demo-show {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+
     &-item {
       width: 40%;
       display: flex;
       justify-content: space-between;
       margin: 25px;
       flex-wrap: wrap;
-       > * {
-         margin-bottom: 8px;
-       }
+
+      > * {
+        margin-bottom: 8px;
+      }
+
       border: 1px solid #eee;
       padding: 8px;
     }
   }
+
   * {
     padding: 0;
     margin: 0;

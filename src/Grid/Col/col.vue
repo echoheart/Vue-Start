@@ -3,7 +3,7 @@
        v-bind:class="[`col-${span}`, offset && `offset-${offset}`]"
        v-bind:style="this.colStyle"
   >
-      <slot></slot>
+    <slot></slot>
   </div>
 </template>
 
@@ -15,13 +15,13 @@
 			offset: [Number, String],
 		},
 		computed: {
-        colStyle() {
-            const {gutter} = this;
-            return {
-                paddingLeft: gutter/2 + 'px',
-                paddingRight: gutter/2 + 'px'
-            }
-        }
+			colStyle() {
+				const {gutter} = this;
+				return {
+					paddingLeft: gutter / 2 + 'px',
+					paddingRight: gutter / 2 + 'px'
+				}
+			}
 		},
 		data() {
 			return {

@@ -15,11 +15,11 @@
 		computed: {
 			rowStyle() {
 				return {
-					// marginLeft: -this.gutter/2 + 'px',
-          marginRight: -this.gutter/2 + 'px'
-        }
-      }
-    },
+					marginLeft: -this.gutter/2 + 'px',
+					marginRight: -this.gutter / 2 + 'px'
+				}
+			}
+		},
 		mounted() {
 			this.$children.map(function (vm) {
 				vm.gutter = this.gutter;

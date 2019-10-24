@@ -54,7 +54,7 @@
       </Row>
     </div>
     <div class="demo-show-item">
-      <Row style="width: 100%;" class="row-bg" gutter="20">
+      <Row style="width: 100%;" class="row-bg" gutter="50">
         <Col span="6">
           <div class="grid-content bg-purple"></div>
         </Col>
@@ -70,7 +70,7 @@
       </Row>
     </div>
     <div class="demo-show-item">
-      <Row style="width: 100%;" class="row-bg fff">
+      <Row style="width: 100%;" class="row-bg fff" gutter="10">
         <Col span="6">
           <div class="grid-content bg-purple"></div>
         </Col>

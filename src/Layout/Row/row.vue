@@ -15,7 +15,7 @@
 		computed: {
 			rowStyle() {
 				return {
-					marginLeft: -this.gutter/2 + 'px',
+					// marginLeft: -this.gutter/2 + 'px',
           marginRight: -this.gutter/2 + 'px'
         }
       }
@@ -32,5 +32,6 @@
 <style lang="scss" scoped>
   .row {
     display: flex;
+    flex-wrap: wrap;
   }
 </style>

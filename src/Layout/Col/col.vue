@@ -3,9 +3,7 @@
        v-bind:class="[`col-${span}`, offset && `offset-${offset}`]"
        v-bind:style="this.colStyle"
   >
-    <div class="inner" style="background: #f9fafc; border-radius: 4px;">
       <slot></slot>
-    </div>
   </div>
 </template>
 

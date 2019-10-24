@@ -23,7 +23,6 @@
 		mounted() {
 			this.$children.map(function (vm) {
 				vm.gutter = this.gutter;
-				console.log(this.gutter);
 			}.bind(this));
 		}
 	}

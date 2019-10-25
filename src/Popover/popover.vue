@@ -63,21 +63,26 @@
         const height2 = this.$refs.popoverContent.getBoundingClientRect().height;
         const scrollX = window.scrollX;
         const scrollY = window.scrollY;
-        if (this.position === 'top') {
-          left = `${left + scrollX}px`;
-          top = `${top + scrollY}px`;
-        } else if (this.position === 'bottom') {
-          left = `${left + scrollX}px`;
-          top = `${top + scrollY + height}px`;
-        } else if (this.position === 'left') {
-          left = `${left + scrollX}px`;
-          console.log(height, height2);
-          top = `${top + scrollY + (height - height2) / 2}px`;
-        } else {
-          left = `${left + scrollX + width}px`;
-          console.log(height, height2);
-          top = `${top + scrollY + (height - height2) / 2}px`;
-        }
+        const positions = {
+          top: {
+            left: left + scrollX,
+            top: top + scrollY
+          },
+          bottom: {
+            left: left + scrollX,
+            top: top + scrollY + height
+          },
+          left: {
+            left: left + scrollX,
+            top: top + scrollY + (height - height2) / 2
+          },
+          right: {
+            left: left + scrollX + width,
+            top: top + scrollY + (height - height2) / 2
+          }
+        };
+        left = positions[this.position].left + 'px';
+        top = positions[this.position].top + 'px';
         /*hack技巧出发dom渲染更新?*/
         this.visible = true;
         Object.assign(this.popoverStyle, {

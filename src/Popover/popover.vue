@@ -1,10 +1,11 @@
 <template>
   <div class="popover" v-on:click="onClick" ref="popover">
-    <div ref="contentWrapper" class="content-wrapper" v-if="visible">
-      <slot name="content"></slot>
+    <div ref="popoverContent" class="content-wrapper" v-show="this.visible" :style="popoverStyle">
+      <div class="popover-title" v-if="title" v-text="title"></div>
+      <slot>{{ this.content }}</slot>
     </div>
-    <span ref="trigger">
-        <slot></slot>
+    <span ref="trigger" style="display: inline-block;">
+        <slot name="trigger"></slot>
     </span>
   </div>
 </template>
@@ -12,63 +13,78 @@
 <script>
 	export default {
 		name: 'Popover',
+    props: {
+			content: {
+				default: 'content'
+      },
+      title: {
+				default: ''
+      },
+      trigger: {
+				validator(value) {
+					return value === ['click', 'hover', 'focus'].find((item) => {
+						return value === item;
+          });
+        }
+      }
+    },
 		data() {
 			return {
-				visible: false
+				visible: false,
+				popoverStyle: {
+					border: '1px solid green',
+					position: 'absolute',
+        }
 			}
 		},
 		methods: {
-			positionContent() {
-				document.body.appendChild(this.$refs.contentWrapper);
-				const {width, height, left, top} = this.$refs.trigger.getBoundingClientRect();
-				console.log(width, height, left, top);
-				//  为了解决css的位置问题,需要考虑出现滚动条的情况 scrollY scrollX 是指浏览器滚动了的高度和宽度
-				this.$refs.contentWrapper.style.top = top + scrollX + 'px';
-				this.$refs.contentWrapper.style.left = left + scrollY + 'px';
+			portal() {
+				if (this.visible === false) return;
+				this.getContentPosition();
+        const {popoverContent} = this.$refs;
+        document.body.appendChild(popoverContent);
+      },
+			getContentPosition() {
+					let {width, height, left, top} = this.$refs.trigger.getBoundingClientRect();
+					console.log(width, height, left, top);
+					const scrollX = window.scrollX;
+					const scrollY = window.scrollY;
+				  left = `${left + scrollX}px`;
+				  top = `${top + scrollY}px`;
+				  Object.assign(this.popoverStyle, {
+						left,
+						top
+          })
 			},
-			onClickDocuemnt(e) {
-				// debugger;
-				if (this.$refs.contentWrapper && (this.$refs.contentWrapper === e.target
-					|| this.$refs.contentWrapper.contains(e.target))) {
-					return
-				}
-				this.close();
-
+			onClickDocument(e) {
+				const {popoverContent} = this.$refs;
+				if (popoverContent === e.target ||
+					popoverContent.contains(e.target)) return false;
+				this.close()
 			},
 			listenToDocument() {
-				console.log('新增document-click监听器');
-				document.addEventListener('click', this.onClickDocuemnt)
+				console.log('增加document监听器');
+				document.addEventListener('click', this.onClickDocument)
 			},
 			open() {
 				this.visible = true;
-				this.$nextTick(() => {
-					this.positionContent();
+				this.portal();
+        /*$nextTick异步处理此处有问题*/
+        setTimeout(() => {
 					this.listenToDocument();
-				})
+        }, 0)
 			},
 			close() {
 				this.visible = false;
-				document.removeEventListener('click', this.onClickDocuemnt);
-				console.log('删除监听器');
+				document.removeEventListener('click', this.onClickDocument);
+				console.log('删除监听器并且关闭');
 			},
 			onClick(e) {
-				// debugger;
 				if (this.$refs.trigger.contains(e.target)) {
-					console.log('点击下面按钮');
-					if (this.visible === true) {
-						this.close();
-					} else {
-						this.open();
-					}
-				} else {
-					console.log('关闭popover');
+					this.visible === true ? this.close() : this.open();
 				}
-
 			}
 		},
-		mounted() {
-
-		}
 	}
 </script>
 
@@ -77,7 +93,6 @@
     display: inline-block;
     vertical-align: top;
     position: relative;
-
   }
 
   .content-wrapper {

@@ -95,12 +95,12 @@
         <TabPane name="four" label="标题四">four</TabPane>
       </Tab>
     </div>
-    <div class="demo-show-item">
+    <div class="demo-show-item" @click="onToastClick">
       <Popover>
-        <Button>按钮</Button>
+        <Button slot="trigger">按钮</Button>
       </Popover>
       <Popover>
-        <Button>按钮</Button>
+        <Button slot="trigger">按钮</Button>
       </Popover>
     </div>
   </div>

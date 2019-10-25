@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" v-on:click="onClick" ref="popover">
+  <div class="popover" ref="popover">
     <div ref="popoverContent" class="content-wrapper" v-show="this.visible"
          :style="popoverStyle" :class="{[`position-${position}`]: true}">
       <div class="popover-title" v-if="title" v-text="title"></div>
@@ -22,8 +22,9 @@
         default: ''
       },
       trigger: {
+        default: 'hover',
         validator(value) {
-          return value === ['click', 'hover', 'focus'].find((item) => {
+          return value === ['click', 'hover'].find((item) => {
             return value === item;
           });
         }
@@ -37,10 +38,28 @@
         }
       }
     },
+    mounted() {
+      if (this.trigger === 'click') {
+        this.$refs.popover.addEventListener('click', this.onClick);
+      } else {
+        this.$refs.popover.addEventListener('mouseenter', this.open);
+        this.$refs.popover.addEventListener('mouseleave', this.close)
+      }
+    },
+    beforeDestroy() {
+      if (this.trigger === 'click') {
+        this.$refs.popover.removeEventListener('click', this.onClick);
+      } else {
+        this.$refs.popover.removeEventListener('mouseenter', this.open);
+        this.$refs.popover.removeEventListener('mouseleave', this.close)
+      }
+    },
     data() {
       return {
         visible: false,
-        popoverStyle: {}
+        popoverStyle: {
+
+        }
       }
     },
     methods: {
@@ -51,10 +70,6 @@
         this.$nextTick(() => {
           this.getContentPosition();
         });
-        // this.getContentPosition();
-        // setTimeout(() => {
-        //   this.getContentPosition();
-        // }, 0)
       },
       getContentPosition() {
         let {width, height, left, top} = this.$refs.trigger.getBoundingClientRect();
@@ -161,12 +176,14 @@
         top: calc(100% - 2px);
         left: 10px;
         border-top-color: #fff;
+        border-bottom: none;
       }
 
       &::before {
         top: calc(100%);
         left: 10px;
         border-top-color: #999;
+        border-bottom: none;
       }
     }
 
@@ -177,12 +194,14 @@
         bottom: calc(100% - 2px);
         left: 10px;
         border-bottom-color: #fff;
+        border-top: none;
       }
 
       &::before {
         bottom: calc(100%);
         left: 10px;
         border-bottom-color: #999;
+        border-top: none;
       }
     }
 
@@ -192,6 +211,7 @@
 
       &::after, &::before {
         left: 100%;
+        border-right: none;
         border-left-color: #999;
         top: 50%;
         transform: translateY(-50%)
@@ -206,8 +226,10 @@
 
     &.position-right {
       margin-left: 10px;
+
       &::after, &::before {
         right: 100%;
+        border-left: none;
         border-right-color: #999;
         top: 50%;
         transform: translateY(-50%)

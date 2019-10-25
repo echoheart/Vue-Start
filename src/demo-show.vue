@@ -97,10 +97,11 @@
     </div>
     <div class="demo-show-item" @click="onToastClick">
       <Popover content="内容内容内容内容内容内容内容内容内容">
-        <Button slot="trigger">按钮</Button>
+        <Button slot="trigger">Popover</Button>
       </Popover>
-      <Popover title="标题" content="内容内容内容内容内容内容内容内容内容">
-        <Button slot="trigger" >按钮</Button>
+      <Popover title="标题">
+        内容内容内容内容内容内容内容内容内容
+        <Button slot="trigger">Popover</Button>
       </Popover>
     </div>
   </div>

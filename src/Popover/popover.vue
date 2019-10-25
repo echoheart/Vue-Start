@@ -96,6 +96,9 @@
 
   .content-wrapper {
     position: absolute;
+    /*英文换行*/
+    word-break: break-all;
+
     border: 1px solid #999;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
     transform: translateY(-100%);
@@ -106,24 +109,18 @@
     width: 200px;
     transition: all 300ms linear;
     margin-top: -10px;
-    &::after {
+    &::after, &::before {
       width: 0;
       height: 0;
       border: 10px solid transparent;
       content: '';
       position: absolute;
       top: calc(100% - 1px);
-      left: 10%;
+      left: 10px;
       border-top-color: #fff;
     }
     &::before {
-      width: 0;
-      height: 0;
-      border: 10px solid transparent;
-      content: '';
-      position: absolute;
       top: calc(100%);
-      left: 10%;
       border-top-color: #999;
     }
     .popover-title {

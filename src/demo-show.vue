@@ -99,10 +99,18 @@
       <Popover content="内容内容内容内容内容内容内容内容内容">
         <Button slot="trigger">Popover</Button>
       </Popover>
-      <Popover title="标题">
+      <Popover title="标题" position="left">
         内容内容内容内容内容内容内容内容内容
         <Button slot="trigger">Popover</Button>
       </Popover>
+      <Popover title="标题" position="bottom">
+        内容内容内容内容内容内容内容内容内容
+        <Button slot="trigger">Popover</Button>
+      </Popover>
+      <Popover content="内容内容内容内容内容内容内容内容内容" position="right">
+        <Button slot="trigger">Popover</Button>
+      </Popover>
+
     </div>
   </div>
 </template>

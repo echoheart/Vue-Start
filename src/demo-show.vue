@@ -96,11 +96,11 @@
       </Tab>
     </div>
     <div class="demo-show-item" @click="onToastClick">
-      <Popover>
+      <Popover content="内容内容内容内容内容内容内容内容内容">
         <Button slot="trigger">按钮</Button>
       </Popover>
-      <Popover>
-        <Button slot="trigger">按钮</Button>
+      <Popover title="标题" content="内容内容内容内容内容内容内容内容内容">
+        <Button slot="trigger" >按钮</Button>
       </Popover>
     </div>
   </div>

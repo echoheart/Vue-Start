@@ -98,7 +98,6 @@
     &.position-top {
       top: 16px;
       transform: translateX(-50%);
-
       .toast {
         animation: top 0.5s;
       }
@@ -107,7 +106,6 @@
     &.position-bottom {
       bottom: 0;
       transform: translateX(-50%);
-
       .toast {
         animation: bottom 0.5s;
       }
@@ -119,7 +117,6 @@
     }
 
     .toast {
-
       font-size: 14px;
       line-height: 1.8;
       min-height: 40px;
@@ -136,13 +133,6 @@
         flex-shrink: 0;
         cursor: pointer;
       }
-
-      .line {
-        /*height: 100%;*/
-        border: 1px solid #666;
-        margin-left: 16px;
-      }
-
     }
   }
 

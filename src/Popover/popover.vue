@@ -99,8 +99,10 @@
     /*英文换行*/
     word-break: break-all;
 
+    background: #fff;
+    filter: drop-shadow(0 0 3px rgba(0, 1px, 0, 0.5));
     border: 1px solid #999;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     transform: translateY(-100%);
     z-index: 2000;
     padding: 12px;

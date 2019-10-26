@@ -40,7 +40,7 @@
     },
     mounted() {
       if (this.trigger === 'click') {
-        this.$refs.popover.addEventListener('click', this.onClick);
+        // this.$refs.popover.addEventListener('click', this.onClick);
       } else {
         this.$refs.popover.addEventListener('mouseenter', this.open);
         this.$refs.popover.addEventListener('mouseleave', this.close)
@@ -119,9 +119,11 @@
         this.visible = true;
         this.portal();
         /*$nextTick异步处理此处有问题*/
-        setTimeout(() => {
-          this.listenToDocument();
-        }, 0)
+        if (this.trigger === 'click') {
+          setTimeout(() => {
+            this.listenToDocument();
+          }, 0)
+        }
       },
       close() {
         this.visible = false;

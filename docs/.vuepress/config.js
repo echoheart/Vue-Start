@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/pure-vue',
+  base: '/pure-vue/',
   title: 'Vue组件库',
   description: 'Vue组件库',
   themeConfig: {

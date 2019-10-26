@@ -1,14 +1,14 @@
 import Button from './Button/index';
 import ButtonGroup from './ButtonGroup/index';
 
-import Carousel from './Carousel/index';
-import CarouselItem from './CarouselItem/index';
+import Carousel from './Carousel/Carousel/index';
+import CarouselItem from './Carousel/CarouselItem/index';
 
-import Cascader from './Cascader/index';
-import CascaderItem from './CascaderItem/index';
+import Cascader from './Cascader/Cascader/index';
+import CascaderItem from './Cascader/CascaderItem/index';
 
-import Collapse from './Collapse/index';
-import CollapseItem from './CollapseItem/index';
+import Collapse from './Collapse/Collapse/index';
+import CollapseItem from './Collapse/CollapseItem/index';
 
 import Col from './Grid/Col/index';
 import Row from './Grid/Row/index';
@@ -17,9 +17,9 @@ import Icon from './Icon/index';
 
 import Input from './Input/index';
 
-import Nav from './Nav/index';
-import NavItem from './NavItem/index';
-import SubNav from './SubNav/index';
+import Nav from './Nav/Nav/index';
+import NavItem from './Nav/NavItem/index';
+import SubNav from './Nav/SubNav/index';
 
 import Pager from './Pagination/index';
 

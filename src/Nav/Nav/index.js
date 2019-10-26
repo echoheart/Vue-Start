@@ -1,4 +1,4 @@
-import Nav from './nav';
+import Nav from '../nav';
 Nav.install = function(Vue) {
   Vue.component(Nav.name, Nav);
 };

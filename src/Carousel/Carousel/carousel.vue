@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import Icon from '../Icon/icon';
+    import Icon from '../../Icon/icon';
     export default {
         name: 'Carousel',
         components: {

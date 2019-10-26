@@ -127,8 +127,11 @@
       },
       close() {
         this.visible = false;
-        document.removeEventListener('click', this.onClickDocument);
-        console.log('删除监听器并且关闭');
+        if (this.trigger === 'click') {
+          document.removeEventListener('click', this.onClickDocument);
+          console.log('删除监听器');
+        }
+        console.log('关闭');
       },
       onClick(e) {
         if (this.$refs.trigger.contains(e.target)) {

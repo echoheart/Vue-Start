@@ -16,6 +16,7 @@ module.exports = {
       '/getStart/',
       {
         title: '组件',
+        collapsable: false,
         children: [
           'components/Icon',
           'components/Button',

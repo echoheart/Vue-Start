@@ -1,6 +1,6 @@
 ---
-title: Button
+title: Button 按钮
 ---
 <ClientOnly>
-<vue-button></vue-button>
+<Button></Button>
 </ClientOnly>

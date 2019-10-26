@@ -94,6 +94,7 @@
     position: fixed;
     animation: fade-in 0.5s;
     left: 50%;
+    z-index: 2000;
 
     &.position-top {
       top: 16px;

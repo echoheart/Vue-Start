@@ -7,7 +7,7 @@ module.exports = {
       ['link', {rel: 'shortcut icon', type: "image/x-icon", href: `./favicon.ico`}]
     ],
     nav: [
-      {text: '首页', link: 'https://echoheart.github.io/Vue-UI/'},
+      {text: '首页', link: 'https://echoheart.github.io/pure-vue/'},
       {text: '博客', link: 'https://www.echoheart.cn/'},
     ],
     sidebar: [

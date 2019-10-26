@@ -34,7 +34,7 @@
                 <Input :readonly="true"></Input>
                 <Input error="密码太短"></Input>
               </div>
-                `.replace(/\t+| +/g, '').trim()
+                `.replace(/^\t+| +$/g, '').trim()
 
       }
     }

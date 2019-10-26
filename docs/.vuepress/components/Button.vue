@@ -18,11 +18,11 @@
     data() {
       return {
         content: `
-            <Button>默认按钮</Button>
-            <Button icon="setting">图标按钮</Button>
-            <Button loading>图标按钮</Button>
-            <Button disabled>不可点击</Button>
-                `.replace(/\t+| +/g, '').trim()
+<Button>默认按钮</Button>
+<Button icon="setting">图标按钮</Button>
+<Button loading>图标按钮</Button>
+<Button disabled>不可点击</Button>
+    `.replace(/^\t+| +$/g, '').trim()
 
       }
     }

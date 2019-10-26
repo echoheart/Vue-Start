@@ -27,12 +27,12 @@
       return {
         collapseActiveNames: [],
         content: `
-            <Collapse :activeNames="collapseActiveNames" v-on:update-activeNames="onUpdateActiveNames">
-              <CollapseItem name="1" title="标题1">内容一</CollapseItem>
-              <CollapseItem name="2" title="标题1">内容二</CollapseItem>
-              <CollapseItem name="3" title="标题1">内容三</CollapseItem>
-            </Collapse>
-                `.replace(/\t+| +/g, '').trim()
+<Collapse :activeNames="collapseActiveNames" v-on:update-activeNames="onUpdateActiveNames">
+  <CollapseItem name="1" title="标题1">内容一</CollapseItem>
+  <CollapseItem name="2" title="标题1">内容二</CollapseItem>
+  <CollapseItem name="3" title="标题1">内容三</CollapseItem>
+</Collapse>
+    `.replace(/^\t+| +$/g, '').trim()
 
       }
     }

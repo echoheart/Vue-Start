@@ -17,10 +17,10 @@
     data() {
       return {
         content: `
-            <Icon name="loading" v-on:click="this.onIconClick"></Icon>
-            <Icon name="left" v-on:click="this.onIconClick"></Icon>
-            <Icon name="right" v-on:click="this.onIconClick"></Icon>
-                `.replace(/\t+| +/g, '').trim()
+  <Icon name="loading" v-on:click="this.onIconClick"></Icon>
+  <Icon name="left" v-on:click="this.onIconClick"></Icon>
+  <Icon name="right" v-on:click="this.onIconClick"></Icon>
+      `.replace(/^\t+| +$/g, '').trim()
 
       }
     }

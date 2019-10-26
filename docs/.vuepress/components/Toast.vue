@@ -27,7 +27,7 @@
         tabValue: 'one',
         content: `
             <Button @click="onToastClick">Toast</Button>
-                `.replace(/\t+| +/g, '').trim()
+                `.replace(/^\t+| +$/g, '').trim()
 
       }
     }

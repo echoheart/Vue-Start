@@ -30,7 +30,7 @@
             <Input :disabled="true"></Input>
             <Input :readonly="true"></Input>
             <Input error="密码太短"></Input>
-                `.replace(/\t+| +/g, '').trim()
+                `.replace(/^\t+| +$/g, '').trim()
 
       }
     }

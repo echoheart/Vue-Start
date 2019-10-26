@@ -15,7 +15,7 @@
         type: Boolean,
         default: false
       },
-      selected: {
+      activeNames: {
         type: Array,
       },
     },
@@ -30,27 +30,27 @@
       }
     },
     mounted() {
-      this.eventBus.$emit('update:selected', this.selected);
-      this.eventBus.$on('update:addSelected', (name) => {
-        let selectedCopy = this.selected.slice();
+      this.eventBus.$emit('update-activeNames', this.activeNames);
+      this.eventBus.$on('add-active-name', (name) => {
+        let activeNamesCopy = this.activeNames.slice();
         if (this.single) {
-          selectedCopy = [name];
+          activeNamesCopy = [name];
         } else {
-          selectedCopy.push(name);
+          activeNamesCopy.push(name);
         }
-        this.$emit('update:selected', selectedCopy);
-        this.eventBus.$emit('update:selected', selectedCopy)
+        this.$emit('update-activeNames', activeNamesCopy);
+        this.eventBus.$emit('update-activeNames', activeNamesCopy)
       });
-      this.eventBus.$on('update:removeSelected', (name) => {
-        let selectedCopy = this.selected.slice();
-        const index = selectedCopy.indexOf(name);
+      this.eventBus.$on('remove-active-name', (name) => {
+        let activeNamesCopy = this.activeNames.slice();
+        const index = activeNamesCopy.indexOf(name);
         if (this.single) {
-          selectedCopy = []
+          activeNamesCopy = []
         } else {
-          selectedCopy.splice(index, 1);
+          activeNamesCopy.splice(index, 1);
         }
-        this.$emit('update:selected', selectedCopy);
-        this.eventBus.$emit('update:selected', selectedCopy);
+        this.$emit('update-activeNames', activeNamesCopy);
+        this.eventBus.$emit('update-activeNames', activeNamesCopy);
       })
 
     }
@@ -64,5 +64,6 @@
   .collapse {
     border: 1px solid $grey;
     border-radius: $border-radius;
+    min-width: 300px;
   }
 </style>

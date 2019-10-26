@@ -33,17 +33,17 @@
     },
     inject: ['eventBus'],
     mounted() {
-      this.eventBus && this.eventBus.$on('update:selected', (names) => {
-        this.isOpen = names.indexOf(this.name) >= 0;
+      this.eventBus && this.eventBus.$on('update-activeNames', (activeNames) => {
+        this.isOpen = activeNames.indexOf(this.name) >= 0;
       });
     },
 
     methods: {
       toggle() {
         if (this.isOpen) {
-          this.eventBus.$emit('update:removeSelected', this.name);
+          this.eventBus.$emit('remove-active-name', this.name);
         } else {
-          this.eventBus.$emit('update:addSelected', this.name);
+          this.eventBus.$emit('add-active-name', this.name);
         }
       },
     },
@@ -64,7 +64,12 @@
       min-height: 32px;
       display: flex;
       align-items: center;
-      padding-left: 20px;
+      cursor: pointer;
+      padding: 10px;
+      background-color: #ddd;
+    }
+    > .content {
+      padding: 10px 10px 10px 20px;
     }
 
     &:first-child {

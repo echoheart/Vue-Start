@@ -95,6 +95,7 @@
         <TabPane name="four" label="标题四">four</TabPane>
       </Tab>
     </div>
+
     <div class="demo-show-item">
       <Popover content="内容内容内容内容内容内容内容内容内容" trigger="click">
         <Button slot="trigger">PopoverClickTop</Button>
@@ -108,7 +109,8 @@
       <Popover content="内容内容内容内容内容内容内容内容内容" trigger="click" position="right">
         <Button slot="trigger">PopoverClickRight</Button>
       </Popover>
-
+    </div>
+    <div class="demo-show-item">
       <Popover content="内容内容内容内容内容内容内容内容内容">
         <Button slot="trigger">PopoverHoverTop</Button>
       </Popover>
@@ -123,8 +125,24 @@
       <Popover content="内容内容内容内容内容内容内容内容内容" position="right">
         <Button slot="trigger">PopoverHoverRight</Button>
       </Popover>
-
     </div>
+
+    <div class="demo-show-item">
+      <Collapse :activeNames="collapseActiveNames" v-on:update-activeNames="onUpdateActiveNames">
+        <CollapseItem name="1" title="标题1">内容一</CollapseItem>
+        <CollapseItem name="2" title="标题1">内容二</CollapseItem>
+        <CollapseItem name="3" title="标题1">内容三</CollapseItem>
+      </Collapse>
+    </div>
+    <div class="demo-show-item">
+      <Collapse :activeNames="collapseActiveNames" v-on:update-activeNames="onUpdateActiveNames" :single="true">
+        <CollapseItem name="1" title="标题1">内容一</CollapseItem>
+        <CollapseItem name="2" title="标题1">内容二</CollapseItem>
+        <CollapseItem name="3" title="标题1">内容三</CollapseItem>
+      </Collapse>
+    </div>
+
+
 
 
 
@@ -171,7 +189,8 @@
 		data() {
 			return {
 				inputValue: '初始值',
-				tabValue: 'one'
+				tabValue: 'one',
+        collapseActiveNames: []
 			}
 		},
 		methods: {
@@ -191,6 +210,9 @@
 			onTabClick(name) {
 				this.tabValue = name;
 			},
+      onUpdateActiveNames(activeNames) {
+			  this.collapseActiveNames = activeNames;
+      },
 		}
 	}
 </script>

@@ -36,6 +36,12 @@ import Sticky from './Sticky/index';
 import Tab from './Tab/Tab/index';
 import TabPane from './Tab/TabPane/index';
 
+import Layout from './Layout/Layout/index';
+import Content from './Layout/Content/index';
+import Header from './Layout/Header/index';
+import Aside from './Layout/Aside/index';
+import Footer from './Layout/Footer/index';
+
 import DB from '../test/fixtures/db';
 const components = [
   Button,
@@ -60,7 +66,12 @@ const components = [
   Collapse,
   Carousel,
   Cascader,
-  Table
+  Table,
+  Layout,
+  Content,
+  Header,
+  Aside,
+  Footer
 ];
 
 const install = function(Vue) {
@@ -94,4 +105,9 @@ export default {
   Cascader,
   DB,
   CascaderItem,
+  Layout,
+  Content,
+  Header,
+  Aside,
+  Footer
 }

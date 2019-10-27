@@ -142,6 +142,14 @@
       </Collapse>
     </div>
 
+    <div class="demo-show-item">
+      <Layout>
+        <Header>header</Header>
+        <Content>content</Content>
+        <Footer>footer</Footer>
+      </Layout>
+    </div>
+
 
 
 

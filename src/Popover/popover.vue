@@ -142,7 +142,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
   .popover {
     display: inline-block;
     vertical-align: top;

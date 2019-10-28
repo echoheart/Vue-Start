@@ -46,8 +46,8 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-  $blue: blue;
+<style lang="less" scoped>
+  @blue: blue;
   .tabs-item {
     flex-shrink: 0;
     cursor: pointer;
@@ -57,7 +57,7 @@
     padding: 0 1.5em;
     border-bottom: 1px solid #ddd;
     &.active {
-      color: $blue;
+      color: @blue;
       font-weight: bold;
       background-color: #ddd;
     }

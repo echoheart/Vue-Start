@@ -38,7 +38,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
   .tabs-pane {
     margin-top: 20px;
 

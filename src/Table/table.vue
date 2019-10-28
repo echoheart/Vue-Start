@@ -276,8 +276,8 @@
     }
 </script>
 
-<style scoped lang="scss">
-    @import "../var";
+<style scoped lang="less">
+    @import "../var.less";
 
     .table-wrapper {
         position: relative;

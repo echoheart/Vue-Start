@@ -41,7 +41,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
     .g-carousel-item {
         display: inline-block;
         top: 0;

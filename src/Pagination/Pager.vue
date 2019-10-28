@@ -104,9 +104,9 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 
-    @import "../var";
+    @import "../var.less";
     
     .pager {
         &.hide {
@@ -121,7 +121,7 @@
             align-items: center;
             font-size: 1.2em;
             background-color: #eee;
-            border-radius: $border-radius;
+            border-radius: @border-radius;
             cursor: pointer;
         }
         .disabled {
@@ -136,7 +136,7 @@
             align-items: center;
             cursor: pointer;
             border: 1px solid #ddd;
-            border-radius: $border-radius;
+            border-radius: @border-radius;
             padding: 0 4px;
             margin: 0 4px;
             height: 20px;

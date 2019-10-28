@@ -96,7 +96,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
     .g-sub-nav {
         position: relative;
         user-select: none;

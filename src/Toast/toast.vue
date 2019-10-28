@@ -62,7 +62,7 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="less">
   @keyframes fade-in {
     0% {
       opacity: 0;

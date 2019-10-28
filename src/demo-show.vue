@@ -225,7 +225,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="less">
   .row-bg {
     &-gutter {
       background-color: #fff;

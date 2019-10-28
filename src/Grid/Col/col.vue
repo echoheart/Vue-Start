@@ -33,20 +33,23 @@
 	}
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
+  /*
   .col {
     width: 50%;
     $class-prefix: col-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        width: ($n / 24) * 100%;
+    @for @n from 1 through 24 {
+      &.#{@class-prefix}#{@n} {
+        width: (@n / 24) * 100%;
       }
     }
     $class-prefix: offset-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        margin-left: ($n / 24) * 100%;
+    @for @n from 1 through 24 {
+      &.#{@class-prefix}#{@n} {
+        margin-left: (@n / 24) * 100%;
       }
     }
   }
+  */
+
 </style>

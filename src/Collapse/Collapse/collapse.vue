@@ -58,12 +58,12 @@
 
 </script>
 
-<style scoped lang="scss">
-  $grey: #ddd;
-  $border-radius: 4px;
+<style scoped lang="less">
+  @grey: #ddd;
+  @border-radius: 4px;
   .collapse {
-    border: 1px solid $grey;
-    border-radius: $border-radius;
+    border: 1px solid @grey;
+    border-radius: @border-radius;
     min-width: 300px;
   }
 </style>

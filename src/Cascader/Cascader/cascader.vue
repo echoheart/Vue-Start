@@ -146,20 +146,20 @@
     }
 </script>
 
-<style scoped lang="scss">
-    @import "../../var";
+<style scoped lang="less">
+    @import "../../var.less";
 
     .cascader {
         position: relative;
 
         .trigger {
-            border: 1px solid $border-color;
-            height: $input-height;
+            border: 1px solid @border-color;
+            height: @input-height;
             display: inline-flex;
             align-items: center;
             padding: 0 1em;
             min-width: 10em;
-            border-radius: $border-radius;
+            border-radius: @border-radius;
         }
 
         .popover-wrapper {

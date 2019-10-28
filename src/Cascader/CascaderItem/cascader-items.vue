@@ -126,8 +126,8 @@
 
 </script>
 
-<style lang="scss" scoped>
-    @import '../../var';
+<style lang="less" scoped>
+    @import '../../var.less';
 
     .source-item {
 
@@ -144,7 +144,7 @@
                 cursor: pointer;
                 user-select: none;
                 &:hover {
-                    background: $grey;
+                    background: @grey;
                 }
                 padding: .5em 1em;
                 > .name {
@@ -161,7 +161,7 @@
 
         .right {
             height: 100%;
-            border-left: 1px solid $grey;
+            border-left: 1px solid @grey;
         }
 
     }

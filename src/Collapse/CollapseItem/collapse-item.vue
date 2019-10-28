@@ -52,12 +52,12 @@
 
 </script>
 
-<style scoped lang="scss">
-  $grey: #ddd;
-  $border-radius: 4px;
+<style scoped lang="less">
+  @grey: #ddd;
+  @border-radius: 4px;
   .collapse-item {
     > .title {
-      border: 1px solid $grey;
+      border: 1px solid @grey;
       margin-top: -1px;
       margin-left: -1px;
       margin-right: -1px;
@@ -74,8 +74,8 @@
 
     &:first-child {
       > .title {
-        border-top-left-radius: $border-radius;
-        border-top-right-radius: $border-radius;
+        border-top-left-radius: @border-radius;
+        border-top-right-radius: @border-radius;
       }
     }
   }

@@ -72,7 +72,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="less">
   .tabs {
     .tab-item-wrapper {
       display: flex;

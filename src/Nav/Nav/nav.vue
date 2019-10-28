@@ -81,7 +81,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
     .g-nav {
         display: flex;
         border-bottom: 1px solid #ddd;

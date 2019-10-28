@@ -17,13 +17,13 @@
 	}
 </script>
 
-<style scoped lang="scss">
-  $tab-height: 40px;
-  $blue: blue;
+<style scoped lang="less">
+  @tab-height: 40px;
+  @blue: blue;
   .tabs-header {
     transition: all 300ms linear;
     display: flex;
-    height: $tab-height;
+    height: @tab-height;
     justify-content: flex-start;
     align-items: center;
     position: relative;

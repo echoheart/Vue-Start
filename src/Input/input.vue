@@ -43,10 +43,10 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  @import "../var";
+<style lang="less" scoped>
+  @import "../var.less";
   .wrapper {
-    font-size: $font-size;
+    font-size: @font-size;
     display: inline-flex;
     align-items: center;
 
@@ -60,23 +60,23 @@
 
     &.error {
       > input {
-        border-color: $error-red;
+        border-color: @error-red;
       }
     }
 
     > input {
-      height: $height;
-      border: 1px solid $border-color;
-      border-radius: $border-radius;
+      height: @height;
+      border: 1px solid @border-color;
+      border-radius: @border-radius;
       padding: 0 8px;
       font-size: inherit;
 
       &:hover {
-        border-color: $border-color-hover;
+        border-color: @border-color-hover;
       }
 
       &:focus {
-        box-shadow: inset 0 1px 3px $box-shadow-color;
+        box-shadow: inset 0 1px 3px @box-shadow-color;
         outline: none;
       }
 

@@ -33,27 +33,27 @@
     }
   }
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
   @import "../var";
 
 
   .g-button {
-    height: $button-height;
-    font-size: $font-size;
+    height: @button-height;
+    font-size: @font-size;
     padding: 0 1em;
-    border-radius: $button-radius;
-    background: $button-bg;
+    border-radius: @button-radius;
+    background: @button-bg;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     line-height: 1em;
 
     &:hover {
-      border-color: $border-color-hover;
+      border-color: @border-color-hover;
     }
 
     &:active {
-      background-color: $button-active-bg;
+      background-color: @button-active-bg;
     }
 
     &:focus {

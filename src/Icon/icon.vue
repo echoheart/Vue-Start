@@ -14,7 +14,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="less">
     .g-icon {
         height: 1em;
         width: 1em;

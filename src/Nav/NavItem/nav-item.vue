@@ -39,7 +39,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
     .g-nav-item {
         padding: 20px 30px;
         cursor: pointer;

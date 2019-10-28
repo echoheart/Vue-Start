@@ -121,7 +121,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
   .uploader {
     /*border: 1px solid red;*/
   }

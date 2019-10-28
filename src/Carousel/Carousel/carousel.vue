@@ -179,7 +179,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
     .g-carousel {
         position: relative;
         overflow: hidden;

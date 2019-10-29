@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <footer :style="`height: ${height}px`">
     <slot></slot>
-  </div>
+  </footer>
 </template>
 
 <script>
@@ -9,7 +9,11 @@
 
   export default {
     name: 'Footer',
-
+    props: {
+      height: {
+        default: 'auto'
+      }
+    }
   }
 </script>
 

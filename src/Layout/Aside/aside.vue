@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <aside :style="`width: ${width}px`">
     <slot></slot>
-  </div>
+  </aside>
 </template>
 
 <script>
@@ -9,7 +9,11 @@
 
   export default {
     name: 'Aside',
-
+    props: {
+      width: {
+       default: 'auto'
+      }
+    }
   }
 </script>
 

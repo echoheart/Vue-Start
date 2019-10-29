@@ -134,6 +134,7 @@
         <CollapseItem name="3" title="标题1">内容三</CollapseItem>
       </Collapse>
     </div>
+
     <div class="demo-show-item">
       <Collapse :activeNames="collapseActiveNames" v-on:update-activeNames="onUpdateActiveNames" :single="true">
         <CollapseItem name="1" title="标题1">内容一</CollapseItem>
@@ -143,14 +144,23 @@
     </div>
 
     <div class="demo-show-item">
-      <Layout>
-        <Header>header</Header>
-        <Content>content</Content>
-        <Footer>footer</Footer>
+      <Layout class="demo-layout">
+        <Header class="demo-header">header</Header>
+        <Content class="demo-content">content</Content>
+        <Footer class="demo-footer">footer</Footer>
       </Layout>
     </div>
 
-
+    <div class="demo-show-item">
+      <Layout class="demo-layout">
+        <Header class="demo-header" height="100">header</Header>
+        <Layout>
+          <Aside class="demo-aside">Aside</Aside>
+          <Content class="demo-content">Content</Content>
+        </Layout>
+        <Footer class="demo-footer" height="100">footer</Footer>
+      </Layout>
+    </div>
 
 
 
@@ -226,6 +236,31 @@
 </script>
 
 <style lang="less">
+  .demo-layout {
+    width: 100%;
+    .demo-header, .demo-content, .demo-footer, .demo-aside {
+      text-align: center;
+      font-size: 16px;
+    }
+    .demo-header {
+      background: #aaa;
+      height: 30px;
+      line-height: 30px;
+    }
+    .demo-content {
+      background: #bbb;
+      padding: 20px;
+    }
+    .demo-footer {
+      background: #ddd;
+      height: 30px;
+      line-height: 30px;
+    }
+    .demo-aside {
+      width: 45px;
+      background: #ccc;
+    }
+  }
   .row-bg {
     &-gutter {
       background-color: #fff;

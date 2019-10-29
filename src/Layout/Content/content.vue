@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main class="content">
     <slot></slot>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -14,5 +14,7 @@
 </script>
 
 <style lang="less" scoped>
-
+  .content {
+    flex-grow: 1;
+  }
 </style>

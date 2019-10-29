@@ -1,5 +1,5 @@
 <template>
-  <main class="content">
+  <main class="pure-content">
     <slot></slot>
   </main>
 </template>
@@ -14,7 +14,7 @@
 </script>
 
 <style lang="less" scoped>
-  .content {
+  .pure-content {
     flex-grow: 1;
   }
 </style>

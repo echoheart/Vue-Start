@@ -3,5 +3,5 @@ title: Input 输入框
 ---
    
 <ClientOnly>
-<InputShow></InputShow>
+<Input></Input>
 </ClientOnly>

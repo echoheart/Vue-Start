@@ -1,7 +1,7 @@
 {
-  "name": "vue-start-1",
+  "name": "pure-vue",
   "version": "0.0.1",
-  "description": "vue 起步 组件",
+  "description": "vue 组件库",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

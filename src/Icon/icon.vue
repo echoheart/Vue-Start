@@ -1,6 +1,6 @@
 <template>
     <svg class="g-icon" v-on:click="$emit('click', $event)">
-        <use v-bind:xlink:href="`#icon-${name}`"></use>
+        <use v-bind:xlink:href="`#pure-${name}`"></use>
     </svg>
 </template>
 

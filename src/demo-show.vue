@@ -1,6 +1,7 @@
 <template>
   <div class="demo-show">
     <div class="demo-show-item">
+      <Icon name="pure-loading" v-on:click="this.onIconClick"></Icon>
       <Icon name="loading" v-on:click="this.onIconClick"></Icon>
       <Icon name="left" v-on:click="this.onIconClick"></Icon>
       <Icon name="right" v-on:click="this.onIconClick"></Icon>

@@ -20,7 +20,7 @@
         <template v-for="(item, index) in dataSource">
         <tr v-bind:key="item.id" class="tbody-item">
           <td v-bind:style="{width: '50px'}">
-            <input type="checkbox" v-on:change="onChangeItem(item, index, $event)"
+            <input type="checkbox" v-on:change="onSelectChange(item, index, $event)"
                    v-bind:checked="inSelectedItems(item)">
           </td>
           <td v-if="sortNumber">{{ index + 1 }}</td>
@@ -228,21 +228,19 @@
 					return item.id === _item.id;
 				}).length > 0;
 			},
-			onChangeItem(item, index, e) {
-				// console.log(e.target.checked);
-				// this.$emit('changeItem', {selected: e.target.checked, index, item});
-				const isChecked = e.target.checked;
+      onSelectChange(item, index, e) {
+
+				const isChecked = e.currentTarget.checked;
 				let copy = JSON.parse(JSON.stringify(this.selectedItems));
-				if (isChecked) {
+        console.log(isChecked);
+        if (isChecked) {
 					copy.push(item)
 				} else {
-					// const _index = this.selectedItems.indexOf(item);
-					// copy.splice(_index, 1);
 					copy = copy.filter((_item, index) => {
 						return !(item.id === _item.id);
 					})
 				}
-				this.$emit('update:selectedItems', copy);
+				this.$emit('update-select-change', copy);
 			},
 			onChangeAllItems(e) {
 				const isChecked = e.target.checked;
@@ -294,10 +292,6 @@
         }
       }
     }
-
-
-
-
 
     .column-item {
       display: inline-flex;

@@ -164,14 +164,12 @@
     </div>
 
     <div class="demo-show-item">
-      <Table :columns="tableColumns" :dataSource="tableData" :striped="false"></Table>
+      <Table :columns="tableColumns" :dataSource="tableData" :striped="false" v-on:update-select-change="onTableSelectChange"></Table>
     </div>
 
     <div class="demo-show-item">
       <Table :columns="tableColumns" :dataSource="tableData" :bordered="true" :compact="true"></Table>
     </div>
-
-
 
 
   </div>
@@ -223,8 +221,8 @@
           {title: '分数', dataIndex: 'scores', key: 'scores'},
         ],
         tableData: [
-          {name: '校长', scores: '99', id: '1'},
-          {name: '小李', scores: '111', id: '2'},
+          {name: '小张', scores: '199', id: 1},
+          {name: '小李', scores: '111', id: 2},
         ]
 			}
 		},
@@ -248,6 +246,9 @@
       onUpdateActiveNames(activeNames) {
 			  this.collapseActiveNames = activeNames;
       },
+      onTableSelectChange(items) {
+        console.log(items);
+      }
 		}
 	}
 </script>

@@ -163,6 +163,14 @@
       </Layout>
     </div>
 
+    <div class="demo-show-item">
+      <Table :columns="tableColumns" :dataSource="tableData" :striped="false"></Table>
+    </div>
+
+    <div class="demo-show-item">
+      <Table :columns="tableColumns" :dataSource="tableData" :bordered="true" :compact="true"></Table>
+    </div>
+
 
 
 
@@ -209,7 +217,15 @@
 			return {
 				inputValue: '初始值',
 				tabValue: 'one',
-        collapseActiveNames: []
+        collapseActiveNames: [],
+        tableColumns: [
+          {title: '姓名', dataIndex: 'name', key: 'name'},
+          {title: '分数', dataIndex: 'scores', key: 'scores'},
+        ],
+        tableData: [
+          {name: '校长', scores: '99', id: '1'},
+          {name: '小李', scores: '111', id: '2'},
+        ]
 			}
 		},
 		methods: {

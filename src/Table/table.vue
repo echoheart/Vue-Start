@@ -2,58 +2,32 @@
 
   <div class="table-wrapper" ref="wrapper">
     <div class="table-inner" v-bind:style="{height: height + 'px'}">
-      <table ref="table" class="table" v-bind:class="{compact: compact,bordered: bordered, noStriped: !striped}">
+      <table ref="table" class="table" v-bind:class="{compact,bordered, striped,undefined}">
         <thead>
         <tr>
-          <td v-bind:style="{width: '50px'}"></td>
+<!--          <td v-bind:style="{width: '50px'}"></td>-->
           <th v-bind:style="{width: '50px'}">
             <input type="checkbox" v-on:change="onChangeAllItems" ref="selectAll" v-bind:checked="allItemsSelected">
           </th>
-          <th v-if="numberVisible">#</th>
-          <!--{{columns}}-->
+          <th v-if="sortNumber">#</th>
           <th v-for="column in columns" v-bind:style="{width: `${column.width}px`}">
-            <div class="column-item" v-if="column.field in orderBy">
-              {{ column.text }}
-              <span class="table-sorter" v-on:click="changeOrderBy(column.field)">
-                    <Icon name="asc" class="asc" v-bind:class="{active: orderBy[column.field] === 'asc'}"></Icon>
-                    <Icon name="desc" class="desc" v-bind:class="{active: orderBy[column.field] === 'desc'}"></Icon>
-                    </span>
-            </div>
+            {{ column.title }}
           </th>
-          <th ref="actionsHeader" v-if="$scopedSlots.default"></th>
         </tr>
         </thead>
 
         <tbody>
         <template v-for="(item, index) in dataSource">
-          <tr v-bind:key="item.id" class="tbody-item">
-            <td v-bind:style="{width: '50px'}">
-                <span class="icon-wrapper">
-                    <Icon v-bind:class="{active: inExpendeds(item.id)}" v-on:click="expendAction(item.id)"
-                          v-if="item[expendField]" name="right"></Icon>
-                </span>
-            </td>
-            <td v-bind:style="{width: '50px'}">
-              <input type="checkbox" v-on:change="onChangeItem(item, index, $event)"
-                     v-bind:checked="inSelectedItems(item)">
-            </td>
-            <td v-if="numberVisible">{{ index + 1 }}</td>
-            <template v-for="column in columns">
-              <td v-bind:style="{width: `${column.width}px`}">{{ item[column.field] }}</td>
-            </template>
-            <td v-if="$scopedSlots.default">
-              <div ref="actions" v-bind:style="{display: 'inline-block'}">
-                <slot v-bind:item="item" li="li"></slot>
-              </div>
-            </td>
-          </tr>
-
-          <tr v-bind:key="`${item.id}expend-key`" v-if="inExpendeds(item.id)">
-            <td :style="{ borderRightColor: 'transparent'}"></td>
-            <td v-bind:colspan="columns.length + 2">
-              {{ item[expendField] }}
-            </td>
-          </tr>
+        <tr v-bind:key="item.id" class="tbody-item">
+          <td v-bind:style="{width: '50px'}">
+            <input type="checkbox" v-on:change="onChangeItem(item, index, $event)"
+                   v-bind:checked="inSelectedItems(item)">
+          </td>
+          <td v-if="sortNumber">{{ index + 1 }}</td>
+          <template v-for="column in columns">
+            <td v-bind:style="{width: `${column.width}px`}">{{ item[column.dataIndex] }}</td>
+          </template>
+        </tr>
         </template>
         </tbody>
       </table>
@@ -96,7 +70,7 @@
 				type: Boolean,
 				default: false
 			},
-			numberVisible: {
+			sortNumber: {
 				type: Boolean,
 				default: false
 			},
@@ -280,10 +254,78 @@
 
 <style scoped lang="less">
   @import "../var.less";
+  .table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    thead {
+      background: #fff;
+    }
+    td, th {
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+      padding: 10px 10px;
+    }
+    tbody {
+      > tr {
+        background: #fff;
+      }
+    }
+    &.bordered {
+      border: 1px solid #ddd;
+      td, th {
+        border: 1px solid #ddd;
+      }
+    }
+    &.compact {
+      td, th {
+        padding: 5px;
+      }
+    }
+    &.striped {
+      tbody {
+        > tr {
+          &:nth-child(odd) {
+            background: #fff;
+          }
+          &:nth-child(even) {
+            background: lighten(#ddd, 10%);
+          }
+        }
+      }
+    }
+
+
+
+
+
+    .column-item {
+      display: inline-flex;
+      align-items: center;
+
+      .table-sorter {
+        display: inline-flex;
+        flex-direction: column;
+        margin-left: 5px;
+
+        .asc, .desc {
+          &.active {
+            fill: #000;
+          }
+
+          fill: #aaa;
+          height: 1em;
+          width: 1em;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
 
   .table-wrapper {
     position: relative;
-
+    width: 100%;
     .table-inner {
       overflow: auto;
     }
@@ -302,7 +344,6 @@
 
   .table {
     overflow: auto;
-
     .icon-wrapper {
       height: 100%;
       width: 100%;
@@ -343,76 +384,5 @@
     }
   }
 
-  .table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    /*border: 1px solid #ddd;*/
-    width: 100%;
 
-    thead {
-      background: #fff;
-    }
-
-    &.compact {
-      td, th {
-        padding: 5px;
-      }
-    }
-
-    &.bordered {
-      border: 1px solid #ddd;
-
-      td, th {
-        border: 1px solid #ddd;
-      }
-    }
-
-    .column-item {
-      display: inline-flex;
-      align-items: center;
-
-      .table-sorter {
-        display: inline-flex;
-        flex-direction: column;
-        margin-left: 5px;
-
-        .asc, .desc {
-          &.active {
-            fill: #000;
-          }
-
-          fill: #aaa;
-          height: 1em;
-          width: 1em;
-          cursor: pointer;
-        }
-      }
-    }
-
-    td, th {
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-      padding: 10px 10px;
-    }
-
-    tbody {
-      > tr {
-        &:nth-child(odd) {
-          background: #fff;
-        }
-
-        &:nth-child(even) {
-          background: lighten(#ddd, 10%);
-        }
-      }
-    }
-
-    &.noStriped {
-      tbody {
-        > tr {
-          background: #fff;
-        }
-      }
-    }
-  }
 </style>

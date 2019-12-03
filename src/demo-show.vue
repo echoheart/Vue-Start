@@ -164,14 +164,30 @@
     </div>
 
     <div class="demo-show-item">
-      <Table :columns="tableColumns" :dataSource="tableData" :striped="false" v-on:update-select-change="onTableSelectChange"></Table>
+      <Table
+        :columns="tableColumns"
+        :dataSource="tableData"
+        :striped="false"
+        v-on:update-select-change="onTableSelectChange"/>
     </div>
 
     <div class="demo-show-item">
-      <Table :columns="tableColumns" :dataSource="tableData" :bordered="true" :compact="true"></Table>
+      <Table :columns="tableColumns" :dataSource="tableData" :bordered="true" :compact="true"/>
     </div>
 
-
+    <div class="demo-show-item">
+      <Carousel :initSelected="carouselSelected">
+        <CarouselItem name="one">
+          <div class="carouse-box">1</div>
+        </CarouselItem>
+        <CarouselItem name="two">
+          <div class="carouse-box">2</div>
+        </CarouselItem>
+        <CarouselItem name="three">
+          <div class="carouse-box">3</div>
+        </CarouselItem>
+      </Carousel>
+    </div>
   </div>
 </template>
 
@@ -209,7 +225,6 @@
 
 		},
 		created() {
-
 		},
 		data() {
 			return {
@@ -223,7 +238,8 @@
         tableData: [
           {name: '小张', scores: '199', id: 1},
           {name: '小李', scores: '111', id: 2},
-        ]
+        ],
+				carouselSelected: 'three'
 			}
 		},
 		methods: {
@@ -324,7 +340,11 @@
       padding: 8px;
     }
   }
-
+.carouse-box {
+  width: 300px;
+  height: 170px;
+  background: #666666;
+}
   * {
     padding: 0;
     margin: 0;

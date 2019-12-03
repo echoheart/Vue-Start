@@ -11,10 +11,10 @@
         <span class="name">{{ item.name }}</span>
         <span class="icons">
             <template v-if="loadingItem.name === item.name">
-                <Icon class="icon loading" name="loading"></Icon>
+                <Icon class="icon loading" name="loading"/>
             </template>
             <template v-else>
-                <Icon class="icon" name="right" v-if="isShowRightArrow(item)"></Icon>
+                <Icon class="icon" name="right" v-if="isShowRightArrow(item)"/>
             </template>
         </span>
       </div>

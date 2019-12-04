@@ -25,67 +25,67 @@
       </Button-group>
     </div>
     <div class="demo-show-item">
-      <Input :value="inputValue" v-on:change="onInputChange"></Input>
-      <Input :disabled="true"></Input>
-      <Input :readonly="true"></Input>
-      <Input error="密码太短"></Input>
+      <PInput :value="inputValue" v-on:change="onInputChange"></PInput>
+      <PInput :disabled="true"></PInput>
+      <PInput :readonly="true"></PInput>
+      <PInput error="密码太短"></PInput>
     </div>
     <div class="demo-show-item">
       <Button @click="onToastClick">Toast</Button>
     </div>
 
     <div class="demo-show-item">
-      <Row style="width: 100%;" class="row-bg">
-        <Col span="10">
+      <PCol style="width: 100%;" class="row-bg">
+        <PCol span="10">
           <div class="grid-content bg-purple"></div>
-        </Col>
-        <Col span="14">
+        </PCol>
+        <PCol span="14">
           <div class="grid-content bg-purple-light"></div>
-        </Col>
-      </Row>
+        </PCol>
+      </PCol>
     </div>
     <div class="demo-show-item" style="justify-content: center;">
-      <Row style="width: 100%;" class="row-bg-gutter" gutter="20">
-        <Col span="6">
+      <PCol style="width: 100%;" class="row-bg-gutter" gutter="20">
+        <PCol span="6">
           <div class="grid-content bg-purple">1</div>
-        </Col>
-        <Col span="6">
+        </PCol>
+        <PCol span="6">
           <div class="grid-content bg-purple-light">2</div>
-        </Col>
-        <Col span="6">
+        </PCol>
+        <PCol span="6">
           <div class="grid-content bg-purple">3</div>
-        </Col>
-        <Col span="6">
+        </PCol>
+        <PCol span="6">
           <div class="grid-content bg-purple-light">4</div>
-        </Col>
-      </Row>
+        </PCol>
+      </PCol>
     </div>
     <div class="demo-show-item">
-      <Row style="width: 100%;" class="row-bg">
-        <Col span="2">
+      <PCol style="width: 100%;" class="row-bg">
+        <PCol span="2">
           <div class="grid-content bg-purple"></div>
-        </Col>
-        <Col span="22">
+        </PCol>
+        <PCol span="22">
           <div class="grid-content bg-purple-light"></div>
-        </Col>
-      </Row>
-    </div>
+        </PCol>
+      </PCol>
+    </div>``
 
     <div class="demo-show-item">
-      <Row style="width: 100%;" class="row-bg fff">
-        <Col span="6">
+      <PRow style="width: 100%;" class="row-bg fff">
+        <PCol span="6">
           <div class="grid-content bg-purple"></div>
-        </Col>
-        <Col span="6">
+        </PCol>
+        <PCol span="6">
           <div class="grid-content bg-purple-light"></div>
-        </Col>
-        <Col span="6">
+        </PCol>
+        <PCol span="6">
           <div class="grid-content bg-purple"></div>
-        </Col>
-        <Col span="3">
+        </PCol>
+        <PCol span="3">
           <div class="grid-content bg-purple-light"></div>
-        </Col>
-      </Row>
+        </PCol>
+      </PRow>
     </div>
 
     <div class="demo-show-item">
@@ -165,16 +165,35 @@
 
 
     <div class="demo-show-item">
-      <Table :columns="tableColumns" :dataSource="tableData" :striped="false" v-on:update-select-change="onTableSelectChange"></Table>
+      <Table
+        :columns="tableColumns"
+        :dataSource="tableData"
+        :striped="false"
+        v-on:update-select-change="onTableSelectChange"/>
     </div>
 
     <div class="demo-show-item">
-      <Table :columns="tableColumns" :dataSource="tableData" :bordered="true" :compact="true"></Table>
+      <Table :columns="tableColumns" :dataSource="tableData" :bordered="true" :compact="true"/>
     </div>
 
     <div class="demo-show-item">
       <Cascader :source="citySource"></Cascader>
     </div>
+
+    <div class="demo-show-item">
+      <Carousel :initSelected="carouselSelected">
+        <CarouselItem name="one">
+          <div class="carouse-box">1</div>
+        </CarouselItem>
+        <CarouselItem name="two">
+          <div class="carouse-box">2</div>
+        </CarouselItem>
+        <CarouselItem name="three">
+          <div class="carouse-box">3</div>
+        </CarouselItem>
+      </Carousel>
+    </div>
+
 
 
   </div>
@@ -214,7 +233,6 @@
 
 		},
 		created() {
-
 		},
 		data() {
 			return {
@@ -258,7 +276,8 @@
               {name: '齐齐哈尔'}
             ]
           }
-        ]
+        ],
+				carouselSelected: 'three'
 			}
 		},
 		methods: {
@@ -359,7 +378,11 @@
       padding: 8px;
     }
   }
-
+.carouse-box {
+  width: 300px;
+  height: 170px;
+  background: #666666;
+}
   * {
     padding: 0;
     margin: 0;

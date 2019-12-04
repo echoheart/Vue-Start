@@ -15,7 +15,7 @@
         v-bind:loadingItem="loadingItem"
       >
       </CascaderItems>
-    </div>1
+    </div>
   </div>
 </template>
 

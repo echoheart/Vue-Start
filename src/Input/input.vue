@@ -23,7 +23,7 @@
 
   export default {
     components: {Icon},
-    name: 'Input',
+    name: 'PInput',
     props: {
       value: {
         type: String

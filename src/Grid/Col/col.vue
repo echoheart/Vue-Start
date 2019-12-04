@@ -9,7 +9,7 @@
 
 <script>
 	export default {
-		name: 'Col',
+		name: 'PCol',
 		props: {
 			span: [Number, String],
 			offset: [Number, String],

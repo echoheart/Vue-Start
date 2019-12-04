@@ -163,12 +163,17 @@
       </Layout>
     </div>
 
+
     <div class="demo-show-item">
       <Table :columns="tableColumns" :dataSource="tableData" :striped="false" v-on:update-select-change="onTableSelectChange"></Table>
     </div>
 
     <div class="demo-show-item">
       <Table :columns="tableColumns" :dataSource="tableData" :bordered="true" :compact="true"></Table>
+    </div>
+
+    <div class="demo-show-item">
+      <Cascader :source="citySource"></Cascader>
     </div>
 
 
@@ -223,6 +228,36 @@
         tableData: [
           {name: '小张', scores: '199', id: 1},
           {name: '小李', scores: '111', id: 2},
+        ],
+        citySource: [
+          {
+            name: '北京',
+            children: [
+              {name: '海淀'},
+              {name: '朝阳'},
+              {name: '东城'}
+            ]
+          },
+          {
+            name: '黑龙江',
+            children: [
+              {
+                name: '哈尔滨',
+                children: [
+                  {name: '南岗'},
+                  {name: '前进'}
+                ]
+              },
+              {
+                name: '佳木斯',
+                children: [
+                  {name: '东风'},
+                  {name: '向阳'}
+                ]
+              },
+              {name: '齐齐哈尔'}
+            ]
+          }
         ]
 			}
 		},

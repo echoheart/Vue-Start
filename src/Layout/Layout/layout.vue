@@ -15,10 +15,8 @@
       }
     },
     mounted() {
-      console.log(this.$children);
       this.$children.map((item) => {
         if (item.$options.name === 'Aside') {
-          console.log(item.$options.name);
           this.direction = 'row';
         }
       })

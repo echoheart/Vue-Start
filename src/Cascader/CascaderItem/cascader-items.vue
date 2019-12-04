@@ -45,6 +45,34 @@
       CascaderItems: 'CascaderItems',
       Icon: Icon,
     },
+    props: {
+      items: {
+        type: Array
+      },
+      height: {
+        type: String
+      },
+      selected: {
+        type: Array,
+        default: () => []
+      },
+      level: {
+        type: Number,
+        default: 0
+      },
+      loadData: {
+        type: Function,
+      },
+      shouldClose: {
+        type: Function
+      },
+      loadingItem: {
+        type: Object,
+        default: () => {
+          return {};
+        }
+      }
+    },
     methods: {
       isShowRightArrow(item) {
         return this.loadData ? !item.isLeaf : item.children;
@@ -91,34 +119,6 @@
         // }
       }
     },
-    props: {
-      items: {
-        type: Array
-      },
-      height: {
-        type: String
-      },
-      selected: {
-        type: Array,
-        default: () => []
-      },
-      level: {
-        type: Number,
-        default: 0
-      },
-      loadData: {
-        type: Function,
-      },
-      shouldClose: {
-        type: Function
-      },
-      loadingItem: {
-        type: Object,
-        default: () => {
-          return {};
-        }
-      }
-    }
   };
   export default component
 

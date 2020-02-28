@@ -177,7 +177,9 @@
     </div>
 
     <div class="demo-show-item">
-      <Cascader :source="citySource"></Cascader>
+      {{selectedCity}}
+      <Cascader :source="citySource" :selected.sync="selectedCity" ></Cascader>
+
     </div>
 
     <div class="demo-show-item">
@@ -245,13 +247,30 @@
           {name: '小张', scores: '199', id: 1},
           {name: '小李', scores: '111', id: 2},
         ],
+        selectedCity: [],
         citySource: [
           {
             name: '北京',
             children: [
-              {name: '海淀'},
-              {name: '朝阳'},
-              {name: '东城'}
+              {
+                name: '海淀',
+                children: [
+                  {name: '西二旗'},
+                  {name: '西三旗'}
+                ]},
+              {
+                name: '朝阳',
+                children: [
+                  {name: '天安门'},
+                  {name: '前门'}
+                ]
+              },
+              {
+                name: '东城',
+                children: [
+                  {name: '东城东'},
+                  {name: '东城西'}
+                ]}
             ]
           },
           {
@@ -300,6 +319,10 @@
       },
       onTableSelectChange(items) {
         console.log(items);
+      },
+      onUpdateSelected(newSelected) {
+        // console.log('newSelected', newSelected);
+			  this.selectedCity = newSelected;
       }
 		}
 	}

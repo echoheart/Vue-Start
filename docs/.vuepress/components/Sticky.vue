@@ -10,12 +10,7 @@
 
 
 <script>
-  import CollapseItem from '../../../src/Collapse/CollapseItem/collapse-item';
   export default {
-    components: {
-      Collapse,
-      CollapseItem
-    },
     methods: {
       onInputChange(e) {
         console.log(e.srcElement.value);

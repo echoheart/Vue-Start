@@ -1,13 +1,12 @@
 <template>
   <div class="source-item" v-bind:style="{height: height}">
-    <!--selected: {{ selected[level] && selected[level].name }}-->
-    <!--level: {{ level }}-->
-    <!--{{ rightItems }}-->
+    selected: {{ selected[level] && selected[level].name }}
+    level: {{ level }}
+<!--    {{ rightItem }}-->
     <div class="left">
       <div class="label"
            v-for="item in items"
-           v-on:click="onClickHandle(item)">
-
+           v-on:click="() => {onClickHandle(item)}">
         <span class="name">{{ item.name }}</span>
         <span class="icons">
             <template v-if="loadingItem.name === item.name">
@@ -19,18 +18,21 @@
         </span>
       </div>
     </div>
-    <div class="right" v-if="rightItems">
-      <CascaderItems
-        v-bind:items="rightItems"
+    <div class="right" v-if="rightItem">
+      <CascaderItem
+        v-bind:items="rightItem"
         v-bind:height="height"
+
         v-bind:selected="selected"
+        v-on:update:selected="onUpdateSelected"
+
         v-bind:level="level + 1"
-        v-on:update:selected="onUpdate"
+
         v-bind:load-data="loadData"
         v-bind:should-close="shouldClose"
         v-bind:loadingItem="loadingItem"
       >
-      </CascaderItems>
+      </CascaderItem>
     </div>
 
   </div>
@@ -39,10 +41,9 @@
 <script>
   import Icon from '../../Icon/icon';
 
-  const component = {
-    name: 'CascaderItems',
+  const CascaderItem = {
+    name: 'CascaderItem',
     components: {
-      CascaderItems: 'CascaderItems',
       Icon: Icon,
     },
     props: {
@@ -78,38 +79,46 @@
         return this.loadData ? !item.isLeaf : item.children;
       },
       onClickHandle(item) {
-        const copySelected = this.selected.slice();
-        //    更新时删除当前层级的后的所有元素
-        copySelected.splice(this.level);
-
+        // 拷贝一份全新的数据
+        const copySelected = JSON.parse((JSON.stringify(this.selected)));
         copySelected[this.level] = item;
-
+        // 更新时删除当前层级的后的所有元素达到更新数据的目的
+        console.log(this.level, 'this.level');
+        copySelected.splice(this.level + 1);
+        console.log('copySelected', copySelected);
         this.$emit('update:selected', copySelected);
 
-        if (!this.isShowRightArrow(item)) {
-          this.shouldClose()
-        }
       },
-      onUpdate(copySelected) {
+      onUpdateSelected(copySelected) {
         this.$emit('update:selected', copySelected)
       }
     },
     data() {
-      return {}
+      return {
+        leftSelectedItem: null
+      }
     },
     computed: {
-      rightItems() {
+      rightItem() {
+        /**
+         * 当前点击的父元素(左边的值)
+         * 计算出子元素rightItem(右边的值)
+         * */
+        const currentLeftSelectedItem = this.selected[this.level];
+        if (currentLeftSelectedItem && currentLeftSelectedItem.children && currentLeftSelectedItem.children.length > 0) {
+          return currentLeftSelectedItem.children
+        } else {
+          return null;
+        }
         //  解决右边视图不更新,但是数据更新的问题
         //  由于computed的计算依赖其他属性,所以如果依赖属性没有变化的话,计算属性也不会变化
-        if (this.selected[this.level]) {
-          const currentSelected = this.items.filter((item) => {
-            return item.name === this.selected[this.level].name;
-          })[0];
-
-          if (currentSelected && currentSelected.children && currentSelected.children.length > 0) {
-            return currentSelected.children
-          }
-        }
+        // if (this.selected[this.level]) {
+        //   const currentSelected = this.items.filter((item) => {
+        //     return item.name === this.selected[this.level].name;
+        //   })[0];
+        //
+        //
+        // }
 
         // const currentSelected = this.selected[this.level];
         // if (currentSelected && currentSelected.children) {
@@ -120,7 +129,7 @@
       }
     },
   };
-  export default component
+  export default CascaderItem
 
 </script>
 
@@ -128,25 +137,23 @@
   @import '../../var.less';
 
   .source-item {
-
+    border: 1px solid green;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-
+    white-space: nowrap;
+    height: 100%;
     .left {
       padding-top: .3em;
       overflow: auto;
       height: 100%;
-
       .label {
         display: flex;
         cursor: pointer;
         user-select: none;
-
         &:hover {
           background: @grey;
         }
-
         padding: .5em 1em;
 
         > .name {
@@ -162,7 +169,6 @@
         }
       }
     }
-
     .right {
       height: 100%;
       border-left: 1px solid @grey;

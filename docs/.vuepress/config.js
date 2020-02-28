@@ -26,6 +26,7 @@ module.exports = {
           'components/Tab',
           'components/Toast',
           'components/Layout',
+          'components/Carousel',
         ]
       },
 

@@ -1,6 +1,6 @@
 <template>
   <div class="g-carousel">
-    <div class="g-carousel-window" ref="window">
+    <div class="g-carousel-window" ref="window" v-on:mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
       <slot/>
     </div>
 
@@ -54,7 +54,7 @@
 				timerId: undefined,
 				startPoint: undefined,
 				endPoint: undefined,
-        currentSelected: this.initSelected
+        currentSelected: this.initSelected,
 			}
 		},
 		mounted() {
@@ -92,6 +92,7 @@
 		methods: {
 			autoPlay() {
 				if (!this.isAutoPlay) return;
+				if (this.timerId) return;
         const names = this.names;
         /** 模拟setInterval*/
         const play = () => {
@@ -102,12 +103,22 @@
         	if (newIndex === -1) {
 						newIndex = names.length - 1;
           }
-        	this.select();
-          setTimeout(play, 1000 * this.interval)
+        	this.select(newIndex);
+          this.timerId = setTimeout(play, this.interval * 1000)
         };
-        // setTimeout(() => {
-				// 	play()
-        // }, this.interval * 1000);
+        this.timerId =  setTimeout(play, this.interval * 1000);
+      },
+      onMouseEnter() {
+        console.log('enter');
+        this.pause();
+      },
+      onMouseLeave() {
+        console.log('leave');
+        this.autoPlay()
+      },
+      pause() {
+			  window.clearTimeout(this.timerId);
+			  this.timerId = null;
       },
 			onClickPrev() {
         const newIndex = this.currentSelectedIndex - 1;

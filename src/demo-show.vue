@@ -181,15 +181,15 @@
     </div>
 
     <div class="demo-show-item">
-      <Carousel :initSelected="carouselSelected" :interval="10">
+      <Carousel :initSelected="carouselSelected" :interval="6">
         <CarouselItem name="one">
-          <div class="carouse-box">一一一</div>
+          <div class="carouse-box">1</div>
         </CarouselItem>
         <CarouselItem name="two">
-          <div class="carouse-box">二二二</div>
+          <div class="carouse-box">2</div>
         </CarouselItem>
         <CarouselItem name="three">
-          <div class="carouse-box">三三三</div>
+          <div class="carouse-box">3</div>
         </CarouselItem>
       </Carousel>
     </div>
@@ -380,6 +380,11 @@
   width: 300px;
   height: 170px;
   background: #666666;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
   * {
     padding: 0;

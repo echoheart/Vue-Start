@@ -177,7 +177,6 @@
     </div>
 
     <div class="demo-show-item">
-      {{selectedCity}}
       <Cascader :source="citySource" :selected.sync="selectedCity" ></Cascader>
 
     </div>

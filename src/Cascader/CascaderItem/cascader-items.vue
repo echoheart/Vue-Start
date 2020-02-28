@@ -1,8 +1,5 @@
 <template>
   <div class="source-item" v-bind:style="{height: height}">
-    selected: {{ selected[level] && selected[level].name }}
-    level: {{ level }}
-<!--    {{ rightItem }}-->
     <div class="left">
       <div class="label"
            v-for="item in items"
@@ -110,22 +107,6 @@
         } else {
           return null;
         }
-        //  解决右边视图不更新,但是数据更新的问题
-        //  由于computed的计算依赖其他属性,所以如果依赖属性没有变化的话,计算属性也不会变化
-        // if (this.selected[this.level]) {
-        //   const currentSelected = this.items.filter((item) => {
-        //     return item.name === this.selected[this.level].name;
-        //   })[0];
-        //
-        //
-        // }
-
-        // const currentSelected = this.selected[this.level];
-        // if (currentSelected && currentSelected.children) {
-        //     return this.selected[this.level].children
-        // } else {
-        //     return null;
-        // }
       }
     },
   };
@@ -137,7 +118,6 @@
   @import '../../var.less';
 
   .source-item {
-    border: 1px solid green;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;

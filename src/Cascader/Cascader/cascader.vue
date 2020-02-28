@@ -51,7 +51,6 @@
       },
       onUpdateSelected(copySelected) {
         this.$emit('update:selected', copySelected);
-        const lastSelectedItem = copySelected[copySelected.length - 1];
       }
     },
     computed: {
@@ -117,7 +116,6 @@
       background-color: white;
       display: flex;
       justify-content: flex-start;
-      border: 1px solid red;
 
     }
   }

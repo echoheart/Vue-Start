@@ -181,20 +181,18 @@
     </div>
 
     <div class="demo-show-item">
-      <Carousel :initSelected="carouselSelected">
+      <Carousel :initSelected="carouselSelected" :interval="10">
         <CarouselItem name="one">
-          <div class="carouse-box">1</div>
+          <div class="carouse-box">一一一</div>
         </CarouselItem>
         <CarouselItem name="two">
-          <div class="carouse-box">2</div>
+          <div class="carouse-box">二二二</div>
         </CarouselItem>
         <CarouselItem name="three">
-          <div class="carouse-box">3</div>
+          <div class="carouse-box">三三三</div>
         </CarouselItem>
       </Carousel>
     </div>
-
-
 
   </div>
 </template>

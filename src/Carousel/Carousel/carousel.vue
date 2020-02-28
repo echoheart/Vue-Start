@@ -10,7 +10,7 @@
       </span>
       <span
         v-for="n in childrenLength"
-        v-bind:class="{active: selectedIndex === n - 1}"
+        v-bind:class="{active: currentSelectedIndex === n - 1}"
         v-on:click="select(n-1)"
       >
         {{ n }}
@@ -44,7 +44,7 @@
 			},
 			interval: {
 				type: Number,
-        default: 2
+        default: 5
       }
 		},
 		data() {
@@ -60,6 +60,7 @@
 		mounted() {
 			this.onUpdateChildren();
 			this.autoPlay();
+			this.childrenLength = this.children.length;
 		},
     beforeDestroy() {
 
@@ -101,21 +102,28 @@
         	if (newIndex === -1) {
 						newIndex = names.length - 1;
           }
-        	this.currentSelected = names[newIndex];
-        	console.log(newIndex, 'newIndex');
-					this.onUpdateChildren();
+        	this.select();
           setTimeout(play, 1000 * this.interval)
         };
-        setTimeout(() => {
-					play()
-        }, this.interval * 1000);
+        // setTimeout(() => {
+				// 	play()
+        // }, this.interval * 1000);
       },
 			onClickPrev() {
-				this.select(this.selectedIndex - 1)
+        const newIndex = this.currentSelectedIndex - 1;
+				this.select(newIndex < 0 ? this.childrenLength - 1 : newIndex)
 			},
 			onClickNext() {
-				this.select(this.selectedIndex + 1)
+        const newIndex = this.currentSelectedIndex + 1;
+				this.select(newIndex > this.childrenLength - 1 ? 0 : newIndex)
 			},
+      select(newIndex) {
+        console.log(newIndex, 'newIndex');
+        /**取上一次的选中值的index 为了计算动画方向  */
+        this.lastSelectedIndex = this.currentSelectedIndex;
+        this.currentSelected = this.names[newIndex];
+        this.onUpdateChildren();
+      },
 			getCurrentSelected() {
 				const first = this.children[0];
 				return this.currentSelected || first.name;
@@ -123,11 +131,17 @@
 			onUpdateChildren() {
 				const currentSelected = this.getCurrentSelected();
 				this.children.forEach((child) => {
-					child.currentSelected = currentSelected;
-          const preSelectedIndex = this.names.indexOf(child.name);
-          child.reverse = this.currentSelectedIndex < preSelectedIndex ? false : true;
-					// console.log(currentSelectedIndex, 'currentSelectedIndex');
-					// console.log(preSelectedIndex, 'preSelectedIndex');
+
+          console.log('this.currentSelectedIndex', this.currentSelectedIndex, 'this.lastSelectedIndex', this.lastSelectedIndex);
+          child.reverse = this.currentSelectedIndex >= this.lastSelectedIndex;
+          /**todo 由于vue的视图是异步更新的, 导致了虽然更新了子元素的reverse,
+           *  但是实际dom中的reverse类还是没有更新
+           *  所以解决办法就是异步的更新visible, 也就是异步的触发动画
+           * */
+          this.$nextTick(() => {
+            child.currentSelected = currentSelected;
+          });
+
 				})
 			}
 		}

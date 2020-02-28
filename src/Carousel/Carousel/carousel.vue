@@ -1,6 +1,12 @@
 <template>
   <div class="g-carousel">
-    <div class="g-carousel-window" ref="window" v-on:mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    <div class="g-carousel-window" ref="window"
+         v-on:mouseenter="onMouseEnter"
+         @mouseleave="onMouseLeave"
+         @touchstart="onTouchStart"
+         @touchmove="onTouchMove"
+         @touchend="onTouchEnd"
+    >
       <slot/>
     </div>
 
@@ -52,8 +58,8 @@
 				childrenLength: 0,
 				lastSelectedIndex: undefined,
 				timerId: undefined,
-				startPoint: undefined,
-				endPoint: undefined,
+				touchStartPoint: undefined,
+				touchEndPoint: undefined,
         currentSelected: this.initSelected,
 			}
 		},
@@ -97,16 +103,40 @@
         /** 模拟setInterval*/
         const play = () => {
 					let newIndex = this.currentSelectedIndex + 1;
-        	if (newIndex === names.length) {
-						newIndex = 0;
-          }
-        	if (newIndex === -1) {
-						newIndex = names.length - 1;
-          }
         	this.select(newIndex);
           this.timerId = setTimeout(play, this.interval * 1000)
         };
         this.timerId =  setTimeout(play, this.interval * 1000);
+      },
+      onTouchStart(e) {
+        this.pause();
+        console.log('开始摸');
+        console.log(e);
+        const {clientX: x1, clientY: y1} = e.changedTouches[0];
+        this.touchStartPoint = [x1, y1];
+      },
+      onTouchMove() {
+        console.log('移动中')
+      },
+      onTouchEnd(e) {
+        console.log(e);
+        console.log('结束摸');
+        const {clientX: x2, clientY: y2} = e.changedTouches[0];
+        this.touchEndPoint = [x2, y2];
+        const [x1, y1] = this.touchStartPoint;
+        const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        const deltaY = Math.abs(y2 - y1);
+        const rate = 2;
+        if (distance / deltaY > rate) {
+          if (x2 > x1) {
+            console.log('右');
+            this.select(this.currentSelectedIndex + 1);
+          } else {
+            console.log('左');
+            this.select(this.currentSelectedIndex - 1);
+          }
+        }
+        this.autoPlay()
       },
       onMouseEnter() {
         console.log('enter');
@@ -122,13 +152,20 @@
       },
 			onClickPrev() {
         const newIndex = this.currentSelectedIndex - 1;
-				this.select(newIndex < 0 ? this.childrenLength - 1 : newIndex)
+				// this.select(newIndex < 0 ? this.childrenLength - 1 : newIndex)
+        this.select(newIndex)
 			},
 			onClickNext() {
         const newIndex = this.currentSelectedIndex + 1;
-				this.select(newIndex > this.childrenLength - 1 ? 0 : newIndex)
+				// this.select(newIndex > this.childrenLength - 1 ? 0 : newIndex)
+        this.select(newIndex)
 			},
       select(newIndex) {
+			  if (newIndex < 0) {
+          newIndex = this.childrenLength - 1;
+        } else if (newIndex > this.childrenLength - 1){
+          newIndex = 0;
+        }
         console.log(newIndex, 'newIndex');
         /**取上一次的选中值的index 为了计算动画方向  */
         this.lastSelectedIndex = this.currentSelectedIndex;

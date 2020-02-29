@@ -1,7 +1,7 @@
 <template>
   <div class="date-picker" ref="wrapper">
     <Popover position="bottom" trigger="click" :container="containerRef" ref="popover" @open="onOpen" @close="onClose">
-      <Input type="text" slot="trigger" :value="formattedValue" @change="onInputChange" @input="onInput"/>
+      <Input type="text" slot="trigger" :value="formattedValue" ref="input" @change="onInputChange" @input="onInput"/>
       <div class="date-picker-pop" @selectstart.prevent>
         <div class="date-picker-nav" >
           <span class="date-picker-nav-item pre-year" @click="onPreYearClick">
@@ -182,7 +182,7 @@
 
       },
       onInputChange() {
-
+        this.$refs.input.setRawValue(this.formattedValue)
       },
       onInput(value) {
         const reg = /^\d{4}-\d{2}-\d{2}$/;

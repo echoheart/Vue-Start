@@ -14,6 +14,18 @@ export default {
       arr.push(i);
     }
     return arr;
+  },
+  setMonth(date, n) {
+    const currentMonth = date.getMonth();
+    const copyDate = new Date(date);
+    copyDate.setMonth(currentMonth + n);
+    return copyDate;
+  },
+  setYear(date, n) {
+    const currentYear = date.getFullYear();
+    const copyDate = new Date(date);
+    copyDate.setFullYear(currentYear + n);
+    return copyDate;
   }
 }
 

@@ -4,20 +4,20 @@
       <Input type="text" slot="trigger" :value="formattedValue"/>
       <div class="date-picker-pop">
         <div class="date-picker-nav" >
-          <span class="date-picker-nav-item pre-year">
+          <span class="date-picker-nav-item pre-year" @click="onPreYearClick">
             <Icon name="left-left"></Icon>
           </span>
-          <span  class="date-picker-nav-item pre-month">
+          <span  class="date-picker-nav-item pre-month" @click="onPreMonthClick">
             <Icon name="left"></Icon>
           </span>
           <span class="yearAndMonth">
-            <span class="date-picker-nav-item" @click="onClickYear">2020年</span>
-            <span class="date-picker-nav-item" @click="onClickMonth">2月</span>
+            <span class="date-picker-nav-item" @click="onClickYear">{{displayValue.year}}年</span>
+            <span class="date-picker-nav-item" @click="onClickMonth">{{displayValue.month + 1}}月</span>
           </span>
-          <span  class="date-picker-nav-item next-month">
+          <span  class="date-picker-nav-item next-month" @click="onNextMonthClick">
             <Icon name="right"></Icon>
           </span>
-          <span  class="date-picker-nav-item next-year">
+          <span  class="date-picker-nav-item next-year" @click="onNextYearClick">
             <Icon name="right-right"></Icon>
           </span>
         </div>
@@ -63,6 +63,7 @@
       Icon
     },
     methods: {
+
       onClickYear() {
         this.mode = 'years';
       },
@@ -78,9 +79,40 @@
       },
       isCurrentMonth(date) {
         const {year, month} = helper.getYearMonthDay(date);
-        const currentYear = this.value.getFullYear();
-        const currentMonth = this.value.getMonth();
-        return year !== currentYear || currentMonth !== month;
+
+        return year !== this.displayValue.year || this.displayValue.month !== month;
+      },
+      onPreYearClick() {
+        const oldDate = new Date(this.displayValue.year, this.displayValue.month);
+        const newDate = helper.setYear(oldDate, -1);
+        const {year, month} = helper.getYearMonthDay(newDate);
+        this.displayValue = {
+          year,month
+        }
+      },
+      onNextYearClick() {
+        const oldDate = new Date(this.displayValue.year, this.displayValue.month);
+        const newDate = helper.setYear(oldDate, +1);
+        const {year, month} = helper.getYearMonthDay(newDate);
+        this.displayValue = {
+          year,month
+        }
+      },
+      onPreMonthClick() {
+        const oldDate = new Date(this.displayValue.year, this.displayValue.month);
+        const newDate = helper.setMonth(oldDate, -1);
+        const {year, month} = helper.getYearMonthDay(newDate);
+        this.displayValue = {
+          year,month
+        }
+      },
+      onNextMonthClick() {
+        const oldDate = new Date(this.displayValue.year, this.displayValue.month);
+        const newDate = helper.setMonth(oldDate, +1);
+        const {year, month} = helper.getYearMonthDay(newDate);
+        this.displayValue = {
+          year,month
+        }
       }
     },
     mounted() {
@@ -89,8 +121,8 @@
     computed: {
 
       visibleDays() {
-        const date = this.value;
-        console.log(this.value);
+        const date = new Date(this.displayValue.year, this.displayValue.month, 1);
+        console.log(date);
         const firstDay = helper.getFirstDayOfMonth(date);
 
         const weekDayOfFirstDay = firstDay.getDay();
@@ -117,10 +149,14 @@
       },
     },
     data() {
+      const {year, month} = helper.getYearMonthDay(this.value);
       return {
         mode: 'days',
         helper: helper,
-        containerRef: null
+        containerRef: null,
+        displayValue: {
+          year,month
+        }
       }
     }
   }

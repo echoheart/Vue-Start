@@ -1,15 +1,15 @@
 <template>
-  <div class="date-picker">
-    <Popover position="bottom" trigger="click">
+  <div class="date-picker" ref="wrapper">
+    <Popover position="bottom" trigger="click" :container="containerRef">
       <Input type="text" slot="trigger"/>
       <div class="date-picker-pop">
         <div class="date-picker-nav">
-          <span> <Icon name="left"></Icon> </span>
+          <span> <Icon name="left-left"></Icon> </span>
           <span> <Icon name="left"></Icon> </span>
           <span @click="onClickYear">2020年</span>
           <span @click="onClickMonth">2月</span>
           <span> <Icon name="right"></Icon>  </span>
-          <span> <Icon name="right"></Icon>  </span>
+          <span> <Icon name="right-right"></Icon>  </span>
         </div>
 
         <div class="date-picker-panels">
@@ -27,6 +27,10 @@
                 </span>
             </div>
           </div>
+        </div>
+
+        <div class="date-picker-action">
+          <button>清除</button>
         </div>
       </div>
     </Popover>
@@ -54,9 +58,12 @@
       }
     },
     mounted() {
-      // console.log(this.visibleDays);
+      this.containerRef = this.$refs.wrapper;
     },
     computed: {
+      containerRef() {
+
+      },
       visibleDays() {
         const date = this.value;
         console.log(this.value);
@@ -95,11 +102,17 @@
         mode: 'days',
         helper: helper,
         value: new Date(),
+        containerRef: null
       }
     }
   }
 </script>
 
 <style scoped lang="less">
+  .date-picker {
 
+    /deep/ .popover-content-wrapper {
+      /*padding: 0;*/
+    }
+  }
 </style>

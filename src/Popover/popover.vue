@@ -1,6 +1,6 @@
 <template>
   <div class="popover" ref="popover">
-    <div ref="popoverContent"  class="content-wrapper" v-show="this.visible"
+    <div ref="popoverContent"  class="popover-content-wrapper" v-show="this.visible"
          :style="popoverStyle" :class="{[`position-${position}`]: true}">
       <div class="popover-title" v-if="title" v-text="title"></div>
       <slot>{{ this.content }}</slot>
@@ -17,6 +17,7 @@
     name: 'Popover',
     directives: {clickOutSide},
     props: {
+      container: null,
       content: {
         default: 'content'
       },
@@ -68,7 +69,7 @@
       portal() {
         if (this.visible === false) return;
         const {popoverContent} = this.$refs;
-        document.body.appendChild(popoverContent);
+        (this.container || document.body).appendChild(popoverContent);
         this.$nextTick(() => {
           this.getContentPosition();
         });
@@ -151,7 +152,7 @@
     position: relative;
   }
 
-  .content-wrapper {
+  .popover-content-wrapper {
     position: absolute;
     /*英文换行*/
     word-break: break-all;

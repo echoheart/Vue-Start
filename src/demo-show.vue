@@ -195,6 +195,10 @@
       </Carousel>
     </div>
 
+    <div class="demo-show-item">
+      <DatePicker></DatePicker>
+    </div>
+
   </div>
 </template>
 
@@ -203,7 +207,11 @@
 	import VueUI from './index';
 	import DB from '../test/fixtures/db';
 
+	// import {DatePicker} from './index';
+  // Vue.use(DatePicker);
+
 	Vue.use(VueUI);
+
 
 
 	function ajax(parentId = 0) {

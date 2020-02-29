@@ -42,6 +42,8 @@ import Header from './Layout/Header/index';
 import Aside from './Layout/Aside/index';
 import Footer from './Layout/Footer/index';
 
+import DatePicker from './date-picker/index';
+
 import DB from '../test/fixtures/db';
 const components = [
   Button,
@@ -71,7 +73,8 @@ const components = [
   Content,
   Header,
   Aside,
-  Footer
+  Footer,
+  DatePicker
 ];
 
 const install = function(Vue) {
@@ -80,8 +83,8 @@ const install = function(Vue) {
   });
   Vue.prototype.$toast = Toast;
 };
-export default {
-  install,
+export default install;
+export {
   Button,
   Icon,
   ButtonGroup,
@@ -109,5 +112,6 @@ export default {
   Content,
   Header,
   Aside,
-  Footer
+  Footer,
+  DatePicker
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="popover" ref="popover">
-    <div ref="popoverContent" class="content-wrapper" v-show="this.visible"
+    <div ref="popoverContent"  class="content-wrapper" v-show="this.visible"
          :style="popoverStyle" :class="{[`position-${position}`]: true}">
       <div class="popover-title" v-if="title" v-text="title"></div>
       <slot>{{ this.content }}</slot>
@@ -12,8 +12,10 @@
 </template>
 
 <script>
+  import clickOutSide from '../directives/click-outside'
   export default {
     name: 'Popover',
+    directives: {clickOutSide},
     props: {
       content: {
         default: 'content'
@@ -22,7 +24,7 @@
         default: ''
       },
       trigger: {
-        default: 'hover',
+        default: 'click',
         validator(value) {
           return value === ['click', 'hover'].find((item) => {
             return value === item;

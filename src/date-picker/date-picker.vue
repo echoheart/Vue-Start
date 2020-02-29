@@ -1,7 +1,7 @@
 <template>
   <div class="date-picker" ref="wrapper">
     <Popover position="bottom" trigger="click" :container="containerRef">
-      <Input type="text" slot="trigger"/>
+      <Input type="text" slot="trigger" :value="formattedValue"/>
       <div class="date-picker-pop">
         <div class="date-picker-nav" >
           <span class="date-picker-nav-item pre-year">
@@ -32,8 +32,11 @@
               </span>
             </div>
             <div class="date-picker-row" v-for="i in helper.range(1, 42/7 + 1)">
-                <span class="date-picker-cell" v-for="j in helper.range(1, 7 + 1)">
-                  {{visibleDays[(i - 1) * 7 + (j - 1)].getDate()}}
+                <span
+                      @click="onCellClick(getVisibleDay(i, j))"
+                      class="date-picker-cell"
+                      v-for="j in helper.range(1, 7 + 1)">
+                  {{getVisibleDay(i, j).getDate()}}
                 </span>
             </div>
           </div>
@@ -65,6 +68,12 @@
       },
       onClickMonth() {
         this.mode = 'months'
+      },
+      getVisibleDay(row, col) {
+        return this.visibleDays[(row - 1) * 7 + (col - 1)]
+      },
+      onCellClick(newDate) {
+        this.$emit('input', newDate);
       }
     },
     mounted() {
@@ -86,14 +95,23 @@
         }
         console.log(array);
         return array;
+      },
+      formattedValue() {
+        const {year, month, day} = this.helper.getYearMonthDay(this.value);
+        return `${year}-${month + 1}-${day}`;
       }
     },
-
+    props: {
+      value: {
+        default: function () {
+          return new Date();
+        }
+      },
+    },
     data() {
       return {
         mode: 'days',
         helper: helper,
-        value: new Date(),
         containerRef: null
       }
     }
@@ -115,6 +133,9 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+    }
+    &-cell:hover {
+      background: #ebeef5;
     }
     /deep/ .popover-content-wrapper {
       padding: 0;

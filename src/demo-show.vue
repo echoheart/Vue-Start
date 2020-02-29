@@ -196,7 +196,7 @@
     </div>
 
     <div class="demo-show-item">
-      <DatePicker></DatePicker>
+      <DatePicker :value="datePickerValue" @input="datePickerValue = $event"></DatePicker>
       <div>DatePicker</div>
     </div>
 
@@ -244,6 +244,7 @@
 		},
 		data() {
 			return {
+			  datePickerValue: new Date(),
 				inputValue: '初始值',
 				tabValue: 'one',
         collapseActiveNames: [],

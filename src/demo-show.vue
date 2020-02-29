@@ -163,6 +163,10 @@
       </Layout>
     </div>
 
+    <div class="demo-show-item">
+      <DatePicker :value="datePickerValue" @input="datePickerValue = $event"></DatePicker>
+      <div>DatePicker</div>
+    </div>
 
     <div class="demo-show-item">
       <Table
@@ -195,10 +199,7 @@
       </Carousel>
     </div>
 
-    <div class="demo-show-item">
-      <DatePicker :value="datePickerValue" @input="datePickerValue = $event"></DatePicker>
-      <div>DatePicker</div>
-    </div>
+
 
   </div>
 </template>

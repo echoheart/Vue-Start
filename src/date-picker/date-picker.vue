@@ -3,13 +3,23 @@
     <Popover position="bottom" trigger="click" :container="containerRef">
       <Input type="text" slot="trigger"/>
       <div class="date-picker-pop">
-        <div class="date-picker-nav">
-          <span> <Icon name="left-left"></Icon> </span>
-          <span> <Icon name="left"></Icon> </span>
-          <span @click="onClickYear">2020年</span>
-          <span @click="onClickMonth">2月</span>
-          <span> <Icon name="right"></Icon>  </span>
-          <span> <Icon name="right-right"></Icon>  </span>
+        <div class="date-picker-nav" >
+          <span class="date-picker-nav-item pre-year">
+            <Icon name="left-left"></Icon>
+          </span>
+          <span  class="date-picker-nav-item pre-month">
+            <Icon name="left"></Icon>
+          </span>
+          <span class="yearAndMonth">
+            <span class="date-picker-nav-item" @click="onClickYear">2020年</span>
+            <span class="date-picker-nav-item" @click="onClickMonth">2月</span>
+          </span>
+          <span  class="date-picker-nav-item next-month">
+            <Icon name="right"></Icon>
+          </span>
+          <span  class="date-picker-nav-item next-year">
+            <Icon name="right-right"></Icon>
+          </span>
         </div>
 
         <div class="date-picker-panels">
@@ -17,7 +27,7 @@
           <div v-else-if="this.mode === 'months'" class="date-picker-content">月</div>
           <div v-else class="date-picker-content">
             <div class="date-picker-weekdays">
-              <span v-for="i in ['一', '二', '三', '四', '五', '六', '日']">
+              <span class="date-picker-weekdays-item" v-for="i in ['一', '二', '三', '四', '五', '六', '日']">
                 {{i}}
               </span>
             </div>
@@ -92,7 +102,20 @@
 
 <style scoped lang="less">
   .date-picker {
-
+    &-nav {
+      display: flex;
+    }
+    .yearAndMonth {
+      margin: auto;
+    }
+    &-cell, &-nav-item, &-weekdays-item {
+      display: inline-flex;
+      width: 60px;
+      height: 60px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
     /deep/ .popover-content-wrapper {
       padding: 0;
     }

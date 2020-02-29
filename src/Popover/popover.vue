@@ -164,7 +164,6 @@
     padding: 12px;
     border-radius: 4px;
     min-width: 158px;
-    width: 200px;
     transition: all 300ms linear;
 
     &::after, &::before {

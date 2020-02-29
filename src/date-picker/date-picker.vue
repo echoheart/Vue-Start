@@ -61,39 +61,21 @@
       this.containerRef = this.$refs.wrapper;
     },
     computed: {
-      containerRef() {
 
-      },
       visibleDays() {
         const date = this.value;
         console.log(this.value);
         const firstDay = helper.getFirstDayOfMonth(date);
-        const lastDay = helper.getLastDayOfMonth(date);
 
-        const {year, month, day} = helper.getYearMonthDay(date);
-        const array1 = [];
-        for(let i = firstDay.getDate(); i <= lastDay.getDate(); i++) {
-          array1.push(new Date(year, month, i))
+        const weekDayOfFirstDay = firstDay.getDay();
+        const startDayTimesStamp = firstDay - new Date(weekDayOfFirstDay === 0 ? 6 : weekDayOfFirstDay -1) * 3600 * 24 * 1000;
+
+        const array = [];
+        for (let i = 0; i < 42; i ++) {
+          array.push(new Date(startDayTimesStamp + i * 3600 * 24 * 1000));
         }
-
-        const array2 = [];
-        const n = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
-        for (let i = 0; i < n; i++) {
-          array2.push(new Date(year, month, -i))
-        }
-        array2.reverse();
-
-        const array3 = [];
-        const m = 42 - array1.length - array2.length;
-        for (let i = 1; i <= m; i++) {
-          array3.push(new Date(year, month + 1, i))
-        }
-
-        console.log(array1);
-        console.log(array2);
-        console.log(array3);
-
-        return [...array2, ...array1, ...array3];
+        console.log(array);
+        return array;
       }
     },
 
@@ -112,7 +94,7 @@
   .date-picker {
 
     /deep/ .popover-content-wrapper {
-      /*padding: 0;*/
+      padding: 0;
     }
   }
 </style>

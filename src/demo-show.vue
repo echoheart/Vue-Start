@@ -197,6 +197,7 @@
 
     <div class="demo-show-item">
       <DatePicker></DatePicker>
+      <div>DatePicker</div>
     </div>
 
   </div>

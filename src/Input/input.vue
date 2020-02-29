@@ -7,9 +7,12 @@
       v-bind:value="value"
       v-bind:disabled="disabled"
       v-bind:readonly="readonly"
+      ref="input"
       type="text"
-      v-on:input="$emit('change', $event)"
-      v-on:onpropertychange="$emit('change', $event)"
+      @input="$emit('input', $event.target.value)"
+      @change="$emit('change', $event.target.value)"
+      @focus="$emit('focus', $event.target.value)"
+      @blur="$emit('blur', $event.target.value)"
     >
     <template v-if="error">
       <Icon name="error"></Icon>
@@ -24,6 +27,11 @@
   export default {
     components: {Icon},
     name: 'PInput',
+    methods: {
+      setRawValue(value) {
+        this.$refs.input.value = value;
+      }
+    },
     props: {
       value: {
         type: String

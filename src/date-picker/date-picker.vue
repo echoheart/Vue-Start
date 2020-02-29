@@ -1,7 +1,7 @@
 <template>
   <div class="date-picker" ref="wrapper">
-    <Popover position="bottom" trigger="click" :container="containerRef">
-      <Input type="text" slot="trigger" :value="formattedValue"/>
+    <Popover position="bottom" trigger="click" :container="containerRef" ref="popover" @open="onOpen" @close="onClose">
+      <Input type="text" slot="trigger" :value="formattedValue" @change="onInputChange" @input="onInput"/>
       <div class="date-picker-pop" @selectstart.prevent>
         <div class="date-picker-nav" >
           <span class="date-picker-nav-item pre-year" @click="onPreYearClick">
@@ -13,6 +13,7 @@
           <span class="yearAndMonth"  @click="onClickYear">
             <span class="date-picker-nav-item">{{displayValue.year}}年</span>
             <span class="date-picker-nav-item">{{displayValue.month + 1}}月</span>
+            <Icon name="xiala" :class="{isUp: mode === 'years'}"></Icon>
           </span>
           <span  class="date-picker-nav-item next-month" @click="onNextMonthClick">
             <Icon name="right"></Icon>
@@ -100,6 +101,7 @@
       onCellClick(newDate) {
         if (this.isCurrentMonth(newDate)) return;
         this.$emit('input', newDate);
+        this.close();
       },
       isCurrentMonth(date) {
         const {year, month} = helper.getYearMonthDay(date);
@@ -139,7 +141,8 @@
         }
       },
       onClearClick() {
-        this.$emit('input', undefined)
+        this.$emit('input', undefined);
+        this.close();
       },
       onTodayClick() {
         const {year, month} = helper.getYearMonthDay(new Date());
@@ -155,6 +158,7 @@
       onMonthSelectChange(e) {
         this.displayValue.month = parseInt(e.currentTarget.value);
         console.log(e.currentTarget.value);
+        this.mode = 'days';
       },
       isSelected(date) {
         if (!this.value) return;
@@ -166,6 +170,38 @@
         const {year, month, day} = helper.getYearMonthDay(date);
         const {year: cYear, month: cMonth, day: cDay} = helper.getYearMonthDay(new Date());
         return year === cYear && month === cMonth && day === cDay;
+      },
+      close() {
+        this.mode = 'days';
+        this.$refs.popover.close();
+      },
+      onOpen() {
+        this.mode = 'days';
+      },
+      onClose() {
+
+      },
+      onInputChange() {
+
+      },
+      onInput(value) {
+        const reg = /^\d{4}-\d{2}-\d{2}$/;
+        if (value.match(reg)) {
+          let [year, month, day] = value.split('-');
+          if (month >=0 && month < 12 && year > 1000 && year < 3000) {
+            const firstDay = new Date(year, month - 1, 1).getDate();
+            const lastDay = new Date(year, month, 0).getDate();
+            if (day >= firstDay && day <= lastDay) {
+              month = month - 1;
+              year = year - 0;
+              this.displayValue = {
+                year: parseInt(year),
+                month: parseInt(month)
+              };
+              this.$emit('input', new Date(year, month, day))
+            }
+          }
+        }
       }
 
     },
@@ -192,7 +228,7 @@
       formattedValue() {
         if(!this.value) return;
         const {year, month, day} = this.helper.getYearMonthDay(this.value);
-        return `${year}-${month + 1}-${day}`;
+        return `${year}-${parseInt(month) + 1 >= 10 ?parseInt(month) + 1 : '0' + (month + 1)}-${day >= 10 ? day : '0' + day}`;
       },
       years() {
         return helper.range(
@@ -237,6 +273,12 @@
     }
     .yearAndMonth {
       margin: auto;
+      .g-icon {
+        transition: all 200ms;
+      }
+      .isUp {
+        transform: rotate(180deg);
+      }
     }
     &-select-wrapper {
       display: flex;

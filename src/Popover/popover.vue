@@ -120,6 +120,7 @@
       },
       open() {
         this.visible = true;
+        this.$emit('open');
         this.portal();
         /*$nextTick异步处理此处有问题*/
         if (this.trigger === 'click') {
@@ -130,6 +131,7 @@
       },
       close() {
         this.visible = false;
+        this.$emit('close');
         if (this.trigger === 'click') {
           document.removeEventListener('click', this.onClickDocument);
           console.log('删除监听器');

@@ -34,7 +34,7 @@
             <div class="date-picker-row" v-for="i in helper.range(1, 42/7 + 1)">
                 <span
                       @click="onCellClick(getVisibleDay(i, j))"
-                      class="date-picker-cell"
+                      :class="['date-picker-cell', {notCurrentMonth: isCurrentMonth(getVisibleDay(i, j))}]"
                       v-for="j in helper.range(1, 7 + 1)">
                   {{getVisibleDay(i, j).getDate()}}
                 </span>
@@ -73,7 +73,14 @@
         return this.visibleDays[(row - 1) * 7 + (col - 1)]
       },
       onCellClick(newDate) {
+        if (this.isCurrentMonth(newDate)) return;
         this.$emit('input', newDate);
+      },
+      isCurrentMonth(date) {
+        const {year, month} = helper.getYearMonthDay(date);
+        const currentYear = this.value.getFullYear();
+        const currentMonth = this.value.getMonth();
+        return year !== currentYear || currentMonth !== month;
       }
     },
     mounted() {
@@ -105,7 +112,8 @@
       value: {
         default: function () {
           return new Date();
-        }
+        },
+        type: Date
       },
     },
     data() {
@@ -133,9 +141,16 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      color: #000;
+    }
+    .notCurrentMonth {
+      color: #ddd;
     }
     &-cell:hover {
       background: #ebeef5;
+    }
+    .notCurrentMonth:hover {
+      background: initial;
     }
     /deep/ .popover-content-wrapper {
       padding: 0;

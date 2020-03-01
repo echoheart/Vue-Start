@@ -212,7 +212,6 @@
 
       visibleDays() {
         const date = new Date(this.displayValue.year, this.displayValue.month, 1);
-        console.log(date);
         const firstDay = helper.getFirstDayOfMonth(date);
 
         const weekDayOfFirstDay = firstDay.getDay();
@@ -222,7 +221,6 @@
         for (let i = 0; i < 42; i ++) {
           array.push(new Date(startDayTimesStamp + i * 3600 * 24 * 1000));
         }
-        console.log(array);
         return array;
       },
       formattedValue() {
@@ -287,6 +285,9 @@
       select {
         margin: 20px;
       }
+    }
+    &-row {
+      display: inline-flex;
     }
     &-cell, &-nav-item, &-weekdays-item {
       display: inline-flex;

@@ -180,7 +180,6 @@
 				const currentSelected = this.getCurrentSelected();
 				this.children.forEach((child) => {
 
-          console.log('this.currentSelectedIndex', this.currentSelectedIndex, 'this.lastSelectedIndex', this.lastSelectedIndex);
           child.reverse = this.currentSelectedIndex < this.lastSelectedIndex;
           /**todo 由于vue的视图是异步更新的, 导致了虽然更新了子元素的reverse,
            *  但是实际dom中的reverse类还是没有更新

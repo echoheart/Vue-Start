@@ -44,6 +44,8 @@ import Footer from './Layout/Footer/index';
 
 import DatePicker from './date-picker/index';
 
+import Scroll from "./Scroll/index";
+
 import DB from '../test/fixtures/db';
 const components = [
   Button,
@@ -74,7 +76,8 @@ const components = [
   Header,
   Aside,
   Footer,
-  DatePicker
+  DatePicker,
+  Scroll
 ];
 
 const install = function(Vue) {
@@ -113,5 +116,6 @@ export {
   Header,
   Aside,
   Footer,
-  DatePicker
+  DatePicker,
+  Scroll
 }

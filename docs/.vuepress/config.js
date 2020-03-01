@@ -12,8 +12,8 @@ module.exports = {
     ],
     sidebar: [
       '/',
-      '/install/',
-      '/getStart/',
+      // '/install/',
+      // '/getStart/',
       {
         title: '组件',
         collapsable: false,
@@ -27,6 +27,7 @@ module.exports = {
           'components/Toast',
           'components/Layout',
           'components/Carousel',
+          'components/DatePicker',
         ]
       },
 

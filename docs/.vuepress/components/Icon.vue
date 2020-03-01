@@ -14,6 +14,11 @@
     components: {
       Icon,
     },
+    methods: {
+      onIconClick(e) {
+        console.log(e);
+      },
+    },
     data() {
       return {
         content: `

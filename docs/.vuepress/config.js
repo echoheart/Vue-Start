@@ -29,6 +29,7 @@ module.exports = {
           'components/Carousel',
           'components/DatePicker',
           'components/Scroll',
+          'components/Pager',
         ]
       },
 

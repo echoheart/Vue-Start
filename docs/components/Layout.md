@@ -1,5 +1,5 @@
 ---
-title: Layout 布局组件
+title: Layout 布局
 ---
    
 <ClientOnly>

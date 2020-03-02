@@ -1,7 +1,7 @@
 <template>
   <div class="g-carousel">
     <div class="g-carousel-window" ref="window"
-         v-on:mouseenter="onMouseEnter"
+         @mouseenter="onMouseEnter"
          @mouseleave="onMouseLeave"
          @touchstart="onTouchStart"
          @touchmove="onTouchMove"

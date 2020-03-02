@@ -304,6 +304,11 @@
       </Carousel>
     </div>
 
+    <div class="demo-show-item">
+      <Pager :currentPage.sync="currentPage" :totalPage="100"></Pager>
+    </div>
+
+
 
 
   </div>
@@ -350,6 +355,7 @@
 		},
 		data() {
 			return {
+        currentPage: 3,
 			  datePickerValue: new Date(),
 				inputValue: '初始值',
 				tabValue: 'one',

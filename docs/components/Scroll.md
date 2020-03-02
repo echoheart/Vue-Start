@@ -1,5 +1,5 @@
 ---
-title: Scroll 滚动组件
+title: Scroll 滚动
 ---
  <ClientOnly>
    <Scroll></Scroll>

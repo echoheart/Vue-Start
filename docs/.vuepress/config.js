@@ -28,6 +28,7 @@ module.exports = {
           'components/Layout',
           'components/Carousel',
           'components/DatePicker',
+          'components/Scroll',
         ]
       },
 

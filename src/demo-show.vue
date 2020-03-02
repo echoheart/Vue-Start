@@ -131,8 +131,8 @@
     <div class="demo-show-item">
       <Collapse :activeNames="collapseActiveNames" v-on:update-activeNames="onUpdateActiveNames">
         <CollapseItem name="1" title="标题1">内容一</CollapseItem>
-        <CollapseItem name="2" title="标题1">内容二</CollapseItem>
-        <CollapseItem name="3" title="标题1">内容三</CollapseItem>
+        <CollapseItem name="2" title="标题2">内容二</CollapseItem>
+        <CollapseItem name="3" title="标题3">内容三</CollapseItem>
       </Collapse>
     </div>
 

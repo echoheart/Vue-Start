@@ -69,7 +69,7 @@
           <div class="grid-content bg-purple-light"></div>
         </PCol>
       </PCol>
-    </div>``
+    </div>
 
     <div class="demo-show-item">
       <PRow style="width: 100%;" class="row-bg fff">
@@ -286,8 +286,7 @@
     </div>
 
     <div class="demo-show-item">
-      <Cascader :source="citySource" :selected.sync="selectedCity" ></Cascader>
-
+      <Cascader :source.sync="citySource" :selected.sync="selectedCity" :loadData="loadData"></Cascader>
     </div>
 
     <div class="demo-show-item">
@@ -305,8 +304,9 @@
     </div>
 
     <div class="demo-show-item">
-      <Pager :currentPage.sync="currentPage" :totalPage="100"></Pager>
+      <Pager :currentPage.sync="currentPage" :totalPage="100" ></Pager>
     </div>
+
 
 
 
@@ -319,31 +319,30 @@
 	import VueUI from './index';
 	import DB from '../test/fixtures/db';
 
-	// import {DatePicker} from './index';
-  // Vue.use(DatePicker);
+
 
 	Vue.use(VueUI);
 
 
 
-	function ajax(parentId = 0) {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				const result = DB.filter((item) => {
-					return item.parent_id === parentId;
-				});
-				result.forEach((node) => {
-					if (DB.filter((item) => {
-						return item.parent_id === node.id;
-					}).length > 0) {
-						node.isLeaf = false;
-					} else {
-						node.isLeaf = true;
-					}
-				});
-				resolve(result);
-			}, 300);
-		});
+	function ajax(parentId = 0, success) {
+      return new Promise((resolve, reject) => {
+          setTimeout(() => {
+              const result = DB.filter((item) => {
+                  return item.parent_id === parentId;
+              });
+              result.forEach((node) => {
+                  if (DB.filter((item) => {
+                      return item.parent_id === node.id;
+                  }).length > 0) {
+                      node.isLeaf = false;
+                  } else {
+                      node.isLeaf = true;
+                  }
+              });
+              resolve(result);
+          }, 500);
+      });
 	}
 
 	export default {
@@ -352,99 +351,64 @@
 
 		},
 		created() {
+		  ajax().then((result) => {
+		    this.citySource = result;
+          })
 		},
 		data() {
-			return {
-        currentPage: 3,
-			  datePickerValue: new Date(),
-				inputValue: '初始值',
-				tabValue: 'one',
-        collapseActiveNames: [],
-        tableColumns: [
-          {title: '姓名', dataIndex: 'name', key: 'name'},
-          {title: '分数', dataIndex: 'scores', key: 'scores'},
-        ],
-        tableData: [
-          {name: '小张', scores: '199', id: 1},
-          {name: '小李', scores: '111', id: 2},
-        ],
-        selectedCity: [],
-        citySource: [
-          {
-            name: '北京',
-            children: [
-              {
-                name: '海淀',
-                children: [
-                  {name: '西二旗'},
-                  {name: '西三旗'}
-                ]},
-              {
-                name: '朝阳',
-                children: [
-                  {name: '天安门'},
-                  {name: '前门'}
-                ]
-              },
-              {
-                name: '东城',
-                children: [
-                  {name: '东城东'},
-                  {name: '东城西'}
-                ]}
-            ]
-          },
-          {
-            name: '黑龙江',
-            children: [
-              {
-                name: '哈尔滨',
-                children: [
-                  {name: '南岗'},
-                  {name: '前进'}
-                ]
-              },
-              {
-                name: '佳木斯',
-                children: [
-                  {name: '东风'},
-                  {name: '向阳'}
-                ]
-              },
-              {name: '齐齐哈尔'}
-            ]
+          return {
+            currentPage: 3,
+            datePickerValue: new Date(),
+            inputValue: '初始值',
+            tabValue: 'one',
+            collapseActiveNames: [],
+            tableColumns: [
+              {title: '姓名', dataIndex: 'name', key: 'name'},
+              {title: '分数', dataIndex: 'scores', key: 'scores'},
+            ],
+            tableData: [
+              {name: '小张', scores: '199', id: 1},
+              {name: '小李', scores: '111', id: 2},
+            ],
+            selectedCity: [],
+            citySource: [],
+            carouselSelected: 'three'
           }
-        ],
-				carouselSelected: 'three'
-			}
 		},
 		methods: {
-			onIconClick(e) {
-				console.log(e);
-			},
-			onButtonClick(e) {
-				console.log(e);
-			},
-			onInputChange(e) {
-				console.log(e.srcElement.value);
-				this.inputValue = e.srcElement.value;
-			},
-			onToastClick() {
-				this.$toast('message');
-			},
-			onTabClick(name) {
-				this.tabValue = name;
-			},
-      onUpdateActiveNames(activeNames) {
-			  this.collapseActiveNames = activeNames;
-      },
-      onTableSelectChange(items) {
-        console.log(items);
-      },
-      onUpdateSelected(newSelected) {
-        // console.log('newSelected', newSelected);
-			  this.selectedCity = newSelected;
-      }
+		  loadData(node, callback) {
+		    let {name, id, parent_id} = node;
+            console.log(node);
+		    ajax(id).then((result) => {
+		      callback(result);
+            })
+          },
+          onIconClick(e) {
+              console.log(e);
+          },
+          onButtonClick(e) {
+              console.log(e);
+          },
+          onInputChange(e) {
+              console.log(e.srcElement.value);
+              this.inputValue = e.srcElement.value;
+          },
+          onToastClick() {
+              this.$toast('message');
+          },
+          onTabClick(name) {
+              this.tabValue = name;
+          },
+          onUpdateActiveNames(activeNames) {
+                  this.collapseActiveNames = activeNames;
+          },
+          onTableSelectChange(items) {
+            console.log(items);
+          },
+          onUpdateSelected(newSelected) {
+            // console.log('newSelected', newSelected);
+                  this.selectedCity = newSelected;
+          }
 		}
 	}
 </script>

@@ -3,7 +3,7 @@
     <div class="left">
       <div class="label"
            v-for="item in items"
-           v-on:click="() => {onClickHandle(item)}">
+           v-on:click="() => {handleLabelClick(item)}">
         <span class="name">{{ item.name }}</span>
         <span class="icons">
             <template v-if="loadingItem.name === item.name">
@@ -75,24 +75,16 @@
       isShowRightArrow(item) {
         return this.loadData ? !item.isLeaf : item.children;
       },
-      onClickHandle(item) {
+      handleLabelClick(item) {
         // 拷贝一份全新的数据
         const copySelected = JSON.parse((JSON.stringify(this.selected)));
         copySelected[this.level] = item;
-        // 更新时删除当前层级的后的所有元素达到更新数据的目的
-        console.log(this.level, 'this.level');
         copySelected.splice(this.level + 1);
-        console.log('copySelected', copySelected);
         this.$emit('update:selected', copySelected);
 
       },
       onUpdateSelected(copySelected) {
-        this.$emit('update:selected', copySelected)
-      }
-    },
-    data() {
-      return {
-        leftSelectedItem: null
+        this.$emit('update:selected', copySelected);
       }
     },
     computed: {
@@ -101,12 +93,14 @@
          * 当前点击的父元素(左边的值)
          * 计算出子元素rightItem(右边的值)
          * */
-        const currentLeftSelectedItem = this.selected[this.level];
-        if (currentLeftSelectedItem && currentLeftSelectedItem.children && currentLeftSelectedItem.children.length > 0) {
-          return currentLeftSelectedItem.children
-        } else {
-          return null;
+        if (this.selected[this.level]) {
+            const selected = this.items.filter((item) => {return item.name === this.selected[this.level].name})[0];
+            console.log(selected);
+            if (selected && selected.children && selected.children.length > 0) {
+                return selected.children;
+            }
         }
+
       }
     },
   };

@@ -110,17 +110,13 @@
       },
       onTouchStart(e) {
         this.pause();
-        console.log('开始摸');
-        console.log(e);
         const {clientX: x1, clientY: y1} = e.changedTouches[0];
         this.touchStartPoint = [x1, y1];
       },
       onTouchMove() {
-        console.log('移动中')
       },
       onTouchEnd(e) {
-        console.log(e);
-        console.log('结束摸');
+
         const {clientX: x2, clientY: y2} = e.changedTouches[0];
         this.touchEndPoint = [x2, y2];
         const [x1, y1] = this.touchStartPoint;
@@ -129,21 +125,17 @@
         const rate = 2;
         if (distance / deltaY > rate) {
           if (x2 > x1) {
-            console.log('右');
             this.select(this.currentSelectedIndex + 1);
           } else {
-            console.log('左');
             this.select(this.currentSelectedIndex - 1);
           }
         }
         this.autoPlay()
       },
       onMouseEnter() {
-        console.log('enter');
         this.pause();
       },
       onMouseLeave() {
-        console.log('leave');
         this.autoPlay()
       },
       pause() {
@@ -166,7 +158,6 @@
         } else if (newIndex > this.childrenLength - 1){
           newIndex = 0;
         }
-        console.log(newIndex, 'newIndex');
         /**取上一次的选中值的index 为了计算动画方向  */
         this.lastSelectedIndex = this.currentSelectedIndex;
         this.currentSelected = this.names[newIndex];

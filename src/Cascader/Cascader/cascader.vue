@@ -43,14 +43,57 @@
       },
       open() {
         this.popoverVisible = true;
-        // document.addEventListener('click', this.onHandleDocumentClick);
       },
       close() {
         this.popoverVisible = false;
-        // document.removeEventListener('click', this.onHandleDocumentClick)
       },
       onUpdateSelected(copySelected) {
         this.$emit('update:selected', copySelected);
+        const lastItem = copySelected[copySelected.length - 1];
+
+        let simplest = (children, id) => {
+          return children.filter(item => item.id === id)[0]
+        }
+        let complex = (children, id) => {
+          let noChildren = []
+          let hasChildren = []
+          children.forEach(item => {
+            if (item.children) {
+              hasChildren.push(item)
+            } else {
+              noChildren.push(item)
+            }
+          })
+          let found = simplest(noChildren, id)
+          if (found) {
+            return found
+          } else {
+            found = simplest(hasChildren, id)
+            if (found) { return found }
+            else {
+              for (let i = 0; i < hasChildren.length; i++) {
+                found = complex(hasChildren[i].children, id)
+                if (found) {
+                  return found
+                }
+              }
+              return undefined
+            }
+          }
+        }
+        let updateSource = (result) => {
+          this.loadingItem = {}
+          let copySource = JSON.parse(JSON.stringify(this.source))
+          let toUpdate = complex(copySource, lastItem.id)
+          toUpdate.children = result
+          console.log(result);
+          console.log(toUpdate);
+          this.$emit('update:source', copySource)
+        }
+        if (!lastItem.isLeaf) {
+          this.loadData && this.loadData(lastItem, updateSource);
+          this.loadingItem = lastItem;
+        }
       }
     },
     computed: {
